@@ -11,7 +11,7 @@ job ('example') {
     }
     steps {
 	out.println('Hello from a Job DSL script!')
-        //shell('./script.sh')
+        shell('./script.sh')
     }
 }
 
