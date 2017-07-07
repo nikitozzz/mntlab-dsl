@@ -8,7 +8,7 @@ job('MNTLAB-zvirinsky-main-build-job'){
 //	} 
     steps {
     	shell('echo Hello World!')
-//    }
+    }
  //   publishers {
 //        archiveJunit 'build/test-results/**/*.xml'
 //    }
