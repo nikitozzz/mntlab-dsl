@@ -62,7 +62,6 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
 
     steps {
         remoteTrigger('http://ecsc00106cef.epam.com/', 'EPBYMINW2471/MNTLAB-vtarasiuk-child1-build-job') {
-            parameters (currentBuild())
             blockBuildUntilComplete()
         }
     }
