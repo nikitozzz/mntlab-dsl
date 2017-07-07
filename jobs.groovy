@@ -18,13 +18,13 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
  		 }
 	       	 parameters {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
-			 choiceType('SINGLE_SELECT')
-			 choiceParam('JOB_TO_RUN',['MNTLAB-asemirski-child1-build-job'
-                                     //'MNTLAB-asemirski-child2-build-job',
-                                     //'MNTLAB-asemirski-child3-build-job',
-                                     //'MNTLAB-asemirski-child4-build-job'],
-],
-                    'Choose appropriate JOB')
+			 activeChoiceParam('CHOICE-1') {
+				description('Allows user choose from multiple choices')
+				filterable()
+				choiceType('CHECKBOX')
+				groovyScript {
+                			script('["choice1", "choice2"]')}
+			 
   		 }
 		for (i = 1; i <2; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
