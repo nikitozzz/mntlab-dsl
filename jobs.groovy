@@ -22,7 +22,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 		for (i = 1; i <2; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
 				scm {
-       					github 'MNT-Lab/mntlab-dsl', 'asemirski'
+       					github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     				}
 				steps {
         				shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ./${BRANCH_NAME}_dls_script.tar.gz script.sh')
