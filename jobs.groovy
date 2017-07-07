@@ -18,26 +18,24 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                 triggers {
                     scm 'H/5 * * * *'
                 }
-                steps {
-                    shell(readFileFromWorkspace('script.sh'))
                 }
             }
         }
-
-        //(String parameterName, String jobToRun, String description, String filter)
         parameters {
+            //choiceParam(String parameterName, List<String> options, String description)
             choiceParam('JOB_TO_RUN', ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
                                      'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
                                      'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
                                      'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'],
                     'Choose appropriate JOB')
         }
-        //runParam('name','$JOB_TO_RUN','custom job','ALL')
 
         gitParam('BRANCH') {
             description('branch selection')
             type('BRANCH')
+            branch('.*')
         }
+        //creating child jobs
         ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
          'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
          'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
