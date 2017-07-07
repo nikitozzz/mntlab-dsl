@@ -1,10 +1,10 @@
 //TODO:some stuff
-def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
-def branchname = 'origin/vtarasiuk'
+def gitrepo = 'MNT-Lab/mntlab-dsl'
+def branchname = 'vtarasiuk'
 
 job ('example') {
     scm {
-        git (giturl, branchname)
+        github (gitrepo, branchname)
     }
     triggers {
         scm('H/5 * * * *')
