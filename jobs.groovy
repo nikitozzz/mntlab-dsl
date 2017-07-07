@@ -22,6 +22,9 @@ branches.each { if( it == myRepo || it == defRepo) { mainBr.add(it) } }
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     publishers {
+	archiveArtifacts {
+	    pattern('script.sh')	
+	}
         downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job', 'SUCCESS')
 	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job', 'SUCCESS')
 	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job', 'SUCCESS')
