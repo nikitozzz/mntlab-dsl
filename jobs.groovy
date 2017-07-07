@@ -26,7 +26,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     freeStyleJob(it) {
     	description 'Build and test the app.'
 	environmentVariables {
-    	    scriptFile('/master/workspase/EPBYMINW1374/mntlab-ci-dsl/script.sh')
+    	    scriptFile('/var/server/config/jenkins/workspace/EPBYMINW1374/mntlab-ci-dsl/script.sh')
     	}
     }
 }
