@@ -15,7 +15,7 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
 }
   
 ['1', '2', '3', '4'].each { suffix ->
-job('MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
+job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 steps {
 shell('echo "Hello world"')
 }
