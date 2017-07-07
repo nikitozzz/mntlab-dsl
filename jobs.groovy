@@ -24,10 +24,11 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 				scm {
        					github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     				}
+
+				parameters {choiceParam("BRANCH_NAME", repobr,'Choose branch')}	
 				steps {
         				shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ./${BRANCH_NAME}_dls_script.tar.gz script.sh')
        				 }
-				parameters {choiceParam("BRANCH_NAME", repobr,'Choose branch')}	
 				publishers {
        			 		archiveArtifacts {
                        				pattern('${BRANCH_NAME}_dls.script.tar.gz')
