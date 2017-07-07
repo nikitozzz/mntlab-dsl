@@ -1,4 +1,4 @@
-job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
+job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
    description 'Main Job'
 scm {
        github 'MNT-Lab/mntlab-dsl','atsuranau' 
