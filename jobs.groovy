@@ -9,8 +9,7 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
             
         }
     }
-<<<<<<< HEAD
-  parameters {
+    parameters {
      choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose appropriate branch')
 } 	
 }
@@ -21,6 +20,4 @@ steps {
 shell('echo "Hello world"')
 }
 }
-=======
->>>>>>> b092f5045c60c3b71950aa7a97dfb25522b55869
 }
