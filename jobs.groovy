@@ -1,6 +1,8 @@
 def gitrepo = 'MNT-Lab/mntlab-dsl'
 def branchname = 'vtarasiuk'
 
+delete ("EPBYMINW2471/MNTLAB*")
+
 for (i in 1 .. 4) {
     job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
         scm {
