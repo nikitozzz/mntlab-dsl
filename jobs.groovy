@@ -6,7 +6,7 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
             description('Select child job')
             choiceType('CHECKBOX')
             groovyScript {
-script('["MNTLAB-atsuranau-child1-build-job", "MNTLAB-atsuranau-child2-build-job", "MNTLAB-atsuranau-child3-build-job", "MNTLAB-atsuranau-child4-build-job"]')
+script('return ["MNTLAB-atsuranau-child1-build-job", "MNTLAB-atsuranau-child2-build-job", "MNTLAB-atsuranau-child3-build-job", "MNTLAB-atsuranau-child4-build-job"]')
 			}
         }
 	}
