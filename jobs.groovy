@@ -11,7 +11,9 @@ if ( proc.exitValue() != 0 ) {
 
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
-}
+   }
+
+def BUILDS_TRIGGER = "MNTLAB-zvirinsky-child1-build-job,MNTLAB-zvirinsky-child1-build-job,MNTLAB-zvirinsky-child1-build-job,MNTLAB-zvirinsky-child1-build-job"   
 
 job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
