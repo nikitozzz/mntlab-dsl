@@ -35,11 +35,11 @@ for (i in 1 .. 4) {
         steps {
 
             shell ('chmod +x script.sh && ./script.sh > output.txt && cat output.txt')
-            shell ("tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh")
+            shell ('tar -czf $BRANCH_NAME_dsl_script.tar.gz output.txt jobs.groovy script.sh')
         }
         publishers {
             archiveArtifacts('output.txt')
-            archiveArtifacts("${BRANCH_NAME}_dsl_script.tar.gz")
+            archiveArtifacts('$BRANCH_NAME_dsl_script.tar.gz')
         }
     }
 }
