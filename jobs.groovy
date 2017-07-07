@@ -19,10 +19,11 @@ def branches = proc.in.text.readLines().collect {
 
 job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     parameters {
-	choiceParam("BRANCH_NAME", branches)
+	choiceParam("BRANCH_NAME", ['yshchanouski', 'master'])
+        runParam('BUILDS_TRIGGER', 'MNTLAB-yshchanouski-child1-build-job', 'my description', 'SUCCESSFUL')
     }
     scm {
-        github(git, repo)
+        github(git, $BRANCH_NAME)
     }
     triggers {
         scm('H/5 * * * *')
@@ -35,8 +36,11 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
 
 1.upto(4) {
 job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
+    parameters {
+	choiceParam("BRANCH_NAME", branches)
+    }
     scm {
-        github(git, repo)
+        github(git, $BRANCH_NAME)
     }
     triggers {
         scm('H/5 * * * *')
