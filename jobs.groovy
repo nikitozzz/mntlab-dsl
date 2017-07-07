@@ -1,6 +1,6 @@
 //TODO:some stuff
 def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
-def branchname = 'vtarasiuk'
+def branchname = 'origin/vtarasiuk'
 
 job ('example') {
     scm {
