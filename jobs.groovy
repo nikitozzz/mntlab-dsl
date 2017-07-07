@@ -15,6 +15,7 @@ if ( proc.exitValue() != 0 ) {
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
+def masterchoice = ['vtarasiuk','master']
 
 for (i in 1 .. 4) {
     job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
@@ -35,7 +36,7 @@ for (i in 1 .. 4) {
 }
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
-        choiceParam('Branch Name', branches)
+        choiceParam('Branch Name', masterchoice)
     }
     scm {
         github(gitrepo, branchname)
