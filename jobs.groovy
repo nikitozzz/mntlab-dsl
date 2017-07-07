@@ -1,7 +1,17 @@
-def rembr = proc.in.text.readLines().collect {
-    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
+
+def proc = command.execute()
+proc.waitFor()
+
+if ( proc.exitValue() != 0 ) {
+    println "Error, ${proc.err.text}"
+    System.exit(-1)
 }
 
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
 
 job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
@@ -32,7 +42,7 @@ for(i in 1..4) {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     	}
     	parameters {
-        choiceParam('BRANCH_NAME', ['master', rembr])
+        choiceParam('BRANCH_NAME', ['master', branches])
         			}
 
     	steps {
