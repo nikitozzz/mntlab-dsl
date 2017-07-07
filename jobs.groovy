@@ -10,7 +10,6 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
         activeChoiceParam('CHOICE-1') {
             description('Allows user choose from multiple choices')
-            filterable()
             choiceType('CHECKBOX')
             groovyScript {
                 script('["choice1", "choice2"]')
@@ -27,7 +26,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     freeStyleJob(it) {
     	description 'Build and test the app.'
 	environmentVariables {
-    	    scriptFile('/workspase/EPBYMINW1374/mntlab-ci-dsl/script.sh')
+    	    scriptFile('/master/workspase/EPBYMINW1374/mntlab-ci-dsl/script.sh')
     	}
     }
 }
