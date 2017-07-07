@@ -46,7 +46,13 @@ for(i in 1..4) {
         			}
 
     	steps {
-    		shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dls_script.tar.gz script.sh')
+    		shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf ./${BRANCH_NAME}_dls_script.tar.gz script.sh')
     		}
+    	publishers {
+        archiveArtifacts {
+                       pattern('${BRANCH_NAME}_dls.script.tar.gz')
+                       pattern('output.sh')
+                   		}
+    				}	
     	}
     }
