@@ -30,11 +30,11 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     'Choose appropriate JOB')
         }
 
-        gitParam('Select the branch') {
+        gitParam('SelectTheBranch') {
             description('branch selection')
             type('BRANCH')
-            branch('*')
-            defaultValue('aksionkin') // empty by default
+            branch('')
+            defaultValue('aaksionkin') // empty by default
         }
         //creating child jobs
         ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
@@ -50,7 +50,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                             name('origin')
                             url('https://github.com/MNT-Lab/mntlab-dsl.git')
                         }
-                        branch('aaksionkin')
+                        branch('$SelectTheBranch')
                         triggers {
                             scm 'H/5 * * * *'
                         }
