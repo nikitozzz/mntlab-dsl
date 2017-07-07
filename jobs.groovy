@@ -17,10 +17,15 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 def mainBr = []
-branches.each { if( it == myRepo) {
+branches.each { 
+    if( it == myRepo) {
         branches = branches.swap(0, branches.indexOf(it))
         println(branches)
-    } if( it == myRepo || it == defRepo) { mainBr.add(it) }  }
+    } 
+    elseif( it == myRepo || it == defRepo) {
+	mainBr.add(it) 
+    }  
+}
 
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
