@@ -1,13 +1,11 @@
-job('asemirski-main-job') {
-	description 'master job.'
-	scm {
-        github 'sheehan/job-dsl-playground'
+job('DSL-Tutorial-1-Test') {
+    scm {
+        git('git://github.com/quidryan/aws-sdk-test.git')
+    }
+    triggers {
+        scm('H/15 * * * *')
     }
     steps {
-        gradle 'test'
-    }
-    publishers {
-        archiveJunit 'build/test-results/**/*.xml'
+        maven('-e clean test')
     }
 }
-        
