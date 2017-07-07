@@ -2,13 +2,26 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
     description 'Build and test main job.'
     parameters {
 	choiceParam('BRANCH_NAME', ['atsuranau', 'master'], 'Select branch')
-        activeChoiceParam('CHOICE-1') {
-            description('Allows user choose from multiple choices')
-            choiceType('CHECKBOX')
-            groovyScript {
-                script('return ["choice1", "choice2"]')
-                fallbackScript('return"fallback choice"')
-            }
+        extendedChoiceParameterDefinition {
+           name('Select job')
+           type('checkbox')
+          value('MNTLAB-atsuranau-child1-build-job,MNTLAB-atsuranau-child2-build-job,MNTLAB-atsuranau-child3-build-job,MNTLAB-atsuranau-child4-build-job')
+ 			 visibleItemCount(4)
+          multiSelectDelimiter(',')
+          propertyFile('')
+          propertyKey('')
+          defaultValue('')
+          defaultPropertyFile('')
+           defaultPropertyKey('')
+			quoteValue(false) 
+           description('') 
+           bindFieldName('')
+			svnPath(false)
+			svnUrl('')
+			svnUserName('')
+			svnPassword('')
+			projectName('')
+			roleBasedFilter(false) 
         }
 	}
     scm {
