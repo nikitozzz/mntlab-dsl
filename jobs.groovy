@@ -22,17 +22,25 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 //       scm 'H/5 * * * *' 
 //	} 
     steps {
-    	shell('echo Hello World!')
+    	downstreamParameterized {
+            trigger("$BUILDS_TRIGGER" {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+                parameters {
+                    predefinedProp("$BRANCH_NAME")
+                }
+            }
+        }
     }
  //   publishers {
 //        archiveJunit 'build/test-results/**/*.xml'
 //    }
 	parameters {
-        choiceParam('BRANCH_NAME', ['zvirinsky', 'master'])
-//        booleanParam('MNTLAB-zvirinsky-child1-build-job', true)
-//        booleanParam('MNTLAB-zvirinsky-child2-build-job', true)
-//        booleanParam('MNTLAB-zvirinsky-child3-build-job', true)
-//        booleanParam('MNTLAB-zvirinsky-child4-build-job', true)
+        choiceParam('BRANCH_NAME', ['zvirinsky', 'master'], 'choose branch')
+
         
     }
 }
