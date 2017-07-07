@@ -21,3 +21,11 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
         
     }
 }
+for(i in 1..4) {
+    job("./EPBYMINW2472/MNTLAB-zvirinsky-child${i}-build-job") {
+    	scm {
+    		github 'https://github.com/MNT-Lab/mntlab-dsl.git', '$BRANCH_NAME'
+    		}
+        }
+    }
+}
