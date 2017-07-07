@@ -12,7 +12,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
      'EPBYMINW2695/MNTLAB-adoropei-child4-build-job'].each {
         job(it){
             scm {
-        		github 'MNT-Lab/mntlab-dsl'
+        		github 'MNT-Lab/mntlab-dsl','adoropei'
     		}
         	steps {
       			shell( "./script.sh" )
