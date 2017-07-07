@@ -2,7 +2,7 @@ job('MNTLAB-{akarzhou}-main-build-job') {
     scm {
         git {
             remote {
-                name('remoteB')
+                name('rAK')
                 url('https://github.com/MNT-Lab/mntlab-dsl.git')
             }
             branches('akarzhou', 'master')
@@ -13,4 +13,4 @@ job('MNTLAB-{akarzhou}-main-build-job') {
             }
         }
     }
-}}
+}
