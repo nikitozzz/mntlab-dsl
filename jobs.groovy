@@ -1,23 +1,46 @@
-job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
+//Block with mane job
+job('MNTLAB-{akarzhou}-main-build-job') {
     scm {
         git {
             remote {
-                name('rAK')
+                name('remoteB')
                 url('https://github.com/MNT-Lab/mntlab-dsl.git')
             }
-            branches('akarzhou', 'master')
-            
-        }
+            branches('akarzhou', 'master')                    
+        }      
     }
-    parameters {
+  steps {
+      			shell( "./script.sh" )
+}   
+  parameters {
      choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose appropriate branch')
-} 	
 }
-  
+   
+}
+// Block with 4 child jobs
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
+
+def proc = command.execute()
+proc.waitFor()
+
+if ( proc.exitValue() != 0 ) {
+    println "Error, ${proc.err.text}"
+    System.exit(-1)
+}
+
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
+
+// Creating new 4 jobs
 ['1', '2', '3', '4'].each { suffix ->
-job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
+job('MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
+	parameters {
+	choiceParam('BRANCH_NAME', branches)
+}  
 steps {
 shell('echo "Hello world"')
 }
-}
+} 
 }
