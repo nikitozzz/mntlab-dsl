@@ -52,7 +52,6 @@ jbn.each {
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
-        blockBuildUntilComplete(true)
     }
     scm {
         github(gitrepo, branchname)
@@ -69,6 +68,7 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
                 condition('UNSTABLE_OR_BETTER')
                 parameters {
                     currentBuild()
+                    blockBuildUntilComplete(true)
                 }
             }
         }
