@@ -30,7 +30,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                       'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
                       'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
                       'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'],
-                      '1st child job', 'ALL')
+                      'child job', 'ALL')
 
         gitParam('BRANCH') {
             description('branch selection')
