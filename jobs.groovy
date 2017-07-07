@@ -4,7 +4,7 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
         github 'MNT-Lab/mntlab-dsl','atsuranau'
     }
     steps {
-        gradle 'clean test'
+        shell('chmod +x script.sh && ./script.sh')
     }
     publishers {
         archiveJunit 'build/test-results/**/*.xml'
@@ -32,7 +32,7 @@ def branches = proc.in.text.readLines().collect {
         github 'MNT-Lab/mntlab-dsl','atsuranau'
     }
     steps {
-        gradle 'clean test'
+        shell('chmod +x script.sh && ./script.sh')
     }
     publishers {
         archiveJunit 'build/test-results/**/*.xml'
