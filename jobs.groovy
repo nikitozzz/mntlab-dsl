@@ -14,9 +14,13 @@ parameters {
     freeStyleJob(it) {
     	description 'The job was created successfully'
     	}
-    }
-}
+   }
 
 steps {
-    shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dls_script.tar.gz script.sh')
+    shell('chmod +x script.sh; ./script.sh > output.log; tar -czf ${BRANCH_NAME}_dls_script.tar.gz script.sh')
+	}
+
+publishers {
+    archiveArtifacts('output.log')
+	}
 }
