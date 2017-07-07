@@ -25,11 +25,14 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         }
 
         //(String parameterName, String jobToRun, String description, String filter)
-
-        runParam('EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
-                      'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
-                      'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
-                      'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job')
+        parameters {
+            choiceParam('JOB_NAME', ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
+                                     'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
+                                     'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
+                                     'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'],
+                    'Choose appropriate JOB')
+        }
+        runParam('name','$JOB_NAME','custom job','ALL')
 
         gitParam('BRANCH') {
             description('branch selection')
