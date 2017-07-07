@@ -1,7 +1,7 @@
 job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
 	scm {
-        github 'https://github.com/MNT-Lab/mntlab-dsl.git', '$BRANCH_NAME'
+        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
 //    triggers { 
 //       scm 'H/5 * * * *' 
