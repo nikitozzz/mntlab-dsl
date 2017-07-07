@@ -6,9 +6,9 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
     steps {
         shell('chmod +x script.sh && ./script.sh')
     }
-    publishers {
-        archiveJunit 'build/test-results/**/*.xml'
-    }
+//    publishers {
+//        archiveJunit 'build/test-results/**/*.xml'
+//    }
 }
 
 def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
@@ -34,9 +34,9 @@ def branches = proc.in.text.readLines().collect {
     steps {
         shell('chmod +x script.sh && ./script.sh')
     }
-    publishers {
-        archiveJunit 'build/test-results/**/*.xml'
-    }
+//    publishers {
+//        archiveJunit 'build/test-results/**/*.xml'
+//    }
 }
 }
 	
