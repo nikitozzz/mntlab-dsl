@@ -1,6 +1,6 @@
 def gitrepo = 'MNT-Lab/mntlab-dsl'
 def branchname = 'vtarasiuk'
-def branchApi = new URL("https://api.github.com/repos/${gitrepo}/branches")
+def branchApi = new URL("http://api.github.com/repos/${gitrepo}/branches")
 def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
 def BRANCH_NAME = branches.name
 
