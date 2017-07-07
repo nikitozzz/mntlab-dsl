@@ -65,6 +65,11 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     publishers {
         downstreamParameterized {
             trigger(jbn) {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
                 condition('UNSTABLE_OR_BETTER')
                 parameters {
                     currentBuild()
