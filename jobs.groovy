@@ -1,3 +1,7 @@
+import jenkins.*
+import jenkins.model.*
+import hudson.*
+import hudson.model.*
 Job('MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     scm {
