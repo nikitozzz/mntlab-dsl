@@ -1,4 +1,4 @@
-freeStyleJob("DSL-Tutorial-1-Test") {
+freeStyleJob("MNTLAB-asemirski-main-build-job") {
  scm {
         git("git://github.com/quidryan/aws-sdk-test.git")
     }
