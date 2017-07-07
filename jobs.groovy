@@ -61,8 +61,6 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     }
 
     steps {
-    }
-    publishers {
         downstreamParameterized {
             trigger(jbn) {
                 block {
@@ -76,6 +74,7 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
             }
         }
     }
+
 }
 
 
