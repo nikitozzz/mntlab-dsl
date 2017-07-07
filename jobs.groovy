@@ -5,7 +5,7 @@ testJob.with {
 }
 testJob('DSL-Task-1-Child') {
     scm {
-        git('git://github.com/MNT-Lab/mntlab-dsl.git', vtarasiuk)
+        github 'MNT-Lab/mntlab-dsl', vtarasiuk
     }
     triggers {
         scm('H/5 * * * *')
