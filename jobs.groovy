@@ -28,7 +28,7 @@ for(i in 1..4) {
     	}
 
     	steps {
-    		shell('./script.sh')
-    			}
+    		shell('chmod +x script.sh; ./script.sh')
+    		}
     	}
     }
