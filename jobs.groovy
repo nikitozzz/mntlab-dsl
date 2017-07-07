@@ -5,7 +5,8 @@ import jenkins.*
 import jenkins.model.*
 import hudson.*
 import hudson.model.*
-job('MNTLAB-aaksionkin-DSL-build-job'){
+
+job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job'){
     description 'Build and test the app.'
     scm {
         github 'sheehan/job-dsl-playground'
