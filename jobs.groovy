@@ -1,4 +1,4 @@
-tyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
+freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
