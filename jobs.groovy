@@ -63,7 +63,8 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	    shell('./script.sh >> output.txt; tar -czvf $BRANCH_NAME_dsl_script.tar.gz output.txt script.sh')
 	    publishers {
 	        archiveArtifacts {
-	            pattern('script.sh', 'output.txt')	
+	            pattern('script.sh')
+		    pattern('output.txt')	
 	        }
             }
 	}
