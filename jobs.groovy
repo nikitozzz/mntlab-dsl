@@ -4,7 +4,7 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 	}
   steps {
-      			shell('Hello world')
+      			shell('echo "Hello world"')
 }   
   parameters {
      choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose appropriate branch')
