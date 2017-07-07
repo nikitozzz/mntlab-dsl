@@ -1,4 +1,4 @@
-job('MNTLAB-zvirinsky-main-build-job'){
+job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
 //	scm {
 //        github 'sheehan/job-dsl-playground'
