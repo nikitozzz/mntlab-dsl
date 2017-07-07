@@ -42,14 +42,14 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 
     steps {
     	downstreamParameterized {
-            trigger("$BUILDS_TRIGGER") {
+            trigger('$BUILDS_TRIGGER') {
                 block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
                 parameters {
-                    predefinedProp("BRANCH_NAME", "$BRANCH_NAME")
+                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                 }
             }
         }
