@@ -21,7 +21,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 			 activeChoiceParam('CHOICE-1') {
 				description('Allows user choose from multiple choices')
 				filterable()
-				choiceType('CHECKBOX')
+				choiceType('SINGLE_SELECT')
 				groovyScript {
                 			script('["choice1", "choice2"]')}
 			 
