@@ -13,7 +13,11 @@ job('MNTLAB-zvirinsky-main-build-job'){
 //        archiveJunit 'build/test-results/**/*.xml'
 //    }
 	parameters {
-        booleanParam('FLAG', true)
         choiceParam('BRANCH_NAME', ['zvirinsky (default)', 'master'])
+        booleanParam('MNTLAB-zvirinsky-child1-build-job', true)
+        booleanParam('MNTLAB-zvirinsky-child2-build-job', true)
+        booleanParam('MNTLAB-zvirinsky-child3-build-job', true)
+        booleanParam('MNTLAB-zvirinsky-child4-build-job', true)
+        
     }
 }
