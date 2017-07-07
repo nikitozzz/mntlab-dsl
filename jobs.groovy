@@ -33,6 +33,7 @@ for(i in 1..4) {
     	}
     	parameters {
         choiceParam('BRANCH_NAME', ['master', rembr])
+        			}
 
     	steps {
     		shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf script.sh')
