@@ -4,7 +4,7 @@ def branchname = 'vtarasiuk'
 
 //def testJob = freeStyleJob('DSL-Task-1-Child')
 
-jobDsl ('test') {
+jobDsl (testJob) {
     scm {
         git (giturl, branchname)
     }
