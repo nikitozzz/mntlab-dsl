@@ -37,7 +37,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
     steps {
-        shell('chmod +x ./script.sh')
+        shell('chmod +rx ./script.sh')
     }
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
