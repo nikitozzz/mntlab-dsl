@@ -1,3 +1,20 @@
+def git = "MNT-Lab/mntlab-dsl"
+def repo = "yshchanouski"
+
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
+
+def proc = command.execute()
+proc.waitFor()
+
+if ( proc.exitValue() != 0 ) {
+    println "Error, ${proc.err.text}"
+    System.exit(-1)
+}
+
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     publishers {
@@ -7,15 +24,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job', 'SUCCESS')
     }
     parameters {
-	choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
-        activeChoiceParam('CHOICE-1') {
-            description('Allows user choose from multiple choices')
-            choiceType('CHECKBOX')
-            groovyScript {
-                script('["choice1", "choice2"]')
-                fallbackScript('"fallback choice"')
-            }
-        }
+	choiceParam("BRANCH_NAME", branches)
     }
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
