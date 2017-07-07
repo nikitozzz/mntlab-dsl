@@ -13,7 +13,7 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 //        archiveJunit 'build/test-results/**/*.xml'
 //    }
 	parameters {
-        choiceParam('BRANCH_NAME', ['zvirinsky (default)', 'master'])
+        choiceParam('BRANCH_NAME', ['zvirinsky', 'master'])
 //        booleanParam('MNTLAB-zvirinsky-child1-build-job', true)
 //        booleanParam('MNTLAB-zvirinsky-child2-build-job', true)
 //        booleanParam('MNTLAB-zvirinsky-child3-build-job', true)
@@ -23,5 +23,12 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 }
 for(i in 1..4) {
     job("./EPBYMINW2472/MNTLAB-zvirinsky-child${i}-build-job") {
+    	scm {
+        github 'MNT-Lab/mntlab-dsl', 'zvirinsky'
+    	}
+
+    	steps {
+    		shell('./script.sh')
+    			}
     	}
     }
