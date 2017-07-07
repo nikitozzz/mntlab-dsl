@@ -3,14 +3,22 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
     scm {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 	}
-  steps {
-      			shell('echo "Hello world"')
-}   
-  parameters {
+     parameters {
      choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose appropriate branch')
 }
-   
+
+  steps {
+     shell('chmod +x ./script.sh')
 }
+publishers {
+        archiveArtifacts {
+            pattern('script.sh')
+            onlyIfSuccessful()
+        }
+downstream('EPBYMINW2466/MNTLAB-{akarzhou}-child1-build-job', 'SUCCESS')
+    }
+} 
+
 // Block with 4 child jobs
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
@@ -34,11 +42,20 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 	choiceParam('BRANCH_NAME', branches)
 }
 
-   scm {
-        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
-}
+//   scm {
+//        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+//}
 steps {
-shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+copyArtifacts('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
+            includePatterns('script.sh')
+            targetDirectory('./scripts/')
+            flatten()
+            optional()
+            buildSelector {
+                latestSuccessful(true)
+            }
+}
+shell('cd scripts; ./script.sh > output.txt; tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
 }
       publishers {
         archiveArtifacts {
