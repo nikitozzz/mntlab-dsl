@@ -19,10 +19,13 @@ def branches = proc.in.text.readLines().collect {
 /** Setting list of master  (hardcode)*/
 String student = 'vtarasiuk'; String master = 'master'
 def masterchoice = [student, master]
-
+/** Setting list of job names  (hardcode)*/
+for (i in 1..4){
+    def jobnames =+ [MNTLAB-vtarasiuk-child$i-build-job]
+}
 /** Create child jobs*/
-for (i in 1 .. 4) {
-    job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
+jobnames.each {
+    job("EPBYMINW2471/$it") {
         parameters {
             choiceParam('BRANCH_NAME', branches)
         }
@@ -48,6 +51,7 @@ for (i in 1 .. 4) {
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
+        runParam(jobnames)
     }
     scm {
         github(gitrepo, branchname)
