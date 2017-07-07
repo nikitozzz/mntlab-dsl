@@ -1,7 +1,26 @@
 //Yuri Shchanouski
 def git = "MNT-Lab/mntlab-dsl"
 def repo = "yshchanouski"
+
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
+
+def proc = command.execute()
+proc.waitFor()
+
+if ( proc.exitValue() != 0 ) {
+    println "Error, ${proc.err.text}"
+    System.exit(-1)
+}
+
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
+
 job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
+    parameters {
+	stringParam("BRANCH_NAME", branches)
+    }
     scm {
         github(git, repo)
     }
@@ -10,7 +29,7 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     }
     steps {
 	println('Hello from a Job DSL script!')        
-        shell('script.sh')
+        shell('chmod +x script.sh && ./script.sh')
     }
 }
 
@@ -24,7 +43,7 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
     }
     steps {
 	println('Hello from a Job DSL script!')        
-        shell('script.sh')
+        shell('chmod +x script.sh && ./script.sh')
     }
 }
 
