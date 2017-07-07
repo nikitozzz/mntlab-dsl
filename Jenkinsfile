@@ -1,5 +1,10 @@
-node{
-  stage('Stack creation'){
-    jobDsl targets: 'jobs.groovy'
-  }
+peline{
+    agent any
+    stages {
+        stage('Stack creation'){
+           steps {
+                jobDsl targets: "jobs.groovy"
+            }
+        }
+    }
 }
