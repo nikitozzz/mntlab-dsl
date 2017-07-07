@@ -28,6 +28,11 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
         				shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ./${BRANCH_NAME}_dls_script.tar.gz script.sh')
        				 }
 				parameters {choiceParam("BRANCH_NAME", repobr,'Choose branch')}	
+				publishers {
+       			 		archiveArtifacts {
+                       				pattern('${BRANCH_NAME}_dls.script.tar.gz')
+                       					 }
+    					}
 			}
 		}
 }
