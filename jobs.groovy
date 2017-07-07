@@ -1,5 +1,9 @@
 //TODO:some stuff
-job('DSL-Task-1-Child') {
+def testJob = freeStyleJob('DSL-Task-1-Child')
+testJob.with {
+    description 'A sample of Job'
+}
+testJob('DSL-Task-1-Child') {
     scm {
         git('git://github.com/MNT-Lab/mntlab-dsl.git', vtarasiuk)
     }
