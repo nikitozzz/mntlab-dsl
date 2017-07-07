@@ -1,7 +1,7 @@
 job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
     description 'Build and test main job.'
     parameters {
-	choiceParam('BRANCH_NAME', ['atsuranau (default)', 'master'], 'Select branch')
+	choiceParam('BRANCH_NAME', ['atsuranau', 'master'], 'Select branch')
         activeChoiceParam('CHOICE-1') {
             description('Allows user choose from multiple choices')
             choiceType('CHECKBOX')
