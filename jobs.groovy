@@ -6,8 +6,8 @@ job('MNTLAB-zvirinsky-main-build-job'){
 //    triggers { 
 //       scm 'H/5 * * * *' 
 //	} 
-//    steps {
-//        gradle 'test'
+    steps {
+    	shell('echo Hello World!')
 //    }
  //   publishers {
 //        archiveJunit 'build/test-results/**/*.xml'
