@@ -1,7 +1,6 @@
 def gitrepo = 'MNT-Lab/mntlab-dsl'
 def branchname = 'vtarasiuk'
-folder ('NewFolder')
-job ('NewFolder/example') {
+job ('EPBYMINW2471/example') {
     scm {
         github (gitrepo, branchname)
     }
