@@ -42,7 +42,7 @@ for(i in 1..4) {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     	}
     	parameters {
-        choiceParam('BRANCH_NAME', ['master', branches])
+        choiceParam('BRANCH_NAME',branches)
         			}
 
     	steps {
