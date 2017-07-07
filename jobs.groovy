@@ -32,7 +32,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 				publishers {
        			 		archiveArtifacts {
                        				pattern('${BRANCH_NAME}_dsl_script.tar.gz')
-           					pattern('output.txt')
+           					//pattern('output.txt')
                        					 }
     					}
 			}
