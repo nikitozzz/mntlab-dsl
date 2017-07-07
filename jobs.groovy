@@ -20,7 +20,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
   		 }
 		for (i = 1; i <2; i++) {
- 			 job("MNTLAB-asemirski-child${i}-build-job") {
+ 			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
 				scm {
        					github 'MNT-Lab/mntlab-dsl', 'asemirski'
     				}
