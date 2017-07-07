@@ -35,7 +35,7 @@ for (i in 1 .. 4) {
 }
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
-        stringParam('Branch Name', BRANCH_NAME)
+        choiceParam('Branch Name', branches)
     }
     scm {
         github(gitrepo, branchname)
