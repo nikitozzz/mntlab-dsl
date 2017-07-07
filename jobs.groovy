@@ -1,5 +1,5 @@
 //Yuri Shchanouski
-def git = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def git = "MNT-Lab/mntlab-dsl"
 def repo = "yshchanouski"
 job('EPBYMINW2468/MNTLAB-yshchanouski-main-build-job') {
     scm {
