@@ -1,16 +1,8 @@
-freeStyleJob('example') {
-    logRotator(-1, 10)
-    jdk('Java 6')
+job("DSL-Tutorial-1-Test") {
     scm {
-        github('jenkinsci/job-dsl-plugin', 'master')
+        git("git://github.com/quidryan/aws-sdk-test.git")
     }
     triggers {
-        githubPush()
-    }
-    steps {
-        gradle('clean build')
-    }
-    publishers {
-        archiveArtifacts('job-dsl-plugin/build/libs/job-dsl.hpi')
+        scm('H/15 * * * *')
     }
 }
