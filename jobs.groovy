@@ -61,7 +61,7 @@ copyArtifacts('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
             }
 }
 //Run script, archivate output information and make artifacts
-shell('chmod +x ./script.sh ./script.sh > output.txt; tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+shell('chmod +x ./script.sh && ./script.sh > output.txt && tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
 }
       publishers {
         archiveArtifacts {
