@@ -1,6 +1,7 @@
 //TODO:some stuff
-
-testJob('DSL-Task-1-Child') {
+def testJob = freeStyleJob('DSL-Task-1-Child')
+testJob.with {
+    description 'A sample of Job'
     scm {
         github 'MNT-Lab/mntlab-dsl', vtarasiuk
     }
@@ -11,3 +12,4 @@ testJob('DSL-Task-1-Child') {
         shell(executeFileFromWorkspace('script.sh'))
     }
 }
+
