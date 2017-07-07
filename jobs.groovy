@@ -61,16 +61,11 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     }
 
     steps {
-
-    }
-    publishers {
-        downstreamParameterized {
-            trigger(jbn) {
-                condition('UNSTABLE_OR_BETTER')
-                parameters {
-                    currentBuild()
-                }
+        remoteTrigger('http://ecsc00106cef.epam.com/', jbn) {
+            parameters {
+                currentBuild()
             }
+            blockBuildUntilComplete()
         }
     }
 }
