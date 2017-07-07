@@ -10,7 +10,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
         activeChoiceParam('CHOICE-1') {
             description('Allows user choose from multiple choices')
             filterable()
-            choiceType('SINGLE_SELECT')
+            choiceType('CHECKBOX')
             groovyScript {
                 script('["choice1", "choice2"]')
                 fallbackScript('"fallback choice"')
