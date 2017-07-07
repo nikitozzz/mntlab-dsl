@@ -1,4 +1,4 @@
-peline{
+Pipeline{
     agent any
     stages {
         stage('Stack creation'){
