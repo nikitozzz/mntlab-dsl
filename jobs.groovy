@@ -18,6 +18,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
  		 }
 	       	 parameters {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
+			 choiceType('SINGLE_SELECT')
 			 choiceParam('JOB_TO_RUN',['MNTLAB-asemirski-child1-build-job'
                                      //'MNTLAB-asemirski-child2-build-job',
                                      //'MNTLAB-asemirski-child3-build-job',
