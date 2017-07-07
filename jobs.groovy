@@ -1,11 +1,3 @@
-/**
- * Created by student on 07.07.17.
- */
-import jenkins.*
-import jenkins.model.*
-import hudson.*
-import hudson.model.*
-
 job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
     description 'Build and test the app.'
     parameters {
