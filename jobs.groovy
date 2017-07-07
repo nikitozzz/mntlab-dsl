@@ -1,5 +1,9 @@
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
+    publishers {
+        downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job', 'UNSTABLE')
+	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job', 'STABLE')
+    }
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
  'EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job',
