@@ -28,6 +28,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	environmentVariables {
     	    //scriptFile('/var/server/config/jenkins/workspace/EPBYMINW1374/mntlab-ci-dsl/script.sh')
 	    script('cp /var/server/config/jenkins/workspace/EPBYMINW1374/mntlab-ci-dsl ./script.sh')
+	    script('chmod +x script.sh')
 	    scriptFile('./script.sh')
     	}
     }
