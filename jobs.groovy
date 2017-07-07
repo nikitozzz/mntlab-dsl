@@ -39,7 +39,7 @@ for (i in 1 .. 4) {
         }
         publishers {
             archiveArtifacts('output.txt')
-            archiveArtifacts('$BRANCH_NAME_dsl_script.tar.gz')
+            archiveArtifacts('*_dsl_script.tar.gz')
         }
     }
 }
