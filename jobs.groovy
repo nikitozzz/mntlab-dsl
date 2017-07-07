@@ -1,4 +1,4 @@
-job('MNTLAB-dsilnyagin-main-build-job'){
+Job('MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     scm {
       	 github 'sheehan/job-dsl-playground'
