@@ -37,7 +37,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
     steps {
-        shell('chmod +rx ./script.sh')
+        shell('chmod +x ./script.sh')
     }
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
@@ -60,7 +60,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
                     latestSuccessful(true)
                 }
     	    }
-	    shell('./script.sh')
+	    shell('chmod +x ./script.sh; ./script.sh >> output.txt; tar -czvf $BRANCH_NAME_dsl_script.tar.gz output.txt script.sh')
 	    publishers {
 	        archiveArtifacts {
 	            pattern('script.sh')
