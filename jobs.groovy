@@ -1,8 +1,8 @@
 freestylejob('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
-    scm {
-        github 'https://github.com/MNT-Lab/mntlab-dsl.git'
-    }
-    steps {
+  
+  description 'Building necessary jobs'
+  
+  steps {
         shell ('echo "The job is done! Take some beer."')
     }
 }
