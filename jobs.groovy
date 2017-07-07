@@ -18,12 +18,10 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	scm {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
-//    triggers { 
-//       scm 'H/5 * * * *' 
-//	} 
+
     steps {
     	downstreamParameterized {
-            trigger("$BUILDS_TRIGGER" {
+            trigger("$BUILDS_TRIGGER") {
                 block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
@@ -35,9 +33,7 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
             }
         }
     }
- //   publishers {
-//        archiveJunit 'build/test-results/**/*.xml'
-//    }
+
 	parameters {
         choiceParam('BRANCH_NAME', ['zvirinsky', 'master'], 'choose branch')
 
