@@ -1,23 +1,20 @@
 freeStyleJob('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
     description 'Building necessary jobs'
-	}
 
 scm {
-        git {
-            remote {
-                name('remoteB')
-                url('https://github.com/MNT-Lab/mntlab-dsl.git')
-            }
-            branches('pyurchuk', 'master')                    
-        }      
-}
+    git {
+     github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+        }
+        branches('pyurchuk', 'master')                    
+    }      
+
+parameters {
+     choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Choose appropriate branch')
+	}
+}   
 
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
-
-parameters {
-	choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Choose appropriate branch')
-	}	
 
 ['EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job',
  'EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job',
