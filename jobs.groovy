@@ -23,7 +23,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
                                      //'MNTLAB-asemirski-child3-build-job',
                                      //'MNTLAB-asemirski-child4-build-job'],
 ],
-                    'Choose appropriate JOB']
+                    'Choose appropriate JOB')
   		 }
 		for (i = 1; i <2; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
