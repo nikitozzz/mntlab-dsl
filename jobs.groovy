@@ -2,8 +2,7 @@
 def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
 def branchname = 'vtarasiuk'
 
-folder('TestFolder')
-def testJob = freeStyleJob('TestFolder/DSL-Task-1-Child')
+def testJob = freeStyleJob('DSL-Task-1-Child')
 
 job(testJob) {
     scm {
