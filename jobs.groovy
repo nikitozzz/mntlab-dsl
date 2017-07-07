@@ -26,7 +26,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
 
         //(String parameterName, String jobToRun, String description, String filter)
 
-        runParam('child1-build-job','EPBYMINW3088/MNTLAB-aksionkin-child1-build-job','1st child job', 'ALL')
+        runParam(' ','MNTLAB-aksionkin-child1-build-job',' ', 'ALL')
 
         gitParam('BRANCH') {
             description('branch selection')
