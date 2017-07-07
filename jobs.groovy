@@ -5,7 +5,7 @@ def BRANCH_NAME = branchname
 for (i in 1 .. 4) {
     job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
         parameters {
-            stringParam('MESSAGE', '-->Param-message <--!')
+            stringParam('Branch Name', BRANCH_NAME)
         }
         scm {
             github(gitrepo, branchname)
@@ -20,6 +20,9 @@ for (i in 1 .. 4) {
     }
 }
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
+    parameters {
+        stringParam('Branch Name', BRANCH_NAME)
+    }
     scm {
         github(gitrepo, branchname)
     }
