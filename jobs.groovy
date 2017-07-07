@@ -10,7 +10,10 @@ scm {
             }
             branches('pyurchuk', 'master')                    
         }      
-	}
+}
+
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
 
 parameters {
 	choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Choose appropriate branch')
