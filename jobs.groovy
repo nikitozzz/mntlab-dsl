@@ -1,6 +1,6 @@
-job('gr8 example') {
+job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
    scm {
-       github 'sheehan/job-dsl-gradle-example' 
+       github 'MNT-Lab/mntlab-dsl','atsuranau' 
    }
    triggers { 
        scm 'H/5 * * * *' 
@@ -10,6 +10,5 @@ job('gr8 example') {
    } 
    publishers {
        archiveJunit 'build/test-results/**/*.xml' 
-       extendedEmail 'mr.sheehan@gmail.com' 
-   } 
+        } 
 }
