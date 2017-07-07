@@ -34,6 +34,7 @@ jbn.each {
             github(gitrepo, branchname)
         }
         triggers {
+            upstream("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job", 'SUCCESS')
             scm('H/5 * * * *')
         }
         steps {
@@ -60,9 +61,7 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
         scm('H/5 * * * *')
     }
     steps {
-        jbn.each {
-            build ("${it}")
-        }
+
     }
 
 }
