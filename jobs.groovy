@@ -38,9 +38,21 @@ def branches = proc.in.text.readLines().collect {
 job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 	parameters {
 	choiceParam('BRANCH_NAME', branches)
-}  
-steps {
-shell('echo "Hello world"')
 }
-} 
+
+   scm {
+        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+}
+steps {
+shell( "./script.sh > output.txt; tar -czvf $BRANCH_NAME_dsl_script.tar.gz /output.txt")
+}
+      publishers {
+        archiveArtifacts {
+            pattern('output.txt')
+          	pattern('$BRANCH_NAME_dsl_script.tar.gz')
+            onlyIfSuccessful()
+        }
+    }
+  
+}
 }
