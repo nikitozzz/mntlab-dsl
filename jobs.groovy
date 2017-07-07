@@ -1,5 +1,6 @@
 def git = "MNT-Lab/mntlab-dsl"
-def repo = "yshchanouski"
+def myRepo = "dsilnyagin"
+def defRepo = "master"
 
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
@@ -15,6 +16,8 @@ if ( proc.exitValue() != 0 ) {
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
+def mainBr = []
+branches.each { if( it == myRepo || it == defRepo) { mainBr.add(it) } }
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     publishers {
@@ -24,8 +27,9 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job', 'SUCCESS')
     }
     parameters {
-	choiceParam("BRANCH_NAME", branches)
+	choiceParam("BRANCH_NAME", mainBr)
     }
+    
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
  'EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job',
@@ -34,6 +38,9 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 ].each { 
     freeStyleJob(it) {
     	description 'Build and test the app.'
+	parameters {
+	    choiceParam("BRANCH_NAME", branches)
+    	}
 	steps {
             shell('cp /var/server/config/jenkins/workspace/EPBYMINW1374/mntlab-ci-dsl/script.sh ./script.sh')
 	    shell('chmod +x ./script.sh')
