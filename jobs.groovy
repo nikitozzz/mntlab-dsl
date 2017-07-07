@@ -1,5 +1,5 @@
 //Block with mane job
-job('MNTLAB-{akarzhou}-main-build-job') {
+job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
     scm {
         git {
             remote {
@@ -35,7 +35,7 @@ def branches = proc.in.text.readLines().collect {
 
 // Creating new 4 jobs
 ['1', '2', '3', '4'].each { suffix ->
-job('MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
+job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 	parameters {
 	choiceParam('BRANCH_NAME', branches)
 }  
