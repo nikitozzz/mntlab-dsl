@@ -18,6 +18,7 @@ def branches = proc.in.text.readLines().collect {
 }
 def mainBr = []
 branches.each { if( it == myRepo || it == defRepo) { mainBr.add(it) } }
+
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     publishers {
@@ -29,7 +30,11 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     parameters {
 	choiceParam("BRANCH_NAME", mainBr)
     }
-    
+    scm {
+	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+    }
+    shell('chmod +x ./script.sh')
+    shell('./script.sh')
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
  'EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job',
