@@ -1,7 +1,7 @@
 //Yuri Shchanouski
 def git = "MNT-Lab/mntlab-dsl"
 def repo = "yshchanouski"
-job('EPBYMINW2468/MNTLAB-yshchanouski-main-build-job') {
+job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     scm {
         github(git, repo)
     }
@@ -15,7 +15,7 @@ job('EPBYMINW2468/MNTLAB-yshchanouski-main-build-job') {
 }
 
 1.upto(4) {
-job('EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job') {
+job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
     scm {
         github(git, repo)
     }
