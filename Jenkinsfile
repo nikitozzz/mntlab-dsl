@@ -3,7 +3,7 @@ pipeline{
     stages {
         stage('Stack creation'){
            steps {
-                jobDsl targets: "$WORKSPACE/jobs.groovy"
+                jobDsl targets: "jobs.groovy"
             }
         }
     }
