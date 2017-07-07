@@ -1,8 +1,6 @@
 def gitrepo = 'MNT-Lab/mntlab-dsl'
 def branchname = 'vtarasiuk'
-def branchApi = new URL("http://api.github.com/repos/${gitrepo}/branches")
-def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
-def BRANCH_NAME = branches.name
+def BRANCH_NAME = branchname
 
 for (i in 1 .. 4) {
     job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
