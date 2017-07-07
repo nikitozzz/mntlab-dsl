@@ -24,7 +24,6 @@ def command = "git ls-remote -h $gitURL"
     freeStyleJob(it) {
     	description 'The job was created successfully'
     	}
-    }
 }
 
 parameters {
