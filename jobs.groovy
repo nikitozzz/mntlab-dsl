@@ -17,8 +17,8 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 /** Setting list of master  (hardcode)*/
-def student = 'vtarasiuk'; def master = 'master'
-def masterchoice = [$student,$master]
+String student = 'vtarasiuk'; String master = 'master'
+def masterchoice = [student, master]
 
 /** Create child jobs*/
 for (i in 1 .. 4) {
