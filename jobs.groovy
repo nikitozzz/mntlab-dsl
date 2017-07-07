@@ -37,8 +37,7 @@ def branches = proc.in.text.readLines().collect {
             pattern('output.txt')
             pattern('$BRANCH_NAME_dsl_script.tar.gz')
             onlyIfSuccessful()
-
-    }
+	    }
+	}
 }
-}
-	
+}	
