@@ -4,7 +4,7 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
 	choiceParam('BRANCH_NAME', ['atsuranau (default)', 'master'], 'Select branch')
         activeChoiceParam('CHOICE-1') {
             description('Allows user choose from multiple choices')
-            choiceType('MULTIPLE_SELECT')
+            choiceType('CHECKBOX')
             groovyScript {
                 script('["choice1", "choice2"]')
                 fallbackScript('"fallback choice"')
