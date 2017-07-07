@@ -70,7 +70,6 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
-                condition('UNSTABLE_OR_BETTER')
                 parameters {
                     currentBuild()
                 }
