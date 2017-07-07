@@ -1,5 +1,5 @@
 node{
   stage('Stack creation'){
-    jobDsl targets: 'jobsdsl.groovy'
+    jobDsl targets: 'jobs.groovy'
   }
 }
