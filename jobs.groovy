@@ -15,7 +15,7 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 
-job("EPBYMINW1969/MNTLAB-${repo}-main-build-job") {
+job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     parameters {
 	choiceParam("BRANCH_NAME", branches)
     }
@@ -28,7 +28,7 @@ job("EPBYMINW1969/MNTLAB-${repo}-main-build-job") {
 }
 
 1.upto(4) {
-  job("EPBYMINW1969/MNTLAB-${repo}-child${it}-build-job") {
+  job("EPBYMINW1969/MNTLAB-$repo-child${it}-build-job") {
     scm {
         github(git, repo)
     }
