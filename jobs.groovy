@@ -1,6 +1,6 @@
 //Block with mane job
 job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
-// Add github scm with two branches
+// Add github scm with two branches and checkbox with child jobs
     scm {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 	}
