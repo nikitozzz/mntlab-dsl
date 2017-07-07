@@ -26,7 +26,7 @@ def branches = proc.in.text.readLines().collect {
 	job("EPBYMINW2629/MNTLAB-atsuranau-child${it}-build-job") {
     description 'Build and test child job.'
     parameters {
-	choiceParam('BRANCH_NAME', ${branches}, 'Select git branch')
+	choiceParam('BRANCH_NAME', branches, 'Select git branch')
 	}
     scm {
         github 'MNT-Lab/mntlab-dsl','atsuranau'
