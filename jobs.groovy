@@ -2,9 +2,9 @@
 def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
 def branchname = 'vtarasiuk'
 
-def testJob = freeStyleJob('DSL-Task-1-Child')
+//def testJob = freeStyleJob('DSL-Task-1-Child')
 
-jobDsl (testJob) {
+jobDsl ('test') {
     scm {
         git (giturl, branchname)
     }
