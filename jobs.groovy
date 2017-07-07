@@ -6,8 +6,8 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
             description('Allows user choose from multiple choices')
             choiceType('CHECKBOX')
             groovyScript {
-                script('["choice1", "choice2"]')
-                fallbackScript('"fallback choice"')
+                script('return ["choice1", "choice2"]')
+                fallbackScript('return"fallback choice"')
             }
         }
 	}
