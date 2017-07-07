@@ -9,9 +9,9 @@ import hudson.model.*
 job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
     description 'Build and test the app.'
     parameters {
-        gitParam('branch') {
+        gitParam('BRANCH') {
             description('branch selection')
-            type('branch')
+            type('BRANCH')
         }
         scm {
             git {
