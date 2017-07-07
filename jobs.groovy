@@ -1,9 +1,11 @@
 //TODO:some stuff
+def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
+def branchname = 'vtarasiuk'
 def testJob = freeStyleJob('DSL-Task-1-Child')
-testJob.with {
-    description 'A sample of Job'
+
+job(testJob) {
     scm {
-        github 'MNT-Lab/mntlab-dsl', vtarasiuk
+        git (giturl, branchname)
     }
     triggers {
         scm('H/5 * * * *')
@@ -12,4 +14,6 @@ testJob.with {
         shell(executeFileFromWorkspace('script.sh'))
     }
 }
+
+
 
