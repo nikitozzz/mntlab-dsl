@@ -27,7 +27,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 				steps {
         				shell('chmod +x ./script.sh; ./script.sh')
        				 }
-				parameters {choiceParam("BRANCH_NAME", [repobr],'Choose branch')}	
+				parameters {choiceParam("BRANCH_NAME", repobr,'Choose branch')}	
 			}
 		}
 }
