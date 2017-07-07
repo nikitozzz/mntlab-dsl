@@ -34,10 +34,12 @@ for (i in 1 .. 4) {
         }
         steps {
 
-            shell('chmod +x ./script.sh && ./script.sh > output.txt && cat output.txt')
+            shell ('chmod +x script.sh && ./script.sh > output.txt && cat output.txt')
+            shell ("tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh")
         }
         publishers {
             archiveArtifacts('output.txt')
+            archiveArtifacts("${BRANCH_NAME}_dsl_script.tar.gz")
         }
     }
 }
@@ -54,7 +56,7 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
         scm('H/5 * * * *')
     }
     steps {
-        shell('chmod +x ./script.sh && ./script.sh > output.txt && cat output.txt')
+        shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt')
     }
 }
 
