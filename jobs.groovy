@@ -29,8 +29,10 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
         scm('H/5 * * * *')
     }
     steps {
-	println('Hello from a Job DSL script!')        
-        shell('chmod +x script.sh && ./script.sh')
+        shell('chmod +x script.sh && ./script.sh > output.txt; cat output.txt; tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+    }
+    publishers { 
+	archiveArtifacts('output.txt')
     }
 }
 
@@ -46,8 +48,10 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
         scm('H/5 * * * *')
     }
     steps {
-	println('Hello from a Job DSL script!')        
-        shell('chmod +x script.sh && ./script.sh')
+        shell('chmod +x script.sh && ./script.sh > output.txt; cat output.txt; tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+    }
+    publishers { 
+	archiveArtifacts('output.txt')
     }
 }
 
