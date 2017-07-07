@@ -3,9 +3,6 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
     scm {
         github 'MNT-Lab/mntlab-dsl','atsuranau'
     }
-   triggers { 
-       scm 'H/5 * * * *' 
-   }
     steps {
         gradle 'clean test'
     }
