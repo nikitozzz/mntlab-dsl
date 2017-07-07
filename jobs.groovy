@@ -26,5 +26,8 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 ].each { 
     freeStyleJob(it) {
     	description 'Build and test the app.'
-	}
+	environmentVariables {
+    	    scriptFile('script.sh')
+    	}
+    }
 }
