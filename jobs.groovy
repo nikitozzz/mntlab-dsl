@@ -1,6 +1,7 @@
 def gitrepo = 'MNT-Lab/mntlab-dsl'
 def branchname = 'vtarasiuk'
 
+/** Geting list of branches*/
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
 
@@ -15,12 +16,15 @@ if ( proc.exitValue() != 0 ) {
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
-def masterchoice = ['vtarasiuk','master']
+/** Setting list of master  (hardcode)*/
+def student = 'vtarasiuk'; def master = 'master'
+def masterchoice = [$student,$master]
 
+/** Create child jobs*/
 for (i in 1 .. 4) {
     job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
         parameters {
-            choiceParam('Branch Name', branches)
+            choiceParam('BRANCH_NAME', branches)
         }
         scm {
             github(gitrepo, branchname)
@@ -34,9 +38,11 @@ for (i in 1 .. 4) {
         }
     }
 }
+
+/** Create Master job*/
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
-        choiceParam('Branch Name', masterchoice)
+        choiceParam('BRANCH_NAME', masterchoice)
     }
     scm {
         github(gitrepo, branchname)
