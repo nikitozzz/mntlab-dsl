@@ -1,13 +1,13 @@
 job('MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
     scm {
-        github 'sheehan/job-dsl-playground'
+        github ''
     }
     steps {
         gradle 'test'
     }
     publishers {
-        archiveJunit 'build/test-results/**/*.xml'
+        archiveJunit ''
     }
 }
 (1..4).each {
@@ -15,13 +15,13 @@ job('MNTLAB-hpashuto-main-build-job') {
             job("MNTLAB-hpashuto-child$jobN-build-job") {
                 description "DSL task child$jobN job."
                 scm {
-                    github 'sheehan/job-dsl-playground'
+                    github ''
                 }
                 steps {
                     gradle 'test'
                 }
                 publishers {
-                    archiveJunit 'build/test-results/**/*.xml'
+                    archiveJunit ''
                 }
             }
         }
