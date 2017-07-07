@@ -15,7 +15,7 @@ publishers {
             pattern('script.sh')
             onlyIfSuccessful()
         }
-downstream('EPBYMINW2466/MNTLAB-{akarzhou}-child1-build-job', 'SUCCESS')
+#downstream('EPBYMINW2466/MNTLAB-{akarzhou}-child1-build-job', 'SUCCESS')
     }
 } 
 
@@ -48,14 +48,14 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 steps {
 copyArtifacts('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
             includePatterns('script.sh')
-            targetDirectory('./scripts/')
+            targetDirectory('./')
             flatten()
             optional()
             buildSelector {
                 latestSuccessful(true)
             }
 }
-shell('cd scripts; ./script.sh > output.txt; tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+shell('chmod +x ./script.sh ./script.sh > output.txt; tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
 }
       publishers {
         archiveArtifacts {
