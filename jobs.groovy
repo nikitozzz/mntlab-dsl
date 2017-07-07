@@ -44,12 +44,12 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 }
 steps {
-shell( "./script.sh > output.txt")
+shell("chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt ")
 }
       publishers {
         archiveArtifacts {
             pattern('output.txt')
-//          	pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+  	     	pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
         }
     }
