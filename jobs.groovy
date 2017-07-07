@@ -52,6 +52,7 @@ jbn.each {
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
+        blockBuildUntilComplete()
     }
     scm {
         github(gitrepo, branchname)
@@ -61,7 +62,6 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     }
 
     steps {
-        blockBuildUntilComplete()
     }
     publishers {
         downstreamParameterized {
