@@ -1,4 +1,4 @@
-job(' EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
+job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     description 'Build and test the app.'
     scm {
         github 'sheehan/job-dsl-playground'
