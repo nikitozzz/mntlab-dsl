@@ -1,4 +1,4 @@
-job('MNTLAB-{akarzhou}-main-build-job') {
+job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
     scm {
         git {
             remote {
