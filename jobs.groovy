@@ -16,3 +16,7 @@ parameters {
     	}
     }
 }
+
+steps {
+    shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dls_script.tar.gz script.sh')
+}
