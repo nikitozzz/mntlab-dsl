@@ -9,7 +9,8 @@ import hudson.model.*
 job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job'){
     description 'Build and test the app.'
     scm {
-        github 'sheehan/job-dsl-playground'
+        github 'https://github.com/MNT-Lab/mntlab-dsl.git'
+        branch('aaksionkin')
     }
     steps {
         gradle 'test'
