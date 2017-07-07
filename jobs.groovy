@@ -31,7 +31,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
        				 }
 				publishers {
        			 		archiveArtifacts {
-                       				pattern('${BRANCH_NAME}_dls.script.tar.gz')
+                       				pattern('./${BRANCH_NAME}_dls.script.tar.gz')
                        					 }
     					}
 			}
