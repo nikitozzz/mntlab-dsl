@@ -1,14 +1,8 @@
 //Block with mane job
 job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
     scm {
-        git {
-            remote {
-                name('remoteB')
-                url('https://github.com/MNT-Lab/mntlab-dsl.git')
-            }
-            branches('akarzhou', 'master')                    
-        }      
-    }
+        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+	}
   steps {
       			shell('Hello world')
 }   
