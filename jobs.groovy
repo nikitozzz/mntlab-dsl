@@ -22,9 +22,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     scm {
         github(git, repo)
     }
-    triggers {
-        scm('H/5 * * * *')
-    }
+    
 }
 
 1.upto(4) {
@@ -32,9 +30,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     scm {
         github(git, repo)
     }
-    triggers {
-        scm('H/5 * * * *')
-    }
+    
     steps {
         shell('chmod +x script.sh && ./script.sh')
     }
