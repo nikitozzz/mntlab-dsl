@@ -18,8 +18,8 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
  		 }
 	       	 parameters {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
-			 choiceParam('JOB_TO_RUN',for (i = 1; i <2; i++) {
- 			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job")}, 'kek']
+			 choiceParam('JOB_TO_RUN',[for (i = 1; i <2; i++) {
+ 			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job")}], 'kek']
   		 }
 		for (i = 1; i <2; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
