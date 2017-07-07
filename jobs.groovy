@@ -9,14 +9,6 @@ import hudson.model.*
 job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
     description 'Build and test the app.'
     parameters {
-        runParam('EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
-                'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
-                'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
-                'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job')
-        gitParam('BRANCH') {
-            description('branch selection')
-            type('BRANCH')
-        }
         scm {
             git {
                 remote {
@@ -31,7 +23,15 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                 }
             }
         }
-        ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
+        runParam('EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
+                'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
+                'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
+                'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job')
+        gitParam('BRANCH') {
+            description('branch selection')
+            type('BRANCH')
+        }
+                ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
          'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
          'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
          'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'
