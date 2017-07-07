@@ -19,7 +19,7 @@ def branches = proc.in.text.readLines().collect {
 
 job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     parameters {
-	stringParam("BRANCH_NAME", branches)
+	choiceParam("BRANCH_NAME", branches)
     }
     scm {
         github(git, repo)
