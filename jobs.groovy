@@ -1,8 +1,7 @@
-//TODO:some stuff
 def gitrepo = 'MNT-Lab/mntlab-dsl'
 def branchname = 'vtarasiuk'
-
-job ('example') {
+folder ('NewFolder')
+job ('NewFolder/example') {
     scm {
         github (gitrepo, branchname)
     }
@@ -11,7 +10,7 @@ job ('example') {
     }
     steps {
 	out.println('Hello from a Job DSL script!')
-        shell('./script.sh')
+    shell('./script.sh')
     }
 }
 
