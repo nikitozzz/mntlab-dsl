@@ -33,8 +33,10 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     scm {
 	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
-    shell('chmod +x ./script.sh')
-    shell('./script.sh')
+    steps {
+        shell('chmod +x ./script.sh')
+        shell('./script.sh')
+    }
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
  'EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job',
@@ -47,9 +49,15 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	    choiceParam("BRANCH_NAME", branches)
     	}
 	steps {
-            shell('cp /var/server/config/jenkins/workspace/EPBYMINW1374/mntlab-ci-dsl/script.sh ./script.sh')
-	    shell('chmod +x ./script.sh')
-	    shell('./script.sh')
+	    copyArtifacts('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job') {
+        	includePatterns('*.sh')
+                targetDirectory('./')
+                flatten()
+                optional()
+                buildSelector {
+                    latestSuccessful(true)
+                }
+    	    }
         }
     }
 }
