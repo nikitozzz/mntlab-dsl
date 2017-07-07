@@ -13,7 +13,10 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
    }
 
-def BUILDS_TRIGGER = "MNTLAB-zvirinsky-child1-build-job,MNTLAB-zvirinsky-child1-build-job,MNTLAB-zvirinsky-child1-build-job,MNTLAB-zvirinsky-child1-build-job"   
+def BUILDS_TRIGGER = """MNTLAB-zvirinsky-child1-build-job,
+                        MNTLAB-zvirinsky-child2-build-job,
+                        MNTLAB-zvirinsky-child3-build-job,
+                        MNTLAB-zvirinsky-child4-build-job"""   
 
 job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
@@ -38,6 +41,15 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 
 	parameters {
         choiceParam('BRANCH_NAME', ['zvirinsky', 'master'], 'choose branch')
+        activeChoiceParam('BUILDS_TRIGGER') {
+            description('Allows user choose from multiple choices')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script("$BUILD_TRIGGER")
+                
+            }
+        }
 
         
     }
