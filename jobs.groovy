@@ -25,7 +25,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
        					github 'MNT-Lab/mntlab-dsl', 'asemirski'
     				}
 				steps {
-        				shell('chmod +x ./script.sh > output.txt ./script.sh')
+        				shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ./${BRANCH_NAME}_dls_script.tar.gz script.sh')
        				 }
 				parameters {choiceParam("BRANCH_NAME", repobr,'Choose branch')}	
 			}
