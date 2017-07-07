@@ -1,6 +1,6 @@
 def git = "MNT-Lab/mntlab-dsl"
 def repo = "ndolya"
-
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
 
 def proc = command.execute()
