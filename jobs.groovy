@@ -24,18 +24,24 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job'){
  'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'
 ].each {
     freeStyleJob(it) {
-        description 'Build and test the app.'
+        description 'Echo the shell.sh.'
         scm {
-            github 'sheehan/job-dsl-playground'
-        }
-        triggers {
-            scm 'H/5 * * * *'
-        }
-        steps {
-            gradle 'test'
-        }
-        publishers {
-            archiveJunit 'build/test-results/**/*.xml'
+            git {
+                remote {
+                    name('origin')
+                    url('https://github.com/MNT-Lab/mntlab-dsl.git')
+                }
+                branch('aaksionkin')
+                triggers {
+                    scm 'H/5 * * * *'
+                }
+                steps {
+                    shell(readFileFromWorkspace('shell.sh'))
+                }
+                publishers {
+                    archiveJunit 'build/test-results/**/*.xml'
+                }
+            }
         }
     }
 }
