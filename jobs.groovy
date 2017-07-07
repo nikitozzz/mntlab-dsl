@@ -7,9 +7,7 @@ def testlist = ['one', 'two']
 for (i in 1 .. 4) {
     job("EPBYMINW2471/MNTLAB-vtarasiuk-child$i-build-job") {
         parameters {
-            testlist.each {
-                stringParam('Branch Name', $it)
-            }
+            choiceParam('Branch Name', testlist)
         }
         scm {
             github(gitrepo, branchname)
