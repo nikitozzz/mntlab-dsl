@@ -34,7 +34,6 @@ jbn.each {
             github(gitrepo, branchname)
         }
         triggers {
-            upstream("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job", 'SUCCESS')
             scm('H/5 * * * *')
         }
         steps {
@@ -60,10 +59,20 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     triggers {
         scm('H/5 * * * *')
     }
+
     steps {
 
     }
-
+    publishers {
+        downstreamParameterized {
+            trigger(jbn) {
+                condition('UNSTABLE_OR_BETTER')
+                parameters {
+                    currentBuild()
+                }
+            }
+        }
+    }
 }
 
 
