@@ -20,11 +20,10 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
 			 activeChoiceParam('CHOICE-1') {
 				description('Allows user choose from multiple choices')
-				filterable()
 				choiceType('SINGLE_SELECT')
 				groovyScript {
                 			script('["choice1", "choice2"]')}
-			 
+			 		fallbackScript('"fallback choice"')
   		 }
 		for (i = 1; i <2; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
