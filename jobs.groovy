@@ -20,8 +20,9 @@ def branches = proc.in.text.readLines().collect {
 String student = 'vtarasiuk'; String master = 'master'
 def masterchoice = [student, master]
 /** Setting list of job names  (hardcode)*/
+def jobnames = []
 for (i in 1..4){
-    def jobnames =+ ["MNTLAB-vtarasiuk-child$i-build-job"]
+    jobnames.add("MNTLAB-vtarasiuk-child$i-build-job")
 }
 /** Create child jobs*/
 jobnames.each {
