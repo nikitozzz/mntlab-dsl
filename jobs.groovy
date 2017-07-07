@@ -15,8 +15,7 @@ for (i in 1 .. 4) {
         }
         steps {
 
-            shell('chmod +x ./script.sh')
-            shell('./script.sh')
+            shell('chmod +x ./script.sh && ./script.sh')
         }
     }
 }
@@ -28,8 +27,7 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
         scm('H/5 * * * *')
     }
     steps {
-        shell('chmod +x ./script.sh')
-        shell('./script.sh')
+        shell('chmod +x ./script.sh && ./script.sh')
     }
 }
 
