@@ -1,5 +1,6 @@
 //Block with mane job
 job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
+// Add github scm with two branches
     scm {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 	}
@@ -8,8 +9,9 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
 }
 
   steps {
-     shell('Publish artefact for childs jobs')
+     shell(' echo "Publish artefact for childs jobs"')
 }
+//Publishing artifact for chlid jobs
 publishers {
         archiveArtifacts {
             pattern('script.sh')
