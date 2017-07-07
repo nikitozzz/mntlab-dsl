@@ -37,6 +37,9 @@ for (i in 1 .. 4) {
             shell('chmod +x ./script.sh && ./script.sh > output.txt && cat output.txt')
         }
     }
+    publishers {
+        archiveArtifacts('output.txt')
+    }
 }
 
 /** Create Master job*/
