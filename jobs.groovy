@@ -61,7 +61,7 @@ job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     }
     steps {
         jbn.each {
-            build ($it)
+            build ("${it}")
         }
     }
 
