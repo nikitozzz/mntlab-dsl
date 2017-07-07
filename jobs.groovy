@@ -1,5 +1,4 @@
 job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
-	parameters {
-       	 choiceParam('choose branch', ['master 1 (default)','asemirski'], 'here u can choise branch')
-    }
-}
+	       	 parameters {
+     choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
+   }
