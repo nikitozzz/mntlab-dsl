@@ -15,7 +15,7 @@ publishers {
             pattern('script.sh')
             onlyIfSuccessful()
         }
-#downstream('EPBYMINW2466/MNTLAB-{akarzhou}-child1-build-job', 'SUCCESS')
+//downstream('EPBYMINW2466/MNTLAB-{akarzhou}-child1-build-job', 'SUCCESS')
     }
 } 
 
