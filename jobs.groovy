@@ -30,7 +30,7 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
                     unstable('UNSTABLE')
                 }
                 parameters {
-                    predefinedProp("$BRANCH_NAME")
+                    predefinedProp("BRANCH_NAME", "$BRANCH_NAME")
                 }
             }
         }
@@ -61,4 +61,4 @@ for(i in 1..4) {
                    		}
     				}	
     	}
-    }
+}
