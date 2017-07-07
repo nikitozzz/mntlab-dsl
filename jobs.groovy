@@ -1,5 +1,6 @@
 job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
-   scm {
+   description 'Main Job'
+scm {
        github 'MNT-Lab/mntlab-dsl','atsuranau' 
    }
    triggers { 
