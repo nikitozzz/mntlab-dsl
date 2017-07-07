@@ -24,6 +24,22 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
 
+    
+    parameters {
+        choiceParam('BRANCH_NAME', ['zvirinsky', 'master'], 'choose branch')
+        activeChoiceParam('BUILDS_TRIGGER') {
+            description('Allows user choose from multiple choices')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script("$BUILD_TRIGGER")
+                
+            }
+        }
+
+        
+    }
+
     steps {
     	downstreamParameterized {
             trigger("$BUILDS_TRIGGER") {
@@ -39,20 +55,6 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
         }
     }
 
-	parameters {
-        choiceParam('BRANCH_NAME', ['zvirinsky', 'master'], 'choose branch')
-        activeChoiceParam('BUILDS_TRIGGER') {
-            description('Allows user choose from multiple choices')
-            filterable()
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script("$BUILD_TRIGGER")
-                
-            }
-        }
-
-        
-    }
 }
 for(i in 1..4) {
     job("./EPBYMINW2472/MNTLAB-zvirinsky-child${i}-build-job") {
