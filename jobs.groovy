@@ -38,7 +38,6 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     }
     steps {
         shell('chmod +x ./script.sh')
-        shell('./script.sh')
     }
 }
 ['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
@@ -61,6 +60,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
                     latestSuccessful(true)
                 }
     	    }
+	shell('./script.sh')
         }
     }
 }
