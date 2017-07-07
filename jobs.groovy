@@ -30,10 +30,11 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     'Choose appropriate JOB')
         }
 
-        gitParam('BRANCH') {
+        gitParam('Select the branch') {
             description('branch selection')
             type('BRANCH')
-            branch('.*')
+            branch('~/.*/')
+            defaultValue('aksionkin') // empty by default
         }
         //creating child jobs
         ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
