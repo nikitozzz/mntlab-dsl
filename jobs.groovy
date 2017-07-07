@@ -7,6 +7,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job', 'SUCCESS')
     }
     parameters {
+	choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
         activeChoiceParam('CHOICE-1') {
             description('Allows user choose from multiple choices')
             filterable()
