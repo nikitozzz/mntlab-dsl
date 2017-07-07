@@ -52,7 +52,15 @@ jbn.each {
 job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
-        runParam(jbn)
+        activeChoiceParam('Checkbox test') {
+            description('Allows user choose from multiple choices')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            parameter('JOB', jbn[1])
+            parameter('JOB', jbn[2])
+            parameter('JOB', jbn[3])
+            parameter('JOB', jbn[4])
+        }
     }
     scm {
         github(gitrepo, branchname)
