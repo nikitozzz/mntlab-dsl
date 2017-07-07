@@ -1,3 +1,8 @@
+def rembr = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
+
+
 job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
 	scm {
@@ -24,11 +29,13 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 for(i in 1..4) {
     job("./EPBYMINW2472/MNTLAB-zvirinsky-child${i}-build-job") {
     	scm {
-        github 'MNT-Lab/mntlab-dsl', 'zvirinsky'
+        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     	}
+    	parameters {
+        choiceParam('BRANCH_NAME', ['master', rembr])
 
     	steps {
-    		shell('chmod +x script.sh; ./script.sh')
+    		shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf script.sh')
     		}
     	}
     }
