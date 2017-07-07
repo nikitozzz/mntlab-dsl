@@ -6,6 +6,13 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
 	}
      parameters {
      choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose appropriate branch')
+	      extendedChoiceParameterDefinition {
+          name('Select job')
+          type('multiselect')
+	  visibleItemCount(4)
+          value('MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job')
+ 	  multiSelectDelimiter(',')
+          }
 }
 
   steps {
