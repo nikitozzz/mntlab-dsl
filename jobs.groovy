@@ -27,10 +27,22 @@ parameters {
     }
 }
 
+parameters {
+	choiceParam('BRANCH_NAME', branches)
+}   
+
+scm {
+        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+}
+
 steps {
-    shell('chmod +x script.sh; ./script.sh > output.log; tar -czf ${BRANCH_NAME}_dls_script.tar.gz script.sh')
+	shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
 }
 
 publishers {
-            archiveArtifacts('output.log')
+        archiveArtifacts {
+        	pattern('output.txt')
+  	     	pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+            onlyIfSuccessful()
+        }
 }
