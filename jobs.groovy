@@ -4,11 +4,9 @@ job('EPBYMINW2629/MNTLAB-atsuranau-main-build-job') {
         github 'MNT-Lab/mntlab-dsl','atsuranau'
     }
     steps {
-        shell('chmod +x script.sh && ./script.sh')
+
     }
-//    publishers {
-//        archiveJunit 'build/test-results/**/*.xml'
-//    }
+
 }
 
 def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
@@ -32,11 +30,15 @@ def branches = proc.in.text.readLines().collect {
         github 'MNT-Lab/mntlab-dsl','atsuranau'
     }
     steps {
-        shell('chmod +x script.sh && ./script.sh')
+        shell('chmod +x script.sh && ./script.sh && ./script.sh > output.txt && tar -czf $BRANCH_NAME_dsl_script.tar.gz output.txt jobs.groovy script.sh')
     }
-//    publishers {
-//        archiveJunit 'build/test-results/**/*.xml'
-//    }
+    publishers {
+          archiveArtifacts {
+            pattern('output.txt')
+            pattern('$BRANCH_NAME_dsl_script.tar.gz')
+            onlyIfSuccessful()
+
+    }
 }
 }
 	
