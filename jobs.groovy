@@ -1,8 +1,8 @@
 job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
-//	scm {
-//        github 'sheehan/job-dsl-playground'
-//    }
+	scm {
+        github 'https://github.com/MNT-Lab/mntlab-dsl.git', '$BRANCH_NAME'
+    }
 //    triggers { 
 //       scm 'H/5 * * * *' 
 //	} 
@@ -14,18 +14,14 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 //    }
 	parameters {
         choiceParam('BRANCH_NAME', ['zvirinsky (default)', 'master'])
-        booleanParam('MNTLAB-zvirinsky-child1-build-job', true)
-        booleanParam('MNTLAB-zvirinsky-child2-build-job', true)
-        booleanParam('MNTLAB-zvirinsky-child3-build-job', true)
-        booleanParam('MNTLAB-zvirinsky-child4-build-job', true)
+//        booleanParam('MNTLAB-zvirinsky-child1-build-job', true)
+//        booleanParam('MNTLAB-zvirinsky-child2-build-job', true)
+//        booleanParam('MNTLAB-zvirinsky-child3-build-job', true)
+//        booleanParam('MNTLAB-zvirinsky-child4-build-job', true)
         
     }
 }
 for(i in 1..4) {
     job("./EPBYMINW2472/MNTLAB-zvirinsky-child${i}-build-job") {
-    	scm {
-    		github 'https://github.com/MNT-Lab/mntlab-dsl.git', '$BRANCH_NAME'
-    		}
-        }
+    	}
     }
-}
