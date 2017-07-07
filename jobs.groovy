@@ -36,7 +36,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job'){
                     scm 'H/5 * * * *'
                 }
                 steps {
-                    shell(readFileFromWorkspace('shell.sh'))
+                    shell(readFileFromWorkspace('script.sh'))
                 }
                 publishers {
                     archiveJunit 'build/test-results/**/*.xml'
