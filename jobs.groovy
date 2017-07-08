@@ -35,9 +35,9 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             github (git, '$BRANCH_NAME')
         }
         steps {
-            gradle 'test'
+            shell('bash -ex script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh jobs.groovy')
         }
         publishers {
-            archiveJunit ''
+
         }
     }
