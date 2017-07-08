@@ -16,24 +16,26 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
     parameters {
         choiceParam("BRANCH_NAME", ['hpashuto', 'master'])
-        choiceParameter {
-            name('BUILDS_TRIGGER')
-            script {
-                groovyScript {
-                    script {
-                        script('return ["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
-                        sandbox(true)
-                    }
-                    fallbackScript {
-                        script('')
-                        sandbox(false)
-                    }
-                }
-            }
-            choiceType('CHECKBOX')
-            description('Allows user choose child builds')
-            randomName('param-4711')
-            filterable(false)
+        extendedChoiceParameterDefinition {
+            name ('BUILDS_TRIGGER')
+            description ('Allows user choose child builds to run')
+            quoteValue (false)
+            type ('Check Boxes')
+            value ('MNTLAB-hpashuto-child1-build-job, MNTLAB-hpashuto-child2-build-job, MNTLAB-hpashuto-child3-build-job, MNTLAB-hpashuto-child4-build-job')
+            defaultValue ('MNTLAB-hpashuto-child1-build-job, MNTLAB-hpashuto-child2-build-job, MNTLAB-hpashuto-child3-build-job, MNTLAB-hpashuto-child4-build-job')
+            visibleItemCount (4)
+            multiSelectDelimiter (',')
+            projectName ('MNTLAB-hpashuto-main-build-job')
+            propertyFile ('')
+            propertyKey ('')
+            defaultPropertyFile ('')
+            defaultPropertyKey ('')
+            bindFieldName ('')
+            svnPath (false)
+            svnUrl ('')
+            svnUserName ('')
+            svnPassword ('')
+            roleBasedFilter (false)
         }
 
     }
