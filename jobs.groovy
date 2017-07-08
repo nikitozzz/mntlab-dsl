@@ -38,6 +38,10 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             shell('bash -ex script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh jobs.groovy')
         }
         publishers {
-
+            archiveArtifacts{
+                pattern(output.txt)
+                pattern(${BRANCH_NAME}_dsl_script.tar.gz)
+                onlyIfSuccessful()
+            }
         }
     }
