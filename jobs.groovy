@@ -24,14 +24,51 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
                 //sandbox (true)
             }
         }
-
-
     }
     scm {
         github (git1, '$BRANCH_NAME')
     }
     steps {
-        shell ('echo hello world')
+        conditionalSteps {
+            condition {
+                alwaysRun()
+            }
+            runner('Fail')
+            steps {
+
+
+
+                (1..4).each {
+                    conditionalSteps {
+                        condition {
+                            expression('${BUILDS_TRIGGER}', "MNTLAB-hpashuto-child$it-build-job")
+                        }
+                        runner('Fail')
+                        steps {
+
+                            downstreamParameterized {
+                                trigger("MNTLAB-hpashuto-child$it-build-job") {
+                                    block {
+                                        buildStepFailure('FAILURE')
+                                        failure('FAILURE')
+                                        unstable('UNSTABLE')
+                                    }
+                                    parameters {
+                                        predefinedProp('BRANCH_NAME', '${BRANCH_NAME}')
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+
+
+
+            }
+        }
+
     }
 }
 (1..4).each {
