@@ -45,7 +45,7 @@ job("${folder}/${lord}") {
             choiceType('CHECKBOX')
             groovyScript {
                 script('''
-return [ MNTLAB-vtarasiuk-child1-build-job,
+[ MNTLAB-vtarasiuk-child1-build-job,
 MNTLAB-vtarasiuk-child2-build-job,
 MNTLAB-vtarasiuk-child3-build-job,
 MNTLAB-vtarasiuk-child4-build-job ]
