@@ -44,7 +44,7 @@ job("${folder}/${lord}") {
         activeChoiceParam('RUN_JOB') {
             choiceType('CHECKBOX')
             groovyScript {
-                script("return [${jbn}]")
+                script("return ${jbn}")
             }
         }
     }
@@ -59,7 +59,7 @@ job("${folder}/${lord}") {
         for (j in 1..4) {
             conditionalSteps {
                 condition {
-                    expression("(?is).*child$j.*", '${BUILDS_TRIGGER}')
+                    expression("(?is).*child$j.*", '${RUN_JOB}')
                 }
                 runner('Fail')
                 steps {
