@@ -36,26 +36,27 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
             scm {
         		github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
     		}
-        	steps {
-                shell( "chmod 777 script.sh" )
+            steps {
+                        shell( "chmod 777 script.sh" )
       			shell( "./script.sh > output.txt" )
-                shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt' )
+                        shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt' )
             }
             publishers {
        			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz'
     		}
         }
     }
+    steps {
+                shell( "echo $JOBS_TRIGGER" )
+    }
     publishers {
-        childList.each { name ->
-        	downstreamParameterized {
-                	trigger(name) {
-                	condition('SUCCESS')
-                	parameters {
-                   		predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-               		}
-            	}
-        	}
+        downstreamParameterized {
+            trigger('$JOBS_TRIGGER') {
+                condition('SUCCESS')
+                parameters {
+                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                }
+            }
         }
     }
     
