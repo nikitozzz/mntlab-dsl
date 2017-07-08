@@ -18,7 +18,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
         		github 'MNT-Lab/mntlab-dsl','adoropei'
     		}
         	steps {
-                shell( '$BRANCH_NAME="adoropei"' )
+                shell( 'BRANCH_NAME="adoropei"' )
                 shell( "chmod 777 script.sh" )
       			shell( "./script.sh > output.txt" )
             }
