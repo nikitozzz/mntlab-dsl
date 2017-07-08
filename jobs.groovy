@@ -40,7 +40,14 @@ for (i in 1..4){
 /** Create Master job*/
 job("${folder}/${lord}") {
     parameters {
-        choiceParam('BRANCH_NAME', masterchoice)
+        //choiceParam('BRANCH_NAME', masterchoice)
+        activeChoiceParam('BRANCH_NAME') {
+            choiceType('CHECKBOX')
+            description('Name of a git-branch to use')
+            groovyScript {
+                script("${masterchoice}")
+            }
+        }
     }
     scm {
         github(gitrepo, branchname)
