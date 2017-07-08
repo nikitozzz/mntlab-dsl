@@ -41,10 +41,11 @@ for (i in 1..4){
 job("${folder}/${lord}") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
-        activeChoiceParam('SOME_CHOICE') {
+        activeChoiceParam('JOB_NAME') {
             choiceType('CHECKBOX')
+            useGroovySandbox (true)
             groovyScript {
-                script("return ${masterchoice}")
+                script("return ${jbn}")
             }
         }
     }
