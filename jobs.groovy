@@ -106,7 +106,7 @@ jbn.each {
         }
         publishers {
             archiveArtifacts('output.txt')
-            archiveArtifacts('*_dsl_script.tar.gz')
+            archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
         }
     }
 }
