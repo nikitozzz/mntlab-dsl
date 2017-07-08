@@ -32,6 +32,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             }
             choiceType('CHECKBOX')
             description('Allows user choose child builds')
+            randomName('param-4711')
             filterable(false)
         }
 
