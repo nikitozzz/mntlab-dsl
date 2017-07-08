@@ -1,3 +1,9 @@
+def childList = []
+(1..4).each {
+        childList << "EPBYMINW2695/MNTLAB-adoropei-child${it}-build-job"
+}
+
+
 job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     description 'Build and test the app.'
     scm {
@@ -6,18 +12,24 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     steps {
         gradle 'test'
     }
-    (1..4).each {
-        job("EPBYMINW2695/MNTLAB-adoropei-child${it}-build-job"){
+    childList.each {
+        job(it){
             scm {
         		github 'MNT-Lab/mntlab-dsl','adoropei'
     		}
         	steps {
+                shell( '$BRANCH_NAME="adoropei"' )
                 shell( "chmod 777 script.sh" )
       			shell( "./script.sh > output.txt" )
             }
+            publishers {
+       			archiveArtifacts 'output.txt'
+    		}
         }
     }
     publishers {
-        archiveJunit 'build/test-results/**/*.xml'
+        childList.each {
+        	downstream (it, 'SUCCESS')
+        }
     }
 }
