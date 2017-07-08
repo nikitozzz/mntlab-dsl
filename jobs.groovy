@@ -24,6 +24,10 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
                         script('return ["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
                         sandbox(true)
                     }
+                    fallbackScript {
+                        script('')
+                        sandbox(false)
+                    }
                 }
             }
             choiceType('CHECKBOX')
@@ -31,18 +35,6 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             filterable(false)
         }
 
-        /**
-        activeChoiceParam('BUILDS_TRIGGER') {
-            description('Allows user choose child builds')
-            choiceType('CHECKBOX')
-            groovyScript {
-                script {
-                    script ('return ["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
-                    sandbox (true)
-                }
-            }
-        }
- */
     }
     scm {
         github (git1, '$BRANCH_NAME')
