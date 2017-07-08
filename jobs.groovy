@@ -1,4 +1,4 @@
-job('MNTLAB-mdemenkova-main-build-job'){
+job('EPBYMINW2467/MNTLAB-mdemenkova-main-build-job'){
   scm {
         github ('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
      }      
@@ -37,7 +37,7 @@ def branches = proc.in.text.readLines().collect
         }
 
 for (i = 1; i <5; i++) {
-  job ("MNTLAB-mdemenkova-child${i}-build-job"){ 
+  job ("EPBYMINW2467/MNTLAB-mdemenkova-child${i}-build-job"){ 
     parameters {
         choiceParam('BRANCH_NAME', branches)
     }		   
