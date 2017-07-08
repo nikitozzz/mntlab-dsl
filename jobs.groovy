@@ -50,13 +50,24 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
                 shell( "echo $JOBS_TRIGGER" )
     }
     publishers {
-        downstreamParameterized {
-            trigger('$JOBS_TRIGGER') {
-                condition('SUCCESS')
-                parameters {
-                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+        childList.each { name ->
+        	flexiblePublish {
+                        conditionalAction {
+                                condition {
+                                        shell("$JOBS_TRIGGER == *${name}*")
+                                }
+                                steps {
+                                        downstreamParameterized {
+                	                        trigger(name) {
+                                                        condition('SUCCESS')
+                                                        parameters {
+                                                                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                                                        }
+                                                }
+                                        }              
+                                }
+                        }
                 }
-            }
         }
     }
     
