@@ -46,26 +46,16 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     		}
         }
     }
-    publishers {
-        childList.each { name ->
-        	flexiblePublish {
-                        conditionalAction {
-                                condition {
-                                        shell('$JOBS_TRIGGER == ' + "*${name}*")
-                                }
-                                publishers {
-                                        downstreamParameterized {
-                	                        trigger(name) {
-                                                        condition('SUCCESS')
-                                                        parameters {
-                                                                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-                                                        }
-                                                }
-                                        }              
-                                }
+    steps {
+        downstreamParameterized {
+                trigger('$JOBS_TRIGGER') {
+                        condition('SUCCESS')
+                        parameters {
+                                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
                 }
         }
+        
     }
     
 }
