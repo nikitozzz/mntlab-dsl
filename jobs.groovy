@@ -16,22 +16,66 @@ if ( proc.exitValue() != 0 ) {
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
-/** Setting list of master  (hardcode)*/
+
+    /** Name Section **/
+
+/** Setting list of master parameters  (hardcode)*/
 String student = 'vtarasiuk'; String master = 'master'
 def masterchoice = [student, master]
-/** Setting list of job names  (hardcode)*/
+
+/** Setting master-job name*/
+def lord = 'MNTLAB-vtarasiuk-main-build-job'
+
+/** Common Folder name*/
+def folder = 'EPBYMINW2471'
+
+/** Setting list of child job names  (hardcode)*/
 def jbn = []
 for (i in 1..4){
     jbn.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
+
+    /**Job Section**/
+
+/** Create Master job*/
+job("${folder}/${lord}") {
+    parameters {
+        choiceParam('BRANCH_NAME', masterchoice)
+    }
+    scm {
+        github(gitrepo, branchname)
+    }
+    triggers {
+        scm('H/5 * * * *')
+    }
+
+    steps {
+        //TODO: script.sh <-- chmod +x
+        downstreamParameterized {
+            trigger(jbn) {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+
+
+                parameters {
+                    currentBuild()
+                }
+            }
+        }
+    }
+
+}
 /** Create child jobs*/
 jbn.each {
-    job("EPBYMINW2471/${it}") {
+    job("${folder}/${it}") {
         parameters {
             choiceParam('BRANCH_NAME', branches)
         }
         scm {
-            github(gitrepo, branchname)
+            cloneWorkspace("${lord}", 'Any')
         }
         triggers {
             scm('H/5 * * * *')
@@ -47,35 +91,5 @@ jbn.each {
         }
     }
 }
-
-/** Create Master job*/
-job("EPBYMINW2471/MNTLAB-vtarasiuk-main-build-job") {
-    parameters {
-        choiceParam('BRANCH_NAME', masterchoice)
-    }
-    scm {
-        github(gitrepo, branchname)
-    }
-    triggers {
-        scm('H/5 * * * *')
-    }
-
-    steps {
-        downstreamParameterized {
-            trigger(jbn) {
-                block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                }
-                parameters {
-                    currentBuild()
-                }
-            }
-        }
-    }
-
-}
-
 
 
