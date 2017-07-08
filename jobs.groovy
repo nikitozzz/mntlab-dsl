@@ -74,6 +74,7 @@ return some
                 }
             }
         }
+        shell ("echo ${current}")
         downstreamParameterized {
             trigger(current) {
                 block {
