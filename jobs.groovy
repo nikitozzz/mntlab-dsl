@@ -41,8 +41,9 @@ def current = []
 job("${folder}/${lord}") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
-        activeChoiceParam('RUN_JOB') {
+        activeChoiceParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
+            description('You may choose some jobs to build. Choose wise...')
             groovyScript {
                 script(''' 
 def some = []
@@ -65,7 +66,7 @@ return some
         for (j in 1..4) {
             conditionalSteps {
                 condition {
-                    expression("(?is).*child$j.*", '${RUN_JOB}')
+                    expression("(?is).*child$j.*", '${BUILDS_TRIGGER}')
                 }
                 runner('Fail')
                 steps {
