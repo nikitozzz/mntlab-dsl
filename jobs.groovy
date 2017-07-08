@@ -20,7 +20,19 @@ job('./EPBYMINW3092/MNTLAB-akonchyts-main-build-job') {
    }
    steps {
        shell('echo "Main Job"')
-   }
+       downstreamParameterized {
+         trigger('${BUILDS_TRIGGER}') {
+            block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+            }
+            parameters {
+              currentBuild()
+            }
+         }
+       }
+    }
 }
 
 ['1', '2', '3', '4'].each { suffix ->
