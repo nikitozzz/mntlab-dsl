@@ -58,9 +58,6 @@ return some
     scm {
         github(gitrepo, branchname)
     }
-    triggers {
-        scm('H/5 * * * *')
-    }
 
     steps {
         for (j in 1..4) {
@@ -70,7 +67,7 @@ return some
                 }
                 runner('Fail')
                 steps {
-                    current.add("MNTLAB-vtarasiuk-child${j}-build-job")
+                    current.add('${BUILDS_TRIGGER}')
                 }
             }
         }
@@ -98,9 +95,6 @@ jbn.each {
         }
         scm {
             github(gitrepo, branchname)
-        }
-        triggers {
-            scm('H/5 * * * *')
         }
         steps {
 
