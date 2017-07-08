@@ -53,7 +53,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
                                 condition {
                                         shell("${JOBS_TRIGGER} == *${name}*")
                                 }
-                                steps {
+                                publishers {
                                         downstreamParameterized {
                 	                        trigger(name) {
                                                         condition('SUCCESS')
