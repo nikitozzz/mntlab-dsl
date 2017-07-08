@@ -44,11 +44,12 @@ job("${folder}/${lord}") {
         activeChoiceParam('RUN_JOB') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('''
-[ MNTLAB-vtarasiuk-child1-build-job,
-MNTLAB-vtarasiuk-child2-build-job,
-MNTLAB-vtarasiuk-child3-build-job,
-MNTLAB-vtarasiuk-child4-build-job ]
+                script(''' 
+def some = []
+for (i in 1..4){
+    some.add("MNTLAB-vtarasiuk-child${i}-build-job")
+}
+return some
 ''')
             }
         }
