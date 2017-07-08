@@ -20,9 +20,8 @@ job('MNTLAB-mdemenkova-main-build-job'){
         }
     }
   steps {	
-	downstreamParameterized {  
-              for (i = 1; i <5; i++) {
-                trigger("MNTLAB-mdemenkova-child${i}-build-job"){      
+	downstreamParameterized {   
+                trigger('$BUILDS_TRIGGER'){      
                 	block{
                     	buildStepFailure('FAILURE')
                     	failure('FAILURE')
