@@ -34,7 +34,13 @@ def jbn = []
 for (i in 1..4){
     jbn.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
-def current = []
+def script = ''' 
+def some = []
+for (i in 1..4){
+    some.add("MNTLAB-vtarasiuk-child${i}-build-job")
+}
+return some
+'''
     /**Job Section**/
 
 /** Create Master job*/
@@ -45,13 +51,7 @@ job("${folder}/${lord}") {
             choiceType('CHECKBOX')
             description('You may choose some jobs to build. Choose wise...')
             groovyScript {
-                script(''' 
-def some = []
-for (i in 1..4){
-    some.add("MNTLAB-vtarasiuk-child${i}-build-job")
-}
-return some
-''')
+                script(script)
             }
         }
     }
@@ -67,20 +67,18 @@ return some
                 }
                 runner('Fail')
                 steps {
-                    current.add('${BUILDS_TRIGGER}')
-                }
-            }
-        }
-        shell ("echo ${current}")
-        downstreamParameterized {
-            trigger(current) {
-                block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                }
-                parameters {
-                    currentBuild()
+                    downstreamParameterized {
+                        trigger(jbn[j]) {
+                            block {
+                                buildStepFailure('FAILURE')
+                                failure('FAILURE')
+                                unstable('UNSTABLE')
+                            }
+                            parameters {
+                                currentBuild()
+                            }
+                        }
+                    }
                 }
             }
         }
