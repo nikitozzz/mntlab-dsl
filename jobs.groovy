@@ -6,16 +6,14 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     steps {
         gradle 'test'
     }
-    ['EPBYMINW2695/MNTLAB-adoropei-child1-build-job',
-    'EPBYMINW2695/MNTLAB-adoropei-child2-build-job',
-    'EPBYMINW2695/MNTLAB-adoropei-child3-build-job',
-     'EPBYMINW2695/MNTLAB-adoropei-child4-build-job'].each {
-        job(it){
+    (1..4).each {
+        job("EPBYMINW2695/MNTLAB-adoropei-child${it}-build-job"){
             scm {
         		github 'MNT-Lab/mntlab-dsl','adoropei'
     		}
         	steps {
-      			shell( "./script.sh" )
+                shell( "chmod 777 script.sh" )
+      			shell( "./script.sh > output.txt" )
             }
         }
     }
@@ -23,4 +21,3 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
         archiveJunit 'build/test-results/**/*.xml'
     }
 }
-        
