@@ -1,4 +1,5 @@
 def git = "MNT-Lab/mntlab-dsl"
+/**
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
 def proc = command.execute()
@@ -10,19 +11,20 @@ if ( proc.exitValue() != 0 ) {
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
-
+*/
 freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
+    parameters {
+        choiceParam("BRANCH_NAME", ['hpashuto', 'master'])
+    }
+}
     scm {
-        github ''
+        github (git, '$BRANCH_NAME')
     }
     steps {
         shell ('echo hello world')
     }
-    publishers {
-        archiveJunit ''
-    }
-}
+
 (1..4).each {
     def jobN = it.value
     freeStyleJob("EPBYMINW2033/MNTLAB-hpashuto-child$jobN-build-job") {
