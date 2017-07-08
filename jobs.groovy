@@ -13,7 +13,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
       		script {
        			 groovyScript {
           			script {
-            			script("${childList}")
+            			script("${childList.collect{ '"' + it + '"'}}")
             			sandbox(true)
           			}
           			fallbackScript {
