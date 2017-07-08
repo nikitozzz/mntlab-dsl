@@ -56,8 +56,16 @@ job("${folder}/${lord}") {
     }
 
     steps {
-        jbn.each {
-            current.add(it['RUN_JOB'])
+        for (j in 1..4) {
+            conditionalSteps {
+                condition {
+                    expression("(?is).*child$j.*", '${BUILDS_TRIGGER}')
+                }
+                runner('Fail')
+                steps {
+                    current.add("MNTLAB-vtarasiuk-child${j}-build-job")
+                }
+            }
         }
         downstreamParameterized {
             trigger(current) {
@@ -66,8 +74,6 @@ job("${folder}/${lord}") {
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
-
-
                 parameters {
                     currentBuild()
                 }
