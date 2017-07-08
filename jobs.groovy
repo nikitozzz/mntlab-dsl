@@ -13,16 +13,16 @@ def branches = proc.in.text.readLines().collect {
 job('./EPBYMINW3092/MNTLAB-akonchyts-main-build-job') {
   description 'This job is required to trigger the rest four from one place'
   configure { project ->
-        project / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' / 'com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition plugin="extended-choice-parameter@0.76"' {
-           'name'('BUILDS_TRIGGER')
-           'description' ('Choose child build job(s) to run')
-           'quoteValue' (false)
-           'type' ('Check Boxes')
-           'value' ('MNTLAB-akonchyts-child1-build-job, MNTLAB-akonchyts-child2-build-job, MNTLAB-akonchyts-child3-build-job, MNTLAB-akonchyts-child4-build-job')
-           'defaultValue' ('MNTLAB-akonchyts-child1-build-job, MNTLAB-akonchyts-child2-build-job, MNTLAB-akonchyts-child3-build-job, MNTLAB-akonchyts-child4-build-job')
-           'visibleItemCount' (4)
-           'multiSelectDelimiter' (',')
-           'projectName' ('MNTLAB-akonchyts-main-build-job')
+        project / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' / 'com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition' {
+           name('BUILDS_TRIGGER')
+           description('Choose child build job(s) to run')
+           quoteValue(false)
+           type('PT_CHECKBOX')
+           value('MNTLAB-akonchyts-child1-build-job, MNTLAB-akonchyts-child2-build-job, MNTLAB-akonchyts-child3-build-job, MNTLAB-akonchyts-child4-build-job')
+           defaultValue('MNTLAB-akonchyts-child1-build-job, MNTLAB-akonchyts-child2-build-job, MNTLAB-akonchyts-child3-build-job, MNTLAB-akonchyts-child4-build-job')
+           visibleItemCount(4)
+           multiSelectDelimiter(',')
+           projectName('MNTLAB-akonchyts-main-build-job')
        }
    }
    parameters {
