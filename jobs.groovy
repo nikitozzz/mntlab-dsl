@@ -50,7 +50,7 @@ job("${folder}/${lord}") {
     }
 
     steps {
-        //TODO: script.sh <-- chmod +x
+
         downstreamParameterized {
             trigger(jbn) {
                 block {
