@@ -16,6 +16,17 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
     parameters {
         choiceParam("BRANCH_NAME", ['hpashuto', 'master'])
+        activeChoiceParam('BUILDS_TRIGGER') {
+            description('Allows user choose child builds')
+            choiceType('CHECKBOX')
+            groovyScript {
+                script(
+                        '''def choicelist = []
+                        (1..4).each{choicelist.add("MNTLAB-hpashuto-child$it-build-job")}
+                        choiselist'''
+                )
+            }
+        }
     }
     scm {
         github (git1, '$BRANCH_NAME')
