@@ -12,6 +12,12 @@ job('MNTLAB-mdemenkova-main-build-job'){
    
     parameters {
         choiceParam('BRANCH_NAME', ['mdemenkova', 'master'], 'select branch')
+	activeChoiceParam('BUILDS_TRIGGER') {
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('return ["MNTLAB-mdemenkova-child1-build-job", "MNTLAB-mdemenkova-child2-build-job", "MNTLAB-mdemenkova-child3-build-job", "MNTLAB-mdemenkova-child4-build-job"]')
+            }
+        }
     }
   steps {	
 	downstreamParameterized {  
