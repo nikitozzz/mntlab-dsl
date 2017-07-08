@@ -39,8 +39,7 @@ def some = []
 for (i in 1..4){
     some.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
-return some
-''')
+return some''')
 def otherScript = (''' 
 if [ ! -e "jobs.groovy" ] 
 then  tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh
