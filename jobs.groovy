@@ -28,9 +28,9 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
         }
     }
     publishers {
-        childList.each {
+        childList.each { name ->
         	downstreamParameterized {
-                trigger("${it}") {
+                	trigger(name) {
                 	condition('SUCCESS')
                 	parameters {
                    		predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
