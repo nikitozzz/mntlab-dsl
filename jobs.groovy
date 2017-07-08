@@ -77,7 +77,7 @@ job("${folder}/${lord}") {
             }
         }
         downstreamParameterized {
-            trigger(currentJob) {
+            trigger('${BUILDS_TRIGGER}') {
                 block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
