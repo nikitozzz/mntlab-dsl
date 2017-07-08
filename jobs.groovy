@@ -16,6 +16,22 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
     parameters {
         choiceParam("BRANCH_NAME", ['hpashuto', 'master'])
+        choiceParameter {
+            name('BUILDS_TRIGGER')
+            script {
+                groovyScript {
+                    script {
+                        script('return ["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
+                        sandbox(true)
+                    }
+                }
+            }
+            choiceType('CHECKBOX')
+            description('Allows user choose child builds')
+            filterable(false)
+        }
+
+        /**
         activeChoiceParam('BUILDS_TRIGGER') {
             description('Allows user choose child builds')
             choiceType('CHECKBOX')
@@ -26,6 +42,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
                 }
             }
         }
+ */
     }
     scm {
         github (git1, '$BRANCH_NAME')
