@@ -34,13 +34,6 @@ def jbn = []
 for (i in 1..4){
     jbn.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
-def someScript = (''' 
-def some = []
-for (i in 1..4){
-    some.add("MNTLAB-vtarasiuk-child${i}-build-job")
-}
-return some
-''')
 
     /**Job Section**/
 
@@ -52,7 +45,13 @@ job("${folder}/${lord}") {
             choiceType('CHECKBOX')
             description('You may choose some jobs to build. Choose wise...')
             groovyScript {
-                script(someScript)
+                script(''' 
+def some = []
+for (i in 1..4){
+    some.add("MNTLAB-vtarasiuk-child${i}-build-job")
+}
+return some
+''')
             }
         }
     }
