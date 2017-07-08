@@ -1,3 +1,16 @@
+def git = "MNT-Lab/mntlab-dsl"
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
+def proc = command.execute()
+proc.waitFor()
+if ( proc.exitValue() != 0 ) {
+    println "Error, ${proc.err.text}"
+    System.exit(-1)
+}
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
+
 freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
     scm {
@@ -15,14 +28,11 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     freeStyleJob("EPBYMINW2033/MNTLAB-hpashuto-child$jobN-build-job") {
         description "DSL task child$jobN job."
         parameters {
-            gitParam('BRANCH_NAME') {
-                description('Revision commit SHA')
-                type('BRANCH')
-                defaultValue('hpashuto')
+            choiceParam("BRANCH_NAME", branches)
             }
         }
         scm {
-            github ('MNT-Lab/mntlab-dsl')
+            github (git, '$BRANCH_NAME')
         }
         steps {
             gradle 'test'
@@ -31,4 +41,3 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             archiveJunit ''
         }
     }
-}
