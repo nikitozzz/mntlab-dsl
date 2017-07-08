@@ -48,7 +48,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
                                                                     	'"' + (it.replaceAll(/[a-z0-9]*\\trefs\\/heads\\//, '') as String) + '"'
                                                                   }
                                                                   branches  """)
-                                                        sandbox(true)
+                                                        sandbox(false)
                                                 }
                                                 fallbackScript {
                                                         script('')
