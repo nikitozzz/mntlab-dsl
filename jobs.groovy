@@ -30,7 +30,7 @@ def lord = 'MNTLAB-vtarasiuk-main-build-job'
 def folder = 'EPBYMINW2471'
 
 /** Setting list of child job names  (hardcode)*/
-def jbn = []
+def jbn = []; def currentJob = []
 for (i in 1..4){
     jbn.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
@@ -72,18 +72,19 @@ job("${folder}/${lord}") {
                 }
                 runner('Fail')
                 steps {
-                    downstreamParameterized {
-                        trigger('${BUILDS_TRIGGER}') {
-                            block {
-                                buildStepFailure('FAILURE')
-                                failure('FAILURE')
-                                unstable('UNSTABLE')
-                            }
-                            parameters {
-                                currentBuild()
-                            }
-                        }
-                    }
+                    currentJob.add ('${BUILDS_TRIGGER}')
+                }
+            }
+        }
+        downstreamParameterized {
+            trigger(currentJob) {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+                parameters {
+                    currentBuild()
                 }
             }
         }
