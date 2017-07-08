@@ -75,7 +75,7 @@ jbn.each {
             choiceParam('BRANCH_NAME', branches)
         }
         scm {
-            cloneWorkspace("${lord}", 'Any')
+            github(gitrepo, branchname)
         }
         triggers {
             scm('H/5 * * * *')
