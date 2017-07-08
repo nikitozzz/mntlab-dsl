@@ -41,6 +41,11 @@ for (i in 1..4){
 }
 return some
 ''')
+def otherScript = (''' 
+if [ ! -e "jobs.groovy" ] 
+then  tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh
+else tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh 
+fi''')
 
     /**Job Section**/
 
@@ -69,7 +74,7 @@ job("${folder}/${lord}") {
                 runner('Fail')
                 steps {
                     downstreamParameterized {
-                        trigger("${jbn[j]}") {
+                        trigger('${BUILDS_TRIGGER}') {
                             block {
                                 buildStepFailure('FAILURE')
                                 failure('FAILURE')
@@ -98,7 +103,7 @@ jbn.each {
         steps {
 
             shell ('chmod +x script.sh && ./script.sh > output.txt && cat output.txt')
-            shell ('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')
+            shell (otherScript)
         }
         publishers {
             archiveArtifacts('output.txt')
