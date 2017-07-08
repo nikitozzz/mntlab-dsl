@@ -13,9 +13,13 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
       		script {
        			 groovyScript {
           			script {
-            			        script("${childList}")
-            			        sandbox(true)
-                                }
+            			script("${childList}")
+            			sandbox(true)
+          			}
+          			fallbackScript {
+            			script('')
+            			sandbox(false)
+          			}
        	 		}
       		}	
       		choiceType('CHECKBOX')
