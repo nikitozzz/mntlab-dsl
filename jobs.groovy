@@ -39,15 +39,16 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
 
 
                 (1..4).each {
+                    def Jn = $it
                     conditionalSteps {
                         condition {
-                            expression('${BUILDS_TRIGGER}', "MNTLAB-hpashuto-child$it-build-job")
+                            expression('${BUILDS_TRIGGER}', "MNTLAB-hpashuto-child$Jn-build-job")
                         }
                         runner('Fail')
                         steps {
 
                             downstreamParameterized {
-                                trigger("MNTLAB-hpashuto-child$it-build-job") {
+                                trigger("MNTLAB-hpashuto-child$Jn-build-job") {
                                     block {
                                         buildStepFailure('FAILURE')
                                         failure('FAILURE')
