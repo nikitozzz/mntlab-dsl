@@ -20,11 +20,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             description('Allows user choose child builds')
             choiceType('CHECKBOX')
             groovyScript {
-                script(
-                        '''def choicelist = []
-                        (1..4).each{choicelist.add("MNTLAB-hpashuto-child$it-build-job")}
-                        choiselist'''
-                )
+                script ('["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child2-build-job"])')
             }
         }
     }
