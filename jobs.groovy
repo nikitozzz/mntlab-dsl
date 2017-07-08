@@ -23,6 +23,9 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
        	 		}
       		}	
       		choiceType('CHECKBOX')
+            description('example param')
+      		randomName('param-4711')
+      		filterable(false)
     	}
    	}
     childList.each {
