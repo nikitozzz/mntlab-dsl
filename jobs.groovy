@@ -48,7 +48,6 @@ job("${folder}/${lord}") {
                 script("return ${jbn}")
             }
         }
-        sandbox ()
     }
     scm {
         github(gitrepo, branchname)
