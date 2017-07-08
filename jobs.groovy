@@ -43,11 +43,12 @@ job("${folder}/${lord}") {
         choiceParam('BRANCH_NAME', masterchoice)
         activeChoiceParam('JOB_NAME') {
             choiceType('CHECKBOX')
-            sandbox (true)
+
             groovyScript {
                 script("return ${jbn}")
             }
         }
+        sandbox ()
     }
     scm {
         github(gitrepo, branchname)
