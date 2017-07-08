@@ -42,7 +42,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
                     def Jn = it.value
                     conditionalSteps {
                         condition {
-                            expression('${BUILDS_TRIGGER}', "MNTLAB-hpashuto-child$Jn-build-job")
+                            expression("(?is).*child$Jn.*",  '${BUILDS_TRIGGER}')
                         }
                         runner('Fail')
                         steps {
