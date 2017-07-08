@@ -7,7 +7,14 @@ def childList = []
 job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     description 'Build and test the app.'
     parameters {
-        		choiceParam('BRANCH_NAME', ['adoropei', 'master'])
+        choiceParam('BRANCH_NAME', ['adoropei', 'master'])
+        activeChoiceParam('JOBS_TRIGGER') {
+            description('Allows user choose from multiple choices')
+            choiceType('CHECKBOX')
+            groovyScript {
+                script("${childList}")
+            }
+        }
    	}
     childList.each {
         job(it){
@@ -15,15 +22,15 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
         		choiceParam('BRANCH_NAME', ['adoropei', 'master'])
    			}
             scm {
-        		github 'MNT-Lab/mntlab-dsl','adoropei'
+        		github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
     		}
         	steps {
-                        shell( "chmod 777 script.sh" )
-      		        shell( "./script.sh > output.txt" )
-                        shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt' )
+                shell( "chmod 777 script.sh" )
+      			shell( "./script.sh > output.txt" )
+                shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt' )
             }
             publishers {
-       			archiveArtifacts 'output.txt'
+       			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz'
     		}
         }
     }
@@ -39,4 +46,5 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
         	}
         }
     }
+    
 }
