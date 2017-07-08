@@ -1,16 +1,8 @@
-def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-def command = "git ls-remote -h -t $gitURL"
-def proc = command.execute()
-def branches = proc.in.text.readLines().collect
-        {
-            it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
-        }   
 job('MNTLAB-mdemenkova-main-build-job'){
-    scm {
+  scm {
         github ('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
      }      
-   
-    parameters {
+  parameters {
         choiceParam('BRANCH_NAME', ['mdemenkova', 'master'], 'select branch')
 	activeChoiceParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
@@ -30,13 +22,10 @@ job('MNTLAB-mdemenkova-main-build-job'){
         parameters {
                     predefinedProp ('BRANCH_NAME', '$BRANCH_NAME')
         }
-    
+      }
+    }
   }
-  }
 }
-}
-}
-
 
 
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
@@ -46,7 +35,6 @@ def branches = proc.in.text.readLines().collect
         {
             it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
         }
-
 
 for (i = 1; i <5; i++) {
   job ("MNTLAB-mdemenkova-child${i}-build-job"){ 
@@ -64,9 +52,8 @@ for (i = 1; i <5; i++) {
           pattern('output.txt')
           pattern ('${BRANCH_NAME}_dsl_script.tar.gz')
           onlyIfSuccessful()          
-        }
-    }
-      
-    }
-}
+       }
+     }
+   }
+ }
                
