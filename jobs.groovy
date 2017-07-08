@@ -49,7 +49,11 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     steps {
         downstreamParameterized {
                 trigger('$JOBS_TRIGGER') {
-                        condition('SUCCESS')
+                        block{
+                                buildStepFailure('FAILURE')
+                                failure('FAILURE')
+                                unstable('UNSTABLE')
+                        }
                         parameters {
                                 predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
