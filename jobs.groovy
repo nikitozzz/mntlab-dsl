@@ -18,7 +18,7 @@ def branches = proc.in.text.readLines().collect {
 }
 def jobcount = (1..4)
 def joblist = []
-jobcount.each {joblist.add("MNTLAB-hpashuto-child$it-build-job")}
+jobcount.each {joblist.add("\"MNTLAB-hpashuto-child$it-build-job\"")}
 
 freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
