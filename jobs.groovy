@@ -16,6 +16,9 @@ if ( proc.exitValue() != 0 ) {
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
+def jobcount = (1..4)
+def joblist = []
+jobcount.each {joblist.add("MNTLAB-hpashuto-child$it-build-job")}
 
 freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
     description 'DSL task main job.'
@@ -25,7 +28,8 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             description('Allows user choose child builds')
             choiceType('CHECKBOX')
             groovyScript {
-                script ('["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
+                script("$joblist")
+                //script ('["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
                 //sandbox (true)
             }
         }
@@ -43,7 +47,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
 
 
 
-                (1..4).each {
+                jobcount.each {
                     def Jn = it.value
                     conditionalSteps {
                         condition {
@@ -77,7 +81,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
 
     }
 }
-(1..4).each {
+jobcount.each {
     def jobN = it.value
     freeStyleJob("EPBYMINW2033/MNTLAB-hpashuto-child$jobN-build-job") {
         description "DSL task child$jobN job."
