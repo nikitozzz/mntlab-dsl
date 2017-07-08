@@ -8,14 +8,18 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     description 'Build and test the app.'
     parameters {
         choiceParam('BRANCH_NAME', ['adoropei', 'master'])
-        activeChoiceParam('JOBS_TRIGGER') {
-            description('Allows user choose from multiple choices')
-            choiceType('CHECKBOX')
-            groovyScript {
-                script("${childList}")
-                sandbox(true)
-            }
-        }
+       	choiceParameter {
+      		name('JOBS_TRIGGER')
+      		script {
+       			 groovyScript {
+          			script {
+            			        script("${childList}")
+            			        sandbox(true)
+                                }
+       	 		}
+      		}	
+      		choiceType('CHECKBOX')
+    	}
    	}
     childList.each {
         job(it){
