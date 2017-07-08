@@ -41,9 +41,15 @@ for (i = 1; i <5; i++) {
          github ('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
     }
     steps {
-        shell('chmod +x ./script.sh; ./script.sh >> output.txt; tar -czvf $BRANCH_NAME_dsl_script.tar.gz output.txt script.sh')
-    	
+        shell('chmod +x ./script.sh; ./script.sh >> output.txt; tar -czvf "${BRANCH_NAME}_dsl_script.tar.gz" output.txt script.sh jobs.groovy')    	
  }
+    publishers {
+        archiveArtifacts {
+          pattern('output.txt')
+          pattern ('${BRANCH_NAME}_dsl_script.tar.gz')
+          onlyIfSuccessful()          
+        }
+    }
       
     }
 }
