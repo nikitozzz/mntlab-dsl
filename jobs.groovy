@@ -61,7 +61,7 @@ job("${folder}/${lord}") {
         }
     }
     scm {
-        github(gitrepo, branchname)
+        github(gitrepo, '${BRANCH_NAME}')
     }
 
     steps {
@@ -97,7 +97,7 @@ jbn.each {
             choiceParam('BRANCH_NAME', branches)
         }
         scm {
-            github(gitrepo, branchname)
+            github(gitrepo, '${BRANCH_NAME}')
         }
         steps {
 
