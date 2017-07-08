@@ -18,9 +18,9 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
         		github 'MNT-Lab/mntlab-dsl','adoropei'
     		}
         	steps {
-                shell( "chmod 777 script.sh" )
-      			shell( "./script.sh > output.txt" )
-                shell( 'tar -czvf $BRANCH_NAME_dsl_script.tar.gz *' )
+                        shell( "chmod 777 script.sh" )
+      		        shell( "./script.sh > output.txt" )
+                        shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt' )
             }
             publishers {
        			archiveArtifacts 'output.txt'
