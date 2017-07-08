@@ -41,7 +41,7 @@ def current = []
 job("${folder}/${lord}") {
     parameters {
         choiceParam('BRANCH_NAME', masterchoice)
-        activeChoiceParam('JOB_NAME') {
+        activeChoiceParam('RUN_JOB') {
             choiceType('CHECKBOX')
             groovyScript {
                 script("return ['1', '2', '3', '4']")
@@ -57,7 +57,7 @@ job("${folder}/${lord}") {
 
     steps {
         jbn.each {
-            current.add(it[JOB_NAME])
+            current.add(it['RUN_JOB'])
         }
         downstreamParameterized {
             trigger(current) {
