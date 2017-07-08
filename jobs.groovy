@@ -44,7 +44,7 @@ job("${folder}/${lord}") {
         activeChoiceParam('SOME_CHOICE') {
             choiceType('CHECKBOX')
             groovyScript {
-                script("return ['Option 1', 'Option 2', 'Option 3']")
+                script("return ${masterchoice}")
             }
         }
     }
