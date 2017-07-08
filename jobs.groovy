@@ -10,21 +10,21 @@ scm {
 
 parameters {
      choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Choose appropriate branch')
-	}
+	extendedChoiceParameterDefinition {
+          name('Select job')
+          type('multiselect')
+      visibleItemCount(4)
+          value('EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job,
+                 EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job,
+                 EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job,
+                 EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job')
+      multiSelectDelimiter(',')
+          }
+    }
 }   
 
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
-
-['EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job',
- 'EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job',
- 'EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job',
- 'EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job'
-].each {
-    freeStyleJob(it) {
-    	description 'The job was created successfully'
-    	}
-}
 
 parameters {
 	choiceParam('BRANCH_NAME', branches)
