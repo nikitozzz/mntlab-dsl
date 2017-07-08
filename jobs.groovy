@@ -43,7 +43,6 @@ job("${folder}/${lord}") {
         choiceParam('BRANCH_NAME', masterchoice)
         activeChoiceParam('SOME_CHOICE') {
             choiceType('CHECKBOX')
-            description('Name of a git-branch to use')
             groovyScript {
                 script("return ['Option 1', 'Option 2', 'Option 3']")
             }
