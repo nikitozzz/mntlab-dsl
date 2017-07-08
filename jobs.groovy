@@ -34,7 +34,7 @@ def jbn = []
 for (i in 1..4){
     jbn.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
-String someScript = (''' 
+def someScript = (''' 
 def some = []
 for (i in 1..4){
     some.add("MNTLAB-vtarasiuk-child${i}-build-job")
