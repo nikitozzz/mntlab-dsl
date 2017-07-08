@@ -14,10 +14,22 @@ script('return ["MNTLAB-atsuranau-child1-build-job", "MNTLAB-atsuranau-child2-bu
         github 'MNT-Lab/mntlab-dsl','atsuranau'
     }
     steps {
-
-    }
-
+      blockableBuildTriggerConfig {
+        projects('${JOB_SELECTION}')
+        block {
+		    buildStepFailureThreshold('FAILURE')
+   		 	unstableThreshold('UNSTABLE')
+    		failureThreshold('FAILURE')
+			} 
+    	configs {
+        	predefinedBuildParameters {
+           	 	properties('BRANCH_NAME = ${BRANCH_NAME}')
+            }
+        }
+      }
+	}
 }
+
 
 def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
 def proc = command.execute()
