@@ -34,7 +34,7 @@ def jbn = []
 for (i in 1..4){
     jbn.add("MNTLAB-vtarasiuk-child${i}-build-job")
 }
-
+def current = []
     /**Job Section**/
 
 /** Create Master job*/
@@ -56,8 +56,11 @@ job("${folder}/${lord}") {
     }
 
     steps {
+        jbn.each {
+            current.add(it[JOB_NAME])
+        }
         downstreamParameterized {
-            trigger(jbn) {
+            trigger(current) {
                 block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
