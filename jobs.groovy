@@ -13,12 +13,23 @@ job('MNTLAB-mdemenkova-main-build-job'){
     parameters {
         choiceParam('BRANCH_NAME', ['mdemenkova', 'master'], 'select branch')
     }
-  publishers {
-    for (i = 1; i <5; i++) {  
-    downstream ("MNTLAB-mdemenkova-child${i}-build-job", 'SUCCESS') 
+  steps {	
+	downstreamParameterized {  
+              for (i = 1; i <5; i++) {
+                trigger("MNTLAB-mdemenkova-child${i}-build-job"){      
+                	block{
+                    	buildStepFailure('FAILURE')
+                    	failure('FAILURE')
+                    	unstable('UNSTABLE')
+                }
+        parameters {
+                    predefinedProp ('BRANCH_NAME', '$BRANCH_NAME')
+        }
+    
   }
   }
-  	
+}
+}
 }
 
 
