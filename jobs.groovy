@@ -44,7 +44,7 @@ job("${folder}/${lord}") {
         activeChoiceParam('JOB_NAME') {
             choiceType('CHECKBOX')
             groovyScript {
-                script("return ${jbn}")
+                script("return ['1', '2', '3', '4']")
             }
         }
     }
@@ -56,7 +56,6 @@ job("${folder}/${lord}") {
     }
 
     steps {
-
         downstreamParameterized {
             trigger(jbn) {
                 block {
