@@ -43,7 +43,6 @@ job("${folder}/${lord}") {
         choiceParam('BRANCH_NAME', masterchoice)
         activeChoiceParam('JOB_NAME') {
             choiceType('CHECKBOX')
-
             groovyScript {
                 script("return ${jbn}")
             }
