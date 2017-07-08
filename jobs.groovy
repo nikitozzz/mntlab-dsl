@@ -7,18 +7,12 @@ def childList = []
 job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     description 'Build and test the app.'
     parameters {
-        	choiceParam('BRANCH_NAME', ['adoropei', 'master'])
+        		choiceParam('BRANCH_NAME', ['adoropei', 'master'])
    	}
-    scm {
-        github 'sheehan/job-dsl-playground'
-    }
-    steps {
-        gradle 'test'
-    }
     childList.each {
         job(it){
             parameters {
-        	        choiceParam('BRANCH_NAME', ['adoropei', 'master'])
+        		choiceParam('BRANCH_NAME', ['adoropei', 'master'])
    			}
             scm {
         		github 'MNT-Lab/mntlab-dsl','adoropei'
@@ -39,7 +33,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
                 trigger("${it}") {
                 	condition('SUCCESS')
                 	parameters {
-                   		predefinedProp('BRANCH_NAME', 'adoropei')
+                   		predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                		}
             	}
         	}
