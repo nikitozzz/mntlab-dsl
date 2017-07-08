@@ -21,6 +21,7 @@ freeStyleJob('EPBYMINW2033/MNTLAB-hpashuto-main-build-job') {
             choiceType('CHECKBOX')
             groovyScript {
                 script ('["MNTLAB-hpashuto-child1-build-job","MNTLAB-hpashuto-child2-build-job", "MNTLAB-hpashuto-child3-build-job", "MNTLAB-hpashuto-child4-build-job"]')
+                sandbox (sandbox = true)
             }
         }
     }
