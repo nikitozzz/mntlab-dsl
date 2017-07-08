@@ -14,7 +14,18 @@ job('./EPBYMINW3092/MNTLAB-akonchyts-main-build-job') {
    description 'This job is required to trigger the rest four from one place'
    parameters {
      choiceParam('BRANCH_NAME', ['akonchyts', 'master'], 'Choose appropriate branch')
-   }
+     extendedChoiceParameterDefinition {
+       name ('BUILDS_TRIGGER')
+       description ('Choose child build job(s) to run')
+       quoteValue (false)
+       type ('Check Boxes')
+       value ('MNTLAB-akonchyts-child1-build-job, MNTLAB-akonchyts-child2-build-job, MNTLAB-akonchyts-child3-build-job, MNTLAB-akonchyts-child4-build-job')
+       defaultValue ('MNTLAB-akonchyts-child1-build-job, MNTLAB-akonchyts-child2-build-job, MNTLAB-akonchyts-child3-build-job, MNTLAB-akonchyts-child4-build-job')
+       visibleItemCount (4)
+       multiSelectDelimiter (',')
+       projectName ('MNTLAB-akonchyts-main-build-job')
+     }
+ }
    scm {
        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
    }
