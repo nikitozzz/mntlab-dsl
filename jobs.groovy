@@ -45,8 +45,12 @@ job("${folder}/${lord}") {
             choiceType('CHECKBOX')
             description('Name of a git-branch to use')
             groovyScript {
-                script("return ${masterchoice}")
-            }
+                script('''
+return[
+'One',
+'Two'
+]
+''')
         }
     }
     scm {
