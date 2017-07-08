@@ -46,15 +46,12 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
     		}
         }
     }
-    steps {
-                shell( "echo $JOBS_TRIGGER" )
-    }
     publishers {
         childList.each { name ->
         	flexiblePublish {
                         conditionalAction {
                                 condition {
-                                        shell("$JOBS_TRIGGER == *${name}*")
+                                        shell("${JOBS_TRIGGER} == *${name}*")
                                 }
                                 steps {
                                         downstreamParameterized {
