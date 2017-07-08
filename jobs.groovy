@@ -39,10 +39,10 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
             steps {
                         shell( "chmod 777 script.sh" )
       			shell( "./script.sh > output.txt" )
-                        shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt' )
+                        shell( 'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh' )
             }
             publishers {
-       			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz'
+       			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz, output.txt'
     		}
         }
     }
