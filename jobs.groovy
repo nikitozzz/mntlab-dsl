@@ -24,8 +24,18 @@ job('./EPBYMINW3092/MNTLAB-akonchyts-main-build-job') {
        visibleItemCount (4)
        multiSelectDelimiter (',')
        projectName ('MNTLAB-akonchyts-main-build-job')
+       propertyFile ()
+       propertyKey ()
+       defaultPropertyFile ()
+       defaultPropertyKey ()
+       bindFieldName ()
+       svnPath ()
+       svnUrl ()
+       svnUserName ()
+       svnPassword ()
+       roleBasedFilter ()
      }
- }
+   }
    scm {
        github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
    }
