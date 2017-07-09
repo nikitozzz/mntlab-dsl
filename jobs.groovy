@@ -27,7 +27,6 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
             groovyScript {
                 script('["MNTLAB-yshchanouski-child1-build-job", "MNTLAB-yshchanouski-child2-build-job", "MNTLAB-yshchanouski-child3-build-job", "MNTLAB-yshchanouski-child4-build-job"]')
             }
-            sandbox()
         }
     }
     scm {
