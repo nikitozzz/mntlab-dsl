@@ -51,8 +51,8 @@ steps {
 }
 }   
 
-['1', '2', '3', '4'].each { suffix ->
-jobChild('EPBYMINW6405/MNTLAB-pyurchuk-child' + suffix + '-build-job') {
+1.upto(4){
+jobChild('EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job') {
     parameters {
     choiceParam('BRANCH_NAME', branches)
     }
