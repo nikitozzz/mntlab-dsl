@@ -22,7 +22,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
             description('Available options')
             choiceType('CHECKBOX')
             groovyScript {
-            script('["MNTLAB-$repo-child1-build-job", "MNTLAB-$repo-child2-build-job", "MNTLAB-$repo-child3-build-job", "MNTLAB-$repo-child4-build-job"]')
+            script('["MNTLAB-ndolya-child1-build-job", "MNTLAB-ndolya-child2-build-job", "MNTLAB-ndolya-child3-build-job", "MNTLAB-ndolya-child4-build-job"]')
             }
 	  }
     }
