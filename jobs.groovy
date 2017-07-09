@@ -29,6 +29,22 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     scm {
         github(git, repo)
     }
+	steps {
+        downstreamParameterized {
+            trigger('$BUILDS_TRIGGER') {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+               parameters {
+                    currentBuild()
+		}
+	    }
+	}	
+       
+    }
+   
     
 }
 
