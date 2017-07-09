@@ -29,10 +29,17 @@ job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
             scm {
                 github(git, repo)
             }
-            parameters {choiceParam('BRANCH_NAME', branches)}
+            parameters { choiceParam('BRANCH_NAME', branches) }
             steps {
                 shell('chmod +x ./script.sh; ./script.sh; ./script.sh >> output.txt; tar -czvf $SelectTheBranch_dsl_script.tar.gz output.txt script.sh')
+            }
+            publishers {
+                archiveArtifacts {
+                    pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+                    pattern('output.txt')
+                }
             }
         }
     }
 }
+
