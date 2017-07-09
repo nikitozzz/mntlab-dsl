@@ -12,7 +12,7 @@ parameters {
             choiceType('CHECKBOX')
             groovyScript {
 
-script('return ["MNTLAB-pyurchuk-child1-build-job", "MNTLAB-pyurchuk-child2-build-job", "MNTLAB-pyurchuk-child3-build-job", "MNTLAB-pyurchuk-child4-build-job"]')
+script('return ["EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job", "EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job", "EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job", "EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job"]')
           }
     }
 }
