@@ -22,10 +22,10 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     'Choose appropriate JOB')
 
 
-            gitParam('BRANCH') {
+            gitParam('SelecttTheBranch') {
                 description('branch selection')
                 type('BRANCH')
-                //branch('')
+                branch('~ /*')
                 defaultValue('aaksionkin') // empty by default
             }
         }
