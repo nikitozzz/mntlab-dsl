@@ -51,26 +51,29 @@ steps {
 }
 }   
 
-/*['1', '2', '3', '4'].each { suffix ->
-job('EPBYMINW6405/MNTLAB-pyurchuk-child' + suffix + '-build-job') {
-  parameters {
-  choiceParam('BRANCH_NAME', branches)
-}
-
-steps {
-    copyArtifacts('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job') {
-            includePatterns('script.sh')
-            targetDirectory('./')
-            flatten()
-            optional()
-            buildSelector {
-                latestSuccessful(true)
-            }
+['1', '2', '3', '4'].each { suffix ->
+jobChild('EPBYMINW6405/MNTLAB-pyurchuk-child' + suffix + '-build-job') {
+    parameters {
+    choiceParam('BRANCH_NAME', branches)
     }
-}
+    scm {
+        github(git, '$BRANCH_NAME')
+    }
+
+/*steps {    
+    copyArtifacts('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job') {
+        includePatterns('script.sh')
+        targetDirectory('./')
+        flatten()
+        optional()
+        buildSelector {
+        latestSuccessful(true)
+        }
+    }
+}*/
 
 steps {
-    shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+    shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')
 }
 
 publishers {
@@ -81,4 +84,4 @@ publishers {
             }
         }
     }
-}*/
+}
