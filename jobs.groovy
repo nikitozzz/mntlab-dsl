@@ -72,7 +72,7 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
     publishers { 
         archiveArtifacts {
             pattern('output.txt')
-            pattern('*_dsl_script.tar.gz')
+            pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
    }
 }
