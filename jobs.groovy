@@ -20,7 +20,15 @@ def branches = proc.in.text.readLines().collect {
 job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     parameters {
 	choiceParam('BRANCH_NAME', ['yshchanouski', 'master'])
-        runParam('BUILDS_TRIGGER', 'MNTLAB-yshchanouski-child1-build-job', 'my description', 'SUCCESSFUL')
+        activeChoiceParam('BUILDS_TRIGGER') {
+            description('Awailable options')
+            filterable()
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('["MNTLAB-yshchanouski-child1-build-job", "MNTLAB-yshchanouski-child2-build-job", "MNTLAB-yshchanouski-child3-build-job", "MNTLAB-yshchanouski-child4-build-job"]')
+                fallbackScript('"fallback choice"')
+            }
+        }
     }
     scm {
         github(git, '$BRANCH_NAME')
