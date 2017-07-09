@@ -52,7 +52,8 @@ steps {
 }   
 
 1.upto(4){
-jobChild('EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job') {
+freeStyleJob('EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job') {
+    description "Creating children job"
     parameters {
     choiceParam('BRANCH_NAME', branches)
     }
