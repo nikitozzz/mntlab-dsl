@@ -14,10 +14,7 @@ parameters {
           name('Select job')
           type('multiselect')
       visibleItemCount(4)
-          value('EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job,
-                 EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job,
-                 EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job,
-                 EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job')
+          value('EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job, EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job, EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job, EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job')
       multiSelectDelimiter(',')
           }
       }
