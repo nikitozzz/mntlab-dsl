@@ -6,12 +6,15 @@ scm {
 	}
 parameters {
      	choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose ich branch you want to use')
-		extendedChoiceParameterDefinition {
+		activeChoiceParam {
           		name('BUILDS_TRIGGER')
-          		type('CHECKBOX')
-	  		visibleItemCount(4)
-          		value('MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job')
- 	  		multiSelectDelimiter(',')
+          		choicetype('CHECKBOX')
+	  		//visibleItemCount(4)
+			groovyScript {
+				script('["MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job"]')	
+			}
+			//value('MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job')
+ 	  		//multiSelectDelimiter(',')
           }
 }
 triggers {
