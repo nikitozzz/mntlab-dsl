@@ -25,7 +25,7 @@ job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
 
     (1..4).each {
         println 'Job Number: ${it}'
-        job('EPBYMINW1766/MNTLAB-amaslakou-child-${it}-build-job') {
+        job('EPBYMINW1766/MNTLAB-amaslakou-child${it}-build-job') {
             scm {
                 github(git, repo)
             }
