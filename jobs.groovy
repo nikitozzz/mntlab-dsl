@@ -58,7 +58,15 @@ job('./EPBYMINW3092/MNTLAB-akonchyts-child' + suffix + '-build-job') {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
     steps {
-        shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy')
+      shell('''chmod +x script.sh
+      ./script.sh script.sh > output.txt
+      cat output.txt
+      if [[ -f jobs.groovy ]]
+      then
+      tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh jobs.groovy
+      else
+      tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh
+      fi''')
     }
     publishers {
         archiveArtifacts {
