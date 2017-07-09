@@ -21,7 +21,7 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     parameters {
 	choiceParam('BRANCH_NAME', ['yshchanouski', 'master'])
         activeChoiceParam('BUILDS_TRIGGER') {
-            description('Awailable options')
+            description('Available options')
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
