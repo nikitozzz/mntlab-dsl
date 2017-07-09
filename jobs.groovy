@@ -65,5 +65,5 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
             onlyIfSuccessful()
    }
 }
-
+}
 }
