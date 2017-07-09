@@ -28,12 +28,16 @@ publishers {
         }
 downstreamParameterized {
             trigger('EPBYMINW2466/MNTLAB-{akarzhou}-child1-build-job, EPBYMINW2466/MNTLAB-{akarzhou}-child2-build-job') {
-                condition('UNSTABLE_OR_BETTER')
-                parameters {
+            block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+	    parameters {
                     currentBuild()           
             }
-        }
-    }
+     }
+}
 }
 } 
 // Block with 4 child jobs
