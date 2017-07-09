@@ -1,25 +1,39 @@
-freeStyleJob('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
+def git = "MNT-Lab/mntlab-dsl"
+def repo = "pyurchuk"
+
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def command = "git ls-remote -h $gitURL"
+
+def proc = command.execute()
+proc.waitFor()
+
+if ( proc.exitValue() != 0 ) {
+    println "Error, ${proc.err.text}"
+    System.exit(-1)
+}
+
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
+
+job('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
     description 'Building necessary jobs'
-
-scm {
-     github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
-        }   
-
+    
 parameters {
      choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Select the branch')
-	   activeChoiceParam('JOB_SELECTION') {
+       activeChoiceParam('BUILDS_STRIGGER') {
             description('Select child job')
             choiceType('CHECKBOX')
             groovyScript {
 
-script('return ["EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job", "EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job", "EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job", "EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job"]')
+script('return ["MNTLAB-pyurchuk-child1-build-job", "MNTLAB-pyurchuk-child2-build-job", "MNTLAB-pyurchuk-child3-build-job", "MNTLAB-pyurchuk-child4-build-job"]')
           }
     }
 }
 
 steps {
     downstreamParameterized {
-        trigger('${JOB_SELECTION}') {
+        trigger('$BUILDS_STRIGGER') {
             block {
                 buildStepFailure('FAILURE')
                 failure('FAILURE')
@@ -33,12 +47,8 @@ parameters {
 
     }
     }
-} 
-
-def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-def command = "git ls-remote -h $gitURL"  
-
-['1', '2', '3', '4'].each { suffix ->
+}   
+/*['1', '2', '3', '4'].each { suffix ->
 job('EPBYMINW6405/MNTLAB-pyurchuk-child' + suffix + '-build-job') {
   parameters {
   choiceParam('BRANCH_NAME', branches)
@@ -62,10 +72,10 @@ steps {
 
 publishers {
         archiveArtifacts {
-        	pattern('output.txt')
-  	     	pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+            pattern('output.txt')
+            pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
             }
         }
     }
-}
+}*/
