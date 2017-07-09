@@ -61,7 +61,7 @@ job('./EPBYMINW3092/MNTLAB-akonchyts-child' + suffix + '-build-job') {
       shell('''chmod +x script.sh
       ./script.sh script.sh > output.txt
       cat output.txt
-      if [[ -f jobs.groovy ]]
+      if [ -f jobs.groovy ]
       then
       tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh jobs.groovy
       else
