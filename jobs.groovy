@@ -17,7 +17,7 @@ def branches = proc.in.text.readLines().collect {
 
 job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     parameters {
-	choiceParam("BRANCH_NAME", branches)
+	choiceParam('BRANCH_NAME', ['ndolya', 'master'],'Choose git branch')
     }
     scm {
         github(git, repo)
