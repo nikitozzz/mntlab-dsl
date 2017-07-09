@@ -1,24 +1,24 @@
+def git = "MNT-Lab/mntlab-dsl"
+def repo = "amaslakou"
 
-job('MNTLAB-amaslakou-main-build-job'){
+job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
     description 'Build and test the app.'
     scm {
-        github 'sheehan/job-dsl-playground'
+        github(git, repo)
     }
     steps {
         gradle 'test'
     }
+
     (1..4).each {
-        job("EPBYMINW2695/MNTLAB-amaslakou-child${it}-build-job"){
+        println "Job Number: ${it}"
+        job("EPBYMINW1766/MNTLAB-amaslakou-child${it}-build-job") {
             scm {
-                github 'MNT-Lab/mntlab-dsl','amaslakou'
+                github(git, repo)
             }
             steps {
-                shell( "chmod 777 script.sh" )
-                shell( "./script.sh > output.txt" )
+                shell("chmod +x script.sh && ./script.sh")
             }
         }
-    }
-    publishers {
-        archiveJunit 'build/test-results/**/*.xml'
     }
 }
