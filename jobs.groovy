@@ -16,19 +16,22 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 
-job('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
+freeStyleJob('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
     description 'Building necessary jobs'
     
 parameters {
      choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Select the branch')
-       activeChoiceParam('BUILDS_STRIGGER') {
+        activeChoiceParam('BUILDS_STRIGGER') {
             description('Select child job')
             choiceType('CHECKBOX')
             groovyScript {
-
-script('return ["MNTLAB-pyurchuk-child1-build-job", "MNTLAB-pyurchuk-child2-build-job", "MNTLAB-pyurchuk-child3-build-job", "MNTLAB-pyurchuk-child4-build-job"]')
-          }
+                script('["MNTLAB-pyurchuk-child1-build-job", "MNTLAB-pyurchuk-child2-build-job", "MNTLAB-pyurchuk-child3-build-job", "MNTLAB-pyurchuk-child4-build-job"]')
+            }
+        }
     }
+
+scm {
+        github(git, '$BRANCH_NAME')
 }
 
 steps {
@@ -39,15 +42,15 @@ steps {
                 failure('FAILURE')
                 unstable('UNSTABLE')
             }
-
-parameters {
-            predefinedProp('BRANCH_NAME', '${BRANCH_NAME}')
+            parameters {
+                predefinedProp('BRANCH_NAME', '${BRANCH_NAME}')
             }
         }   
 
     }
-    }
+}
 }   
+
 /*['1', '2', '3', '4'].each { suffix ->
 job('EPBYMINW6405/MNTLAB-pyurchuk-child' + suffix + '-build-job') {
   parameters {
