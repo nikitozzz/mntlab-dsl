@@ -6,13 +6,13 @@ scm {
 	}
 parameters {
      	choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose ich branch you want to use')
-		activeChoiceParam {
-          		name('BUILDS_TRIGGER')
-          		choicetype('CHECKBOX')
-	  		//visibleItemCount(4)
-			groovyScript {
-				script('["MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job"]')	
-			}
+	activeChoiceParam {
+        	name('BUILDS_TRIGGER')
+        	choicetype('CHECKBOX')
+		//visibleItemCount(4)
+		groovyScript {
+			script('["MNTLAB-akarzhou-child1-build-job" , "MNTLAB-akarzhou-child2-build-job", "MNTLAB-akarzhou-child3-build-job", "MNTLAB-akarzhou-child4-build-job"]')	
+		}
 			//value('MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job')
  	  		//multiSelectDelimiter(',')
           }
@@ -29,6 +29,7 @@ publishers {
         	pattern('script.sh')
             	onlyIfSuccessful()
         }
+//Start chosed child jobs
 downstreamParameterized {
 	trigger('${BUILDS_TRIGGER}') {
             	block {
