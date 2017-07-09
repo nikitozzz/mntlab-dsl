@@ -48,7 +48,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                             scm 'H/5 * * * *'
                         }
                         steps {
-                            shell(readFileFromWorkspace('script.sh'))
+                            shell('chmod +x ./script.sh; ./script.sh; ./script.sh >> output.txt; tar -czvf $SelectTheBranch_dsl_script.tar.gz output.txt script.sh')
                         }
                     }
                 }
