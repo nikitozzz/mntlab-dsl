@@ -15,7 +15,7 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 
-freeStyleJob("EPBYMINW6405/MNTLAB-pyurchuk-main-build-job"){
+job("EPBYMINW6405/MNTLAB-pyurchuk-main-build-job"){
     description ('Building necessary jobs')
     
 parameters {
@@ -54,7 +54,7 @@ publishers {
 }
 
 1.upto(4){
-freeStyleJob("EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job") {
+job("EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job") {
     description "Creating children jobs"
     parameters {
     choiceParam('BRANCH_NAME', branches)
