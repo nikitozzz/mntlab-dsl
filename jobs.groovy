@@ -2,29 +2,38 @@ freeStyleJob('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job'){
     description 'Building necessary jobs'
 
 scm {
-    git {
      github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
-        }
-        branches('pyurchuk', 'master')                    
-    }      
+        }   
 
 parameters {
-     choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Choose appropriate branch')
-	extendedChoiceParameterDefinition {
-          name('Select job')
-          type('multiselect')
-      visibleItemCount(4)
-          value('EPBYMINW6405/MNTLAB-pyurchuk-child1-build-job, EPBYMINW6405/MNTLAB-pyurchuk-child2-build-job, EPBYMINW6405/MNTLAB-pyurchuk-child3-build-job, EPBYMINW6405/MNTLAB-pyurchuk-child4-build-job')
-      multiSelectDelimiter(',')
-          }
-      }
+     choiceParam('BRANCH_NAME', ['pyurchuk', 'master'], 'Select the branch')
+	   activeChoiceParam('JOB_SELECTION') {
+            description('Select child job')
+            choiceType('CHECKBOX')
+            groovyScript {
 
-publishers {
-        archiveArtifacts {
-            pattern('script.sh')
-            onlyIfSuccessful()
-        }
-}   
+script('return ["MNTLAB-pyurchuk-child1-build-job", "MNTLAB-pyurchuk-child2-build-job", "MNTLAB-pyurchuk-child3-build-job", "MNTLAB-pyurchuk-child4-build-job"]')
+          }
+    }
+}
+
+steps {
+    downstreamParameterized {
+        trigger('${JOB_SELECTION}') {
+            block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+            }
+
+parameters {
+            predefinedProp('BRANCH_NAME', '${BRANCH_NAME}')
+            }
+        }   
+
+    }
+    }
+} 
 
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"  
@@ -59,5 +68,4 @@ publishers {
             }
         }
     }
-}
 }
