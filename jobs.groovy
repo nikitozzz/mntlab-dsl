@@ -68,9 +68,10 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
             steps {
                         shell( "chmod 777 script.sh" )
       			shell( "./script.sh > output.txt" )
-                        shell( ''' if [ -f "jobs.groovy" ]; then 
-                                                tar -czf $BRANCH_NAME_dsl_script.tar.gz jobs.groovy output.txt
-                                        else    tar -czf $BRANCH_NAME_dsl_script.tar.gz output.txt
+                        shell( ''' if [[ -f jobs.groovy ]]; then 
+                                              tar -czf $BRANCH_NAME_dsl_script.tar.gz jobs.groovy output.txt
+                                        else    
+                                              tar -czf $BRANCH_NAME_dsl_script.tar.gz output.txt
                                         fi ''' )
             }
             publishers {
