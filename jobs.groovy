@@ -37,7 +37,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     steps {
         shell('''chmod +x script.sh 
 	./script.sh script.sh > output.txt
-	 cat output.txt')
+	 cat output.txt''')
     }
 }
 
