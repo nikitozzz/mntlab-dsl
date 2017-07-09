@@ -24,7 +24,8 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
             groovyScript {
             script('["MNTLAB-$repo-child1-build-job", "MNTLAB-$repo-child2-build-job", "MNTLAB-$repo-child3-build-job", "MNTLAB-$repo-child4-build-job"]')
             }
-	  }		    
+	  }
+    }
     scm {
         github(git, repo)
     }
