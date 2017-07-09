@@ -26,7 +26,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                 description('branch selection')
                 type('BRANCH')
                 branch('~ /*')
-                defaultValue('aaksionkin') // empty by default
+                defaultValue('origin/aaksionkin') // empty by default
             }
         }
         //creating child jobs
