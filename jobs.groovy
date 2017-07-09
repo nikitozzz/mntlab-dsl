@@ -39,6 +39,13 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
 	./script.sh script.sh > output.txt
 	 cat output.txt''')
     }
+	  publishers {
+            archiveArtifacts {
+                pattern('output.txt')
+                pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+                onlyIfSuccessful()
+            }
+	  }
 }
 
 }
