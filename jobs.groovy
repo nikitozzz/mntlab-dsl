@@ -37,6 +37,18 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
         scm('H/5 * * * *')
     }
     steps {
+        downstreamParameterized {
+            trigger('$BUILDS_TRIGGER') {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+               parameters {
+                    currentBuild()
+		}
+	    }
+	}	
         shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
     }
     publishers { 
