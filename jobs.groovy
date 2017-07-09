@@ -5,7 +5,7 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 	}
      parameters {
-     choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose appropriate branch')
+     choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose ich branch you want to use')
 	      extendedChoiceParameterDefinition {
           name('Select job')
           type('multiselect')
@@ -14,7 +14,9 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
  	  multiSelectDelimiter(',')
           }
 }
-
+	triggers {
+	scm ('H/3 * * * *)		
+}
   steps {
      shell(' echo "Publish artefact for childs jobs"')
 }
@@ -56,6 +58,9 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 	parameters {
 	choiceParam('BRANCH_NAME', branches)
 }
+	triggers {
+	scm ('H/3 * * * *)		
+}	
 //Copying artifact from main job
 steps {
 copyArtifacts('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
@@ -73,7 +78,7 @@ shell('chmod +x ./script.sh && ./script.sh > output.txt && tar -czvf ${BRANCH_NA
       publishers {
         archiveArtifacts {
             pattern('output.txt')
-  	     	pattern('${BRANCH_NAME}_dsl_script.tar.gz')
+  	    pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
         }
     }
