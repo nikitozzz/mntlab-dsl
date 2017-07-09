@@ -18,6 +18,11 @@ def branches = proc.in.text.readLines().collect {
 job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     parameters {
 	choiceParam('BRANCH_NAME', ['ndolya', 'master'],'Choose git branch')
+	    activeChoiceParam('BUILDS_TRIGGER') {
+            description('Available options')
+            choiceType('CHECKBOX')
+            groovyScript {
+            script('["MNTLAB-$repo-child1-build-job", "MNTLAB-$repo-child2-build-job", "MNTLAB-$repo-child3-build-job", "MNTLAB-$repo-child4-build-job"]')
     }
     scm {
         github(git, repo)
