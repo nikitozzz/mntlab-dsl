@@ -2,7 +2,7 @@ pipeline{
     agent any
     stages {
         stage('Stack creation'){
-           steps {
+            steps {
                 jobDsl targets: "jobs.groovy"
             }
         }
