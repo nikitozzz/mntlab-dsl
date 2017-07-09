@@ -20,7 +20,7 @@ job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
         github(git, repo)
     }
     parameters {
-        choiceParam("BRANCH_NAME",'Choose branch:  ', ['amaslakou', 'master'])
+        choiceParam('BRANCH_NAME', ['amaslakou', 'master'])
     }
 
     (1..4).each {
@@ -29,9 +29,9 @@ job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
             scm {
                 github(git, repo)
             }
-            parameters {choiceParam("BRANCH_NAME",'Choose branch:  ', branches)}
+            parameters {choiceParam('BRANCH_NAME', branches)}
             steps {
-                shell('chmod +x script.sh && ./script.sh')
+                shell('chmod +x ./script.sh; ./script.sh; ./script.sh >> output.txt; tar -czvf $SelectTheBranch_dsl_script.tar.gz output.txt script.sh')
             }
         }
     }
