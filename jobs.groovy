@@ -62,8 +62,7 @@ freeStyleJob("EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job") {
     scm {
         github(git, '$BRANCH_NAME')
     }
-
-/*steps {    
+steps {    
     copyArtifacts('EPBYMINW6405/MNTLAB-pyurchuk-main-build-job') {
         includePatterns('script.sh')
         targetDirectory('./')
@@ -74,17 +73,15 @@ freeStyleJob("EPBYMINW6405/MNTLAB-pyurchuk-child${it}-build-job") {
         }
     }
 }
-
 steps {
     shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')
 }
-
 publishers {
         archiveArtifacts {
             pattern('output.txt')
             pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
             }
-        }*/
+        }
     }
 }
