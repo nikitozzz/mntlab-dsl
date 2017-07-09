@@ -1,5 +1,5 @@
 def git = 'MNT-Lab/mntlab-dsl'
-def repo = 'amaslakou'
+def repo = '$BRANCH_NAME'
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
 
@@ -20,15 +20,16 @@ job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
         github(git, repo)
     }
     parameters {
-        choiceParam('BRANCH_NAME', branches)
+        choiceParam('BRANCH_NAME', ['amaslakou', 'master'], 'Choose branch: ')
     }
 
     (1..4).each {
         println "Job Number: ${it}"
-        job("EPBYMINW1766/MNTLAB-amaslakou-child${it}-build-job") {
+        job("EPBYMINW1766/MNTLAB-amaslakou-child-${it}-build-job") {
             scm {
                 github(git, repo)
             }
+            parameters {choiceParam('BRANCH_NAME', branches,'Choose branch: ')}
             steps {
                 shell('chmod +x script.sh && ./script.sh')
             }
