@@ -4,7 +4,7 @@ def firstJobIndex = 1
 def lastJobIndex = 4
 def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
 
-job("MNTLAB-${student}-main-build-job") {
+job("EPBYMINW2470/MNTLAB-${student}-main-build-job") {
   
   def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
   selectedBranches.removeAll {!(["master",student].contains(it)) }
@@ -13,11 +13,11 @@ job("MNTLAB-${student}-main-build-job") {
     
     parameters {
       choiceParam('BRANCH_NAME',  selectedBranches,'')
-      booleanParam("MNTLAB-${student}-child${i}-build-job", true,"")
+      booleanParam("EPBYMINW2470/MNTLAB-${student}-child${i}-build-job", true,"")
     }
 
     //create downstream job
-    job("MNTLAB-${student}-child${i}-build-job") {
+    job("EPBYMINW2470/MNTLAB-${student}-child${i}-build-job") {
       scm {
         github('MNT-Lab/mntlab-dsl', student)
       }
@@ -38,7 +38,7 @@ job("MNTLAB-${student}-main-build-job") {
     jobList << "MNTLAB-${student}-child${i}-build-job"
     steps {
         downstreamParameterized {
-                trigger("MNTLAB-${student}-child${i}-build-job") {
+                trigger("EPBYMINW2470/MNTLAB-${student}-child${i}-build-job") {
                         block{
                                 buildStepFailure('FAILURE')
                                 failure('FAILURE')
