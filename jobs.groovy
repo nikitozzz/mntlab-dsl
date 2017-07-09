@@ -70,7 +70,7 @@ jobChild('EPBYMINW6405/MNTLAB-pyurchuk-child' + suffix + '-build-job') {
         latestSuccessful(true)
         }
     }
-}*/
+}
 
 steps {
     shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')
@@ -82,6 +82,6 @@ publishers {
             pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
             }
-        }
+        }*/
     }
 }
