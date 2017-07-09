@@ -27,12 +27,17 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
 
 1.upto(4) {
   job("EPBYMINW1969/MNTLAB-$repo-child${it}-build-job") {
+	  parameters {
+        choiceParam('BRANCH_NAME', branches)
+    }
     scm {
         github(git, repo)
     }
     
     steps {
-        shell('chmod +x script.sh && ./script.sh')
+        shell('''chmod +x script.sh 
+	./script.sh script.sh > output.txt
+	 cat output.txt')
     }
 }
 
