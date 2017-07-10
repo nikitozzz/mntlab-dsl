@@ -43,7 +43,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         job("EPBYMINW3088/MNTLAB-aaksionkin-child${it}-build-job") {
             description 'Echo the shell.sh.'
             parameters {
-                gitParam('BRANCH') {
+                gitParam('BRANCH_NAME') {
                     description('branch selection')
                     type('BRANCH_TAG')
                     //branch('~ /*')
@@ -57,7 +57,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                         name('mntlab-dsl')
                         url('https://github.com/MNT-Lab/mntlab-dsl.git')
                     }
-                    branch('$BRANCH')
+                    branch('$BRANCH_NAME')
                 }
                 triggers {
                     scm 'H/5 * * * *'
@@ -65,7 +65,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             }
             steps {
                 shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && ' +
-                        'tar -czf ${BRANCH}_dsl_script.tar.gz output.txt')
+                        'tar -czf "${BRANCH_NAME}"_dsl_script.tar.gz output.txt')
             }
         }
     }
