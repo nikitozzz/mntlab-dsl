@@ -8,7 +8,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-aaksionkin-child1-build-job", "MNTLAB-aaksionkin-child2-build-job", "MNTLAB-aaksionkin-child3-build-job", "MNTLAB-aaksionkin-child4-build-job"]')
+                script('return ["MNTLAB-aaksionkin-child1-build-job", "MNTLAB-aaksionkin-child2-build-job", "MNTLAB-aaksionkin-child3-build-job", "MNTLAB-aaksionkin-child4-build-job"]')
             }
         }
         triggers {
@@ -16,7 +16,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         }
     }
     scm {
-        github('$BRANCH_NAME')
+        github 'MNT-Lab/mntlab-dsl','$BRANCH_NAME'
     }
     steps {
         downstreamParameterized {
