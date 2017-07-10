@@ -60,7 +60,14 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     steps {
         shell('''chmod +x script.sh 
 	./script.sh script.sh > output.txt
-	 cat output.txt''')
+	 cat output.txt
+	  if [ -f jobs.groovy ]
+      then
+      tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh jobs.groovy
+      else
+      tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh
+      fi
+	 ''')
     }
 	  publishers {
             archiveArtifacts {
