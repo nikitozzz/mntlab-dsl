@@ -49,7 +49,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                         url('https://github.com/MNT-Lab/mntlab-dsl.git')
                     }
                 }*/
-                gitParam('$SelectTheBranch') {
+                gitParam('$BRANCH_NAME') {
                     description('branch selection')
                     type('BRANCH')
                     branch('~ /*')
@@ -61,7 +61,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                             name('mntlab-dsl')
                             url('https://github.com/MNT-Lab/mntlab-dsl.git')
                         }
-                        branch('$SelectTheBranch')
+                        branch('$BRANCH_NAME')
                         triggers {
                             scm 'H/5 * * * *'
                         }
