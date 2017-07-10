@@ -54,6 +54,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     type('BRANCH_TAG')
                     //branch('~ /*')
                     defaultValue('/aaksionkin')
+                    sortMode('ASCENDING')
                 }
             }
             scm {
