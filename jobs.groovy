@@ -13,12 +13,7 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
    }
 
-/*def BUILDS_TRIGGER = """[MNTLAB-zvirinsky-child1-build-job,
-                        MNTLAB-zvirinsky-child2-build-job,
-                        MNTLAB-zvirinsky-child3-build-job,
-                        MNTLAB-zvirinsky-child4-build-job]"""   
-*/
-job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
+ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
 	description 'Main Job'
 	scm {
         github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
@@ -32,10 +27,10 @@ job('./EPBYMINW2472/MNTLAB-zvirinsky-main-build-job'){
             choiceType('CHECKBOX')
             groovyScript {
                 script('["MNTLAB-zvirinsky-child1-build-job", "MNTLAB-zvirinsky-child2-build-job", "MNTLAB-zvirinsky-child3-build-job", "MNTLAB-zvirinsky-child4-build-job"]')
-                
+
             }
         }
-        
+
     }
 
     steps {
@@ -64,13 +59,19 @@ for(i in 1..4) {
         			}
 
     	steps {
-    		shell('chmod +x script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh')
+    		shell('''chmod +x script.sh; ./script.sh > output.txt;
+              if [ -f jobs.groovy ]
+                then
+                  tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh output.txt jobs.groovy
+                else
+                  tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh output.txt
+              fi''')
     		}
     	publishers {
         archiveArtifacts {
                        pattern('${BRANCH_NAME}_dsl_script.tar.gz')
                        pattern('output.sh')
                    		}
-    				}	
+    				}
     	}
 }
