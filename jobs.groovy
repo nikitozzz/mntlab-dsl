@@ -12,7 +12,8 @@ if ( proc.exitValue() != 0 ) {
     println "Error, ${proc.err.text}"
     System.exit(-1)
 }
-
+def jobsMass = []
+1.upto(4) { jobsMass.add("EPBYMINW1374/MNTLAB-dsilnyagin-child${it}-build-job") }
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
@@ -36,10 +37,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 		description('choose your desteny')
 		choiceType('CHECKBOX')
 		groovyScript {
-                    script(""["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job",
-			     "EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job",
-			     "EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job",
-			     "EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]"")}	
+                    script(jobsMass)}	
 	}
 	
     }
@@ -61,11 +59,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
 }
-['EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job',
- 'EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job',
- 'EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job',
- 'EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job'
-].each { 
+jobsMass.each { 
     freeStyleJob(it) {
     	description 'Build and test the app.'
 	parameters {
