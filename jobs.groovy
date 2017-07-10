@@ -41,7 +41,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         //creating child jobs
     1.upto(4) {
         job("EPBYMINW3088/MNTLAB-aaksionkin-child${it}-build-job") {
-                description 'Echo the shell.sh.'
+            description 'Echo the shell.sh.'
             parameters {
                 /*git {
                     remote {
@@ -49,28 +49,28 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                         url('https://github.com/MNT-Lab/mntlab-dsl.git')
                     }
                 }*/
-                gitParam('$BRANCH_NAME') {
+                gitParam('BRANCH_NAME') {
                     description('branch selection')
                     type('BRANCH')
                     branch('~ /*')
                     defaultValue('/aaksionkin')
                 }
+            }
             scm {
-                    git {
-                        remote {
-                            name('mntlab-dsl')
-                            url('https://github.com/MNT-Lab/mntlab-dsl.git')
-                        }
-                        branch('$BRANCH_NAME')
-                        triggers {
-                            scm 'H/5 * * * *'
-                        }
-                        steps {
-                            shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && ' +
-                                    'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
-                        }
+                git {
+                    remote {
+                        name('mntlab-dsl')
+                        url('https://github.com/MNT-Lab/mntlab-dsl.git')
                     }
+                    branch('$BRANCH_NAME')
                 }
+                triggers {
+                    scm 'H/5 * * * *'
+                }
+            }
+            steps {
+                shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && ' +
+                        'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
             }
         }
     }
