@@ -38,18 +38,23 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
     }
     }
 
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
+
         //creating child jobs
     1.upto(4) {
         job("EPBYMINW3088/MNTLAB-aaksionkin-child${it}-build-job") {
             description 'Echo the shell.sh.'
             parameters {
-                gitParam('BRANCH_NAME') {
+                choiceParam('BRANCH_NAME', branches, 'Select git branch')
+                /*gitParam('BRANCH_NAME') {
                     description('branch selection')
                     type('BRANCH')
                     //branch('~ /*')
                     //defaultValue('/aaksionkin')
                     sortMode('ASCENDING')
-                }
+                }*/
             }
             scm {
                 git {
