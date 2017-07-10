@@ -18,6 +18,10 @@ def branches = proc.in.text.readLines().collect {
 }
 
 job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
+    logRotator {
+        numToKeep(5)
+        artifactNumToKeep(5)
+    }
     parameters {
 	choiceParam('BRANCH_NAME', ['yshchanouski', 'master'])
         activeChoiceParam('BUILDS_TRIGGER') {
@@ -52,9 +56,6 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     }
     publishers { 
 	archiveArtifacts('output.txt')
-        publishBuild {
-            discardOldBuilds(3, 5)
-        }
     }
 
 
@@ -63,6 +64,10 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
 
 1.upto(4) {
 job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
+    logRotator {
+        numToKeep(5)
+        artifactNumToKeep(5)
+    }
     parameters {
 	choiceParam('BRANCH_NAME', branches)
     }
@@ -77,9 +82,6 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
             pattern('output.txt')
             pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
-        publishBuild {
-            discardOldBuilds(3, 5)
-        }
    }
 }
 }
