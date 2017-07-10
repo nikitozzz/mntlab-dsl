@@ -65,11 +65,8 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             }
 
             steps {
-                groovyScript {def (REPO, BRANCH) =  '$BRANCH_NAME'.split('/')
-                    assert REPO == 'origin'
-                    assert BRANCH == 'aaksionkin'}
                 shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && ' +
-                        'tar -czf ${BRANCH}_dsl_script.tar.gz output.txt')
+                        'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
             }
         }
     }
