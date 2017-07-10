@@ -54,7 +54,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     description('branch selection')
                     type('BRANCH')
                     branch('~ /*')
-                    defaultValue('/aaksionkin')
+                    defaultValue('/origin/aaksionkin')
                 }
             scm {
                     git {
