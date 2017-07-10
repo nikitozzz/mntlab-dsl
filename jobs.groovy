@@ -6,7 +6,7 @@ scm {
 	}
 parameters {
      	choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose ich branch you want to use')
-	ctiveChoiceParam('BUILDS_TRIGGER') {
+	activeChoiceParam('BUILDS_TRIGGER') {
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
