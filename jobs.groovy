@@ -24,18 +24,18 @@ publishers {
             	onlyIfSuccessful()
         }
 //Start chosed child jobs
-downstreamParameterized {
-	trigger('$BUILDS_TRIGGER') {
-            	block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                }
-	    	parameters {
-                    currentBuild()           
-            }
-     }
-}
+//downstreamParameterized {
+//	trigger('$BUILDS_TRIGGER') {
+//           	block {
+//                    buildStepFailure('FAILURE')
+//                    failure('FAILURE')
+//                    unstable('UNSTABLE')
+//                }
+//	    	parameters {
+//                    currentBuild()           
+//           }
+//     }
+//}
 }
 } 
 // Block with 4 child jobs
