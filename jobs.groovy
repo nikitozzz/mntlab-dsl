@@ -55,6 +55,9 @@ publishers {
 // Creating new 4 jobs
 ['1', '2', '3', '4'].each { suffix ->
 job('EPBYMINW2466/MNTLAB-akarzhou-child' + suffix + '-build-job') {
+scm {
+	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+}
 parameters {
 	choiceParam('BRANCH_NAME', branches)
 }
