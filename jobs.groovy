@@ -51,7 +51,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                 }*/
                 gitParam('BRANCH_NAME') {
                     description('branch selection')
-                    type('BRANCH')
+                    type('TAG')
                     //branch('~ /*')
                     defaultValue('/aaksionkin')
                 }
