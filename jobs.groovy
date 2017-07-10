@@ -11,8 +11,8 @@ def repobr = proc.in.text.readLines().collect {
   it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 
-//def listofjobs=["MNTLAB-asemirski-child1-build-job"]
-job("MNTLAB-asemirski-main-build-job") {
+
+job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 		scm {
        			github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
  		 }
@@ -25,21 +25,30 @@ job("MNTLAB-asemirski-main-build-job") {
                 			script('["EPBYMINW3093/MNTLAB-asemirski-child1-build-job","EPBYMINW3093/MNTLAB-asemirski-child2-build-job","EPBYMINW3093/MNTLAB-asemirski-child3-build-job","EPBYMINW3093/MNTLAB-asemirski-child4-build-job"]')}
 			 		
   		 }
+
+		steps {
+       			downstreamParameterized {
+            			trigger('$BUILDS_TRIGGER') {
+                	block {
+				buildStepFailure('FAILURE')
+                   	 	failure('FAILURE')
+                   		unstable('UNSTABLE')
+			}
+               parameters {
+                    currentBuild()
+		}
+	   }
+	}
+
+
+
+
+
 		for (i = 1; i <2; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
 				scm {
        					github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     				}
-
-				publishers {
-					archiveArtifacts {
-					    pattern('script.sh')	
-					}
-       				downstream('MNTLAB-asemirski-child1-build-job', 'SUCCESS')
-				downstream('MNTLAB-asemirski-child2-build-job', 'SUCCESS')
-				downstream('MNTLAB-asemirski-child3-build-job', 'SUCCESS')	
-				downstream('MNTLAB-asemirski-child4-build-job', 'SUCCESS')
-           			}
 
 
 
