@@ -70,7 +70,7 @@ for(i in 1..4) {
     	publishers {
         archiveArtifacts {
                        pattern('${BRANCH_NAME}_dsl_script.tar.gz')
-                       pattern('output.sh')
+                       pattern('output.txt')
                    		}
     				}
     	}
