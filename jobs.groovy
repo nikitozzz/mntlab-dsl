@@ -33,11 +33,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     publishers {
 	archiveArtifacts {
 	    pattern('script.sh')
-	    activeChoiceParam('BUILD_TRIGGER') {
-		description('choose your desteny')
-		choiceType('CHECKBOX')
-		groovyScript { script(jobsMass) }	
-	    }
+	    
 	}
     }
     steps {
@@ -53,6 +49,11 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     }
     parameters {
 	choiceParam("BRANCH_NAME", mainBr)
+	activeChoiceParam('BUILD_TRIGGER') {
+	    description('choose your desteny')
+	    choiceType('CHECKBOX')
+	    groovyScript { script(jobsMass) }	
+	}
     }
     scm {
 	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
