@@ -52,7 +52,13 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-main-build-job") {
     }
     publishers { 
 	archiveArtifacts('output.txt')
+        publishBuild {
+            discardOldBuilds(3, 5)
+        }
     }
+
+
+
 }
 
 1.upto(4) {
@@ -71,6 +77,9 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
             pattern('output.txt')
             pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
+        publishBuild {
+            discardOldBuilds(3, 5)
+        }
    }
 }
 }
