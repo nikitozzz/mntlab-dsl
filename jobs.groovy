@@ -11,18 +11,18 @@ def repobr = proc.in.text.readLines().collect {
   it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 
-def listofjobs=["MNTLAB-asemirski-child1-build-job"]
-job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
+//def listofjobs=["MNTLAB-asemirski-child1-build-job"]
+job("MNTLAB-asemirski-main-build-job") {
 		scm {
        			github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
  		 }
 	       	 parameters {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
-			 activeChoiceParam('CHOICE-1') {
+			 activeChoiceParam('CHOISE_SOME') {
 				description('choose your desteny')
 				choiceType('CHECKBOX')
 				groovyScript {
-                			script('[$listofjobs]')}
+                			script('["EPBYMINW3093/MNTLAB-asemirski-child1-build-job","EPBYMINW3093/MNTLAB-asemirski-child2-build-job","EPBYMINW3093/MNTLAB-asemirski-child3-build-job","EPBYMINW3093/MNTLAB-asemirski-child4-build-job"]')}
 			 		
   		 }
 		for (i = 1; i <2; i++) {
