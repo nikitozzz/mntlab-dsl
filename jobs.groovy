@@ -42,7 +42,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
 		}
 	    }
 	}
-        shell('echo "Select trigger job")
+        shell('echo "Select trigger job"')
 
     }
 
