@@ -76,7 +76,6 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     scm 'H/5 * * * *'
                 }
             }
-
             steps {
                 shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && ' +
                         'tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
