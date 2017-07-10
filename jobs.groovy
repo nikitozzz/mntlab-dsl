@@ -57,7 +57,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
         github(git, $repo)
     }
       steps {
-          copyArtifacts('EPBYMINW6405/MNTLAB-$repo-main-build-job') {
+          copyArtifacts('EPBYMINW1969/MNTLAB-$repo-main-build-job') {
               includePatterns('script.sh')
               targetDirectory('./')
               flatten()
