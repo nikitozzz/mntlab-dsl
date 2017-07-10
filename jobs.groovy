@@ -56,7 +56,17 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
     scm {
         github(git, repo)
     }
-    
+      steps {
+          copyArtifacts('EPBYMINW6405/MNTLAB-$repo-main-build-job') {
+              includePatterns('script.sh')
+              targetDirectory('./')
+              flatten()
+              optional()
+              buildSelector {
+                  latestSuccessful(true)
+              }
+          }
+      }
     steps {
         shell('''chmod +x script.sh 
 	./script.sh script.sh > output.txt
