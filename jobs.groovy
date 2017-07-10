@@ -8,7 +8,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-aksionkin-child1-build-job", "MNTLAB-aksionkin-child2-build-job", "MNTLAB-aksionkin-child3-build-job", "MNTLAB-aksionkin-child4-build-job"]')
+                script('["MNTLAB-aaksionkin-child1-build-job", "MNTLAB-aaksionkin-child2-build-job", "MNTLAB-aaksionkin-child3-build-job", "MNTLAB-aaksionkin-child4-build-job"]')
             }
         }
         triggers {
