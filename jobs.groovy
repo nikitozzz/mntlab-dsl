@@ -27,7 +27,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
 	  }
     }
     scm {
-        github($git, $repo)
+        github($git, '$BRANCH_NAME')
     }
 	steps {
         downstreamParameterized {
