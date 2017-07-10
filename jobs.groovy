@@ -45,7 +45,7 @@ job('EPBYMINW2695/MNTLAB-adoropei-main-build-job') {
                                                         script("""def result = ("git ls-remote -h -t https://github.com/MNT-Lab/mntlab-dsl.git").execute()
                                                                   def branches = result.in.text.readLines().collect
                                                                   {
-                                                                    	'"' + (it.replaceAll(/[a-z0-9]*\\trefs\\/heads\\//, '') as String) + '"'
+                                                                    	it.replaceAll(/[a-z0-9]*\\trefs\\/heads\\//, '') as String
                                                                   }
                                                                   branches  """)
                                                         sandbox(false)
