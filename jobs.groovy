@@ -11,7 +11,7 @@ parameters {
 	    filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-akarzhou-child1-build-job", "MNTLAB-akarzhou-child2-build-job", "MNTLAB-akarzhou-child3-build-job", "MNTLAB-akarzhou-child4-build-job"]')
+                script('return ["MNTLAB-akarzhou-child1-build-job", "MNTLAB-akarzhou-child2-build-job", "MNTLAB-akarzhou-child3-build-job", "MNTLAB-akarzhou-child4-build-job"]')
             }
 }
 }
