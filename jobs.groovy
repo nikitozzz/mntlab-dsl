@@ -21,6 +21,28 @@ job('EPBYMINW1766/MNTLAB-amaslakou-main-build-job') {
     }
     parameters {
         choiceParam('BRANCH_NAME', ['amaslakou', 'master'])
+
+        activeChoiceParam('BUILDS_TRIGGER') {
+            description('Choose: ')
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('["MNTLAB-amaslakou-child-1-build-job", "MNTLAB-amaslakou-child-2-build-job", "MNTLAB-amaslakou-child-3-build-job", "MNTLAB-amaslakou-child-4-build-job"]')
+            }
+        }
+    }
+    steps {
+        downstreamParameterized {
+            trigger('$BUILDS_TRIGGER') {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+                parameters {
+                    currentBuild()
+                }
+            }
+        }
     }
 
     (1..4).each {
