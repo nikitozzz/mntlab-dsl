@@ -6,8 +6,8 @@ scm {
 	}
 parameters {
      	choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose ich branch you want to use')
-	activeChoiceParam {
-        	name('BUILDS_TRIGGER')
+	activeChoiceParam ('BUILDS_TRIGGER') {
+		filterable ()
         	choicetype('CHECKBOX')
 		//visibleItemCount(4)
 		groovyScript {
@@ -28,7 +28,7 @@ publishers {
         }
 //Start chosed child jobs
 downstreamParameterized {
-	trigger('${BUILDS_TRIGGER}') {
+	trigger('$BUILDS_TRIGGER') {
             	block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
