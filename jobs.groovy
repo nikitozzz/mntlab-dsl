@@ -28,7 +28,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 
 		steps {
        			downstreamParameterized {
-            			trigger('$BUILDS_TRIGGER') {
+            			trigger('$BUILD_TRIGGER') {
                 	block {
 				buildStepFailure('FAILURE')
                    	 	failure('FAILURE')
@@ -66,5 +66,6 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
     					   }
 				}
 		}
+}
 }
 }
