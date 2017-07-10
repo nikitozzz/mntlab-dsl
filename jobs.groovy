@@ -41,10 +41,11 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
                     currentBuild()
 		}
 	    }
-	}	
-       
+	}
+        shell('echo "Select trigger job")
+
     }
-   
+
     
 }
 
