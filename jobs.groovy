@@ -34,6 +34,7 @@ publishers {
             pattern('script.sh')
             onlyIfSuccessful()
 }
+}
 } 
 // Block with 4 child jobs
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
