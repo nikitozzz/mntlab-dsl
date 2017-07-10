@@ -44,7 +44,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
 
 
 
-		for (i = 1; i <2; i++) {
+		for (i = 1; i <5; i++) {
  			 job("EPBYMINW3093/MNTLAB-asemirski-child${i}-build-job") {
 				scm {
        					github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
