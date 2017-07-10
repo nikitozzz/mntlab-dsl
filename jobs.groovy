@@ -20,13 +20,19 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                                        'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
                                        'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'],
                     'Choose appropriate JOB')
-
-
+            activeChoiceParam('BUILDS_TRIGGER') {
+                description('Available options')
+                filterable()
+                choiceType('CHECKBOX')
+                groovyScript {
+                    script('["MNTLAB-aksionkin-child1-build-job", "MNTLAB-aksionkin-child2-build-job", "MNTLAB-aksionkin-child3-build-job", "MNTLAB-aksionkin-child4-build-job"]')
+                }
+            }
             gitParam('BRANCH') {
                 description('branch selection')
                 type('BRANCH')
                 //branch('')
-                defaultValue('aaksionkin') // empty by default
+                defaultValue('/aaksionkin') // empty by default
             }
         }
         //creating child jobs
