@@ -58,7 +58,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             scm {
                     git {
                         remote {
-                            name('origin')
+                            name('mntlab-dsl')
                             url('https://github.com/MNT-Lab/mntlab-dsl.git')
                         }
                         branch('$SelectTheBranch')
