@@ -16,7 +16,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         }
     }
     scm {
-        github(git, '$BRANCH_NAME')
+        github('$BRANCH_NAME')
     }
     steps {
         downstreamParameterized {
