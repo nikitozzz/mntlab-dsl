@@ -54,10 +54,10 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
         choiceParam('BRANCH_NAME', branches)
     }
     scm {
-        github(git, $repo)
+        github(git, '$BRANCH_NAME')
     }
       steps {
-          copyArtifacts('EPBYMINW1969/MNTLAB-$repo-main-build-job') {
+          copyArtifacts('EPBYMINW1969/MNTLAB-ndolya-main-build-job') {
               includePatterns('script.sh')
               targetDirectory('./')
               flatten()
