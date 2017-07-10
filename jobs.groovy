@@ -27,7 +27,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
 	  }
     }
     scm {
-        github(git, repo)
+        github($git, $repo)
     }
 	steps {
         downstreamParameterized {
@@ -54,7 +54,7 @@ job("EPBYMINW1969/MNTLAB-$repo-main-build-job") {
         choiceParam('BRANCH_NAME', branches)
     }
     scm {
-        github(git, repo)
+        github(git, $repo)
     }
       steps {
           copyArtifacts('EPBYMINW6405/MNTLAB-$repo-main-build-job') {
