@@ -31,12 +31,28 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
     publishers {
 	archiveArtifacts {
-	    pattern('script.sh')	
+	    pattern('script.sh')
+	    activeChoiceParam('BUILD_TRIGGER') {
+		description('choose your desteny')
+		choiceType('CHECKBOX')
+		groovyScript {
+                    script('["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job",
+			     "EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job",
+			     "EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job",
+			     "EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]')}	
 	}
-        downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job', 'SUCCESS')
-	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job', 'SUCCESS')
-	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job', 'SUCCESS')
-	downstream('EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job', 'SUCCESS')
+	
+    }
+    steps {
+        downstreamParameterized {
+            trigger('Project1, Project2') {
+		block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+	    }
+	}
     }
     parameters {
 	choiceParam("BRANCH_NAME", mainBr)
