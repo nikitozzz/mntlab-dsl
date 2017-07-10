@@ -5,7 +5,6 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         choiceParam('BRANCH_NAME', ['aaksionkin', 'master'])
         activeChoiceParam('BUILDS_TRIGGER') {
             description('Available options')
-            filterable()
             choiceType('CHECKBOX')
             groovyScript {
                 script('["MNTLAB-aaksionkin-child1-build-job", "MNTLAB-aaksionkin-child2-build-job", "MNTLAB-aaksionkin-child3-build-job", "MNTLAB-aaksionkin-child4-build-job"]')
