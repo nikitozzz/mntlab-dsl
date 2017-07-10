@@ -11,12 +11,6 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                 script('["MNTLAB-aksionkin-child1-build-job", "MNTLAB-aksionkin-child2-build-job", "MNTLAB-aksionkin-child3-build-job", "MNTLAB-aksionkin-child4-build-job"]')
             }
         }
-        gitParam('$SelectTheBranch') {
-            description('branch selection')
-            type('BRANCH')
-            branch('~ /*')
-            defaultValue('/aaksionkin') // empty by default
-        }
         triggers {
             scm('H/1 * * * *')
         }
@@ -30,6 +24,18 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     unstable('UNSTABLE')
                 }
                 parameters {
+                    git {
+                        remote {
+                            name('origin')
+                            url('https://github.com/MNT-Lab/mntlab-dsl.git')
+                        }
+                    }
+                    gitParam('$SelectTheBranch') {
+                        description('branch selection')
+                        type('BRANCH')
+                        branch('~ /*')
+                        defaultValue('/aaksionkin') // empty by default
+                    }
                     currentBuild()
                 }
             }
