@@ -12,7 +12,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             }
         }
         triggers {
-            scm('H/1 * * * *')
+            scm('H/5 * * * *')
         }
     }
     steps {
@@ -46,12 +46,8 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         archiveArtifacts('output.txt')
     }
         //creating child jobs
-        ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
-         'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
-         'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
-         'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'
-        ].each {
-            freeStyleJob(it) {
+    1.upto(4) {
+        job("EPBYMINW2468/MNTLAB-aaksionkin-child${it}-build-job") {
                 description 'Echo the shell.sh.'
                 scm {
                     git {
@@ -70,7 +66,6 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                 }
             }
         }
-
     }
 
 
