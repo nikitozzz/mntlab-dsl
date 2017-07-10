@@ -18,7 +18,7 @@ job("EPBYMINW3093/MNTLAB-asemirski-main-build-job") {
  		 }
 	       	 parameters {
    			 choiceParam('BRANCH_NAME', ['asemirski', 'master'], 'Choose branch')
-			 activeChoiceParam('CHOISE_SOME') {
+			 activeChoiceParam('BUILD_TRIGGER') {
 				description('choose your desteny')
 				choiceType('CHECKBOX')
 				groovyScript {
