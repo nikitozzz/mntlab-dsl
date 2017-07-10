@@ -83,6 +83,6 @@ job("EPBYMINW2468/MNTLAB-yshchanouski-child${it}-build-job") {
             pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
    }
-}
-}
+  }
+ }
 }
