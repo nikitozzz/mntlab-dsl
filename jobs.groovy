@@ -1,3 +1,6 @@
+def branches = proc.in.text.readLines().collect {
+    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
+}
 job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
     description 'Create child jobs.'
     parameters {
@@ -38,9 +41,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
     }
     }
 
-def branches = proc.in.text.readLines().collect {
-    it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
-}
+
 
         //creating child jobs
     1.upto(4) {
