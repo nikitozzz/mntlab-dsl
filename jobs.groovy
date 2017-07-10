@@ -5,10 +5,10 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         choiceParam('BRANCH_NAME', ['aaksionkin', 'master'])
         activeChoiceParam('BUILDS_TRIGGER') {
             description('Available options')
-            //filterable()
-            choiceType('MULTI_SELECT')
+            filterable()
+            choiceType('CHECKBOX')
             groovyScript {
-                script('return ["MNTLAB-aaksionkin-child1-build-job", "MNTLAB-aaksionkin-child2-build-job", "MNTLAB-aaksionkin-child3-build-job", "MNTLAB-aaksionkin-child4-build-job"]')
+                script('["MNTLAB-aaksionkin-child1-build-job", "MNTLAB-aaksionkin-child2-build-job", "MNTLAB-aaksionkin-child3-build-job", "MNTLAB-aaksionkin-child4-build-job"]')
             }
         }
     }
@@ -54,7 +54,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     description('branch selection')
                     type('BRANCH')
                     branch('~ /*')
-                    defaultValue('/origin/aaksionkin')
+                    defaultValue('/aaksionkin')
                 }
             scm {
                     git {
