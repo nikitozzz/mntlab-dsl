@@ -22,7 +22,7 @@ branches.each {
         branches = branches.swap(0, branches.indexOf(it))
         println(branches)
     } 
-    elseif( it == myRepo || it == defRepo) {
+    if( it == myRepo || it == defRepo) {
 	mainBr.add(it) 
     }  
 }
