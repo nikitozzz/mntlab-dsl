@@ -1,21 +1,18 @@
 //Block with mane job
-job('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
+job('EPBYMINW2466/MNTLAB-akarzhou-main-build-job') {
 // Add github scm with two branches and checkbox with child jobs
 scm {
 	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
 	}
 parameters {
      	choiceParam('BRANCH_NAME', ['akarzhou', 'master'], 'Choose ich branch you want to use')
-	activeChoiceParam ('BUILDS_TRIGGER') {
-		filterable ()
-        	choicetype('CHECKBOX')
-		//visibleItemCount(4)
-		groovyScript {
-			script('["MNTLAB-akarzhou-child1-build-job" , "MNTLAB-akarzhou-child2-build-job", "MNTLAB-akarzhou-child3-build-job", "MNTLAB-akarzhou-child4-build-job"]')	
-		}
-			//value('MNTLAB-akarzhou-child1-build-job,MNTLAB-akarzhou-child2-build-job')
- 	  		//multiSelectDelimiter(',')
-          }
+	 activeChoiceParam('BUILDS_TRIGGER') {
+            filterable()
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('["MNTLAB-akarzhou-child1-build-job", "MNTLAB-akarzhou-child2-build-job", "MNTLAB-akarzhou-child3-build-job", "MNTLAB-akarzhou-child4-build-job"]')
+            }
+        }
 }
 steps {
 	shell(' echo "Publish artefact for childs jobs"')
@@ -59,13 +56,13 @@ def branches = proc.in.text.readLines().collect {
 
 // Creating new 4 jobs
 ['1', '2', '3', '4'].each { suffix ->
-job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
+job('EPBYMINW2466/MNTLAB-akarzhou-child' + suffix + '-build-job') {
 parameters {
 	choiceParam('BRANCH_NAME', branches)
 }
 //Copying artifact from main job
 steps {
-	copyArtifacts('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
+	copyArtifacts('EPBYMINW2466/MNTLAB-akarzhou-main-build-job') {
 		includePatterns('script.sh')
 		targetDirectory('./')
 		flatten()
