@@ -23,34 +23,36 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
-            }
                 parameters {
-                    git {
-                        remote {
-                            name('origin')
-                            url('https://github.com/MNT-Lab/mntlab-dsl.git')
-                        }
-                    }
-                    gitParam('$SelectTheBranch') {
-                        description('branch selection')
-                        type('BRANCH')
-                        branch('~ /*')
-                        defaultValue('/aaksionkin') // empty by default
-                    }
                     currentBuild()
                 }
             }
-
+        }
         shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
     }
     publishers {
         archiveArtifacts('output.txt')
     }
+    }
+
         //creating child jobs
     1.upto(4) {
         job("EPBYMINW2468/MNTLAB-aaksionkin-child${it}-build-job") {
                 description 'Echo the shell.sh.'
-                scm {
+            parameters {
+                /*git {
+                    remote {
+                        name('origin')
+                        url('https://github.com/MNT-Lab/mntlab-dsl.git')
+                    }
+                }*/
+                gitParam('$SelectTheBranch') {
+                    description('branch selection')
+                    type('BRANCH')
+                    branch('~ /*')
+                    defaultValue('/aaksionkin') // empty by default
+                }
+            scm {
                     git {
                         remote {
                             name('origin')
@@ -61,7 +63,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                             scm 'H/5 * * * *'
                         }
                         steps {
-                            shell(readFileFromWorkspace('script.sh'))
+                            shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
                         }
                     }
                 }
