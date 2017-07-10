@@ -31,6 +31,19 @@ job("MNTLAB-asemirski-main-build-job") {
        					github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     				}
 
+				publishers {
+					archiveArtifacts {
+					    pattern('script.sh')	
+					}
+       				downstream('MNTLAB-asemirski-child1-build-job', 'SUCCESS')
+				downstream('MNTLAB-asemirski-child2-build-job', 'SUCCESS')
+				downstream('MNTLAB-asemirski-child3-build-job', 'SUCCESS')	
+				downstream('MNTLAB-asemirski-child4-build-job', 'SUCCESS')
+           			}
+
+
+
+
 				parameters {choiceParam("BRANCH_NAME", repobr,'Choose branch')}	
 				steps {
         				shell('chmod +x ./script.sh; ./script.sh > output.txt; tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh')
@@ -39,6 +52,7 @@ job("MNTLAB-asemirski-main-build-job") {
        			 		archiveArtifacts {
                        				pattern('${BRANCH_NAME}_dsl_script.tar.gz')
            					pattern('output.txt')
+						onlyIfSuccessful()
                        					 }
     					   }
 				}
