@@ -1,40 +1,44 @@
 job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
-    description 'Build and test the app.'
+    description 'Create child jobs.'
     parameters {
-        scm {
-            git {
-                remote {
-                    name('origin')
-                    url('https://github.com/MNT-Lab/mntlab-dsl.git')
+        //choiceParam(String parameterName, List<String> options, String description)
+        choiceParam('BRANCH_NAME', ['aaksionkin', 'master'])
+        activeChoiceParam('BUILDS_TRIGGER') {
+            description('Available options')
+            filterable()
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('["MNTLAB-aksionkin-child1-build-job", "MNTLAB-aksionkin-child2-build-job", "MNTLAB-aksionkin-child3-build-job", "MNTLAB-aksionkin-child4-build-job"]')
+            }
+        }
+        gitParam('$SelectTheBranch') {
+            description('branch selection')
+            type('BRANCH')
+            branch('~ /*')
+            defaultValue('/aaksionkin') // empty by default
+        }
+        triggers {
+            scm('H/1 * * * *')
+        }
+    }
+    steps {
+        downstreamParameterized {
+            trigger('$BUILDS_TRIGGER') {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
                 }
-                triggers {
-                    scm 'H/5 * * * *'
-                }
+                parameters {
+                    currentBuild()
                 }
             }
         }
-        parameters {
-            //choiceParam(String parameterName, List<String> options, String description)
-            choiceParam('JOB_TO_RUN', ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
-                                       'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
-                                       'EPBYMINW3088/MNTLAB-aksionkin-child3-build-job',
-                                       'EPBYMINW3088/MNTLAB-aksionkin-child4-build-job'],
-                    'Choose appropriate JOB')
-            activeChoiceParam('BUILDS_TRIGGER') {
-                description('Available options')
-                filterable()
-                choiceType('CHECKBOX')
-                groovyScript {
-                    script('["MNTLAB-aksionkin-child1-build-job", "MNTLAB-aksionkin-child2-build-job", "MNTLAB-aksionkin-child3-build-job", "MNTLAB-aksionkin-child4-build-job"]')
-                }
-            }
-            gitParam('$SelectTheBranch') {
-                description('branch selection')
-                type('BRANCH')
-                branch('~ /*')
-                defaultValue('/aaksionkin') // empty by default
-            }
-        }
+        shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+    }
+    publishers {
+        archiveArtifacts('output.txt')
+    }
         //creating child jobs
         ['EPBYMINW3088/MNTLAB-aksionkin-child1-build-job',
          'EPBYMINW3088/MNTLAB-aksionkin-child2-build-job',
