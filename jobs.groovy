@@ -17,9 +17,6 @@ parameters {
  	  		//multiSelectDelimiter(',')
           }
 }
-triggers {
-	scm ('H/3 * * * *)		
-}
 steps {
 	shell(' echo "Publish artefact for childs jobs"')
 }
@@ -66,9 +63,6 @@ job('EPBYMINW2466/MNTLAB-{akarzhou}-child' + suffix + '-build-job') {
 parameters {
 	choiceParam('BRANCH_NAME', branches)
 }
-triggers {
-	scm ('H/3 * * * *)		
-}	
 //Copying artifact from main job
 steps {
 	copyArtifacts('EPBYMINW2466/MNTLAB-{akarzhou}-main-build-job') {
