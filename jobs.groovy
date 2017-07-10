@@ -15,6 +15,9 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             scm('H/5 * * * *')
         }
     }
+    scm {
+        github(git, '$BRANCH_NAME')
+    }
     steps {
         downstreamParameterized {
             trigger('$BUILDS_TRIGGER') {
@@ -37,7 +40,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
 
         //creating child jobs
     1.upto(4) {
-        job("EPBYMINW2468/MNTLAB-aaksionkin-child${it}-build-job") {
+        job("EPBYMINW3088//MNTLAB-aaksionkin-child${it}-build-job") {
                 description 'Echo the shell.sh.'
             parameters {
                 /*git {
