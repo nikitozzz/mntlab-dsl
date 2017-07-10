@@ -45,7 +45,7 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
             parameters {
                 gitParam('BRANCH_NAME') {
                     description('branch selection')
-                    type('BRANCH_TAG')
+                    type('BRANCH')
                     //branch('~ /*')
                     //defaultValue('/aaksionkin')
                     sortMode('ASCENDING')
@@ -63,10 +63,11 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     scm 'H/5 * * * *'
                 }
             }
+
             steps {
-                def (REPO, BRANCH) =  '$BRANCH_NAME'.split('/')
-                assert REPO == 'origin'
-                assert BRANCH == 'aaksionkin'
+                groovyScript {def (REPO, BRANCH) =  '$BRANCH_NAME'.split('/')
+                    assert REPO == 'origin'
+                    assert BRANCH == 'aaksionkin'}
                 shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && ' +
                         'tar -czf ${BRANCH}_dsl_script.tar.gz output.txt')
             }
