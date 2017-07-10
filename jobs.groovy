@@ -43,12 +43,6 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
         job("EPBYMINW3088/MNTLAB-aaksionkin-child${it}-build-job") {
             description 'Echo the shell.sh.'
             parameters {
-                git {
-                    remote {
-                        name('mntlab-dsl')
-                        url('https://github.com/MNT-Lab/mntlab-dsl.git')
-                    }
-                }
                 gitParam('BRANCH_NAME') {
                     description('branch selection')
                     type('BRANCH_TAG')
