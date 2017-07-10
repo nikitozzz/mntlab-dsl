@@ -28,10 +28,10 @@ job('EPBYMINW3088/MNTLAB-aaksionkin-DSL-build-job') {
                     script('["MNTLAB-aksionkin-child1-build-job", "MNTLAB-aksionkin-child2-build-job", "MNTLAB-aksionkin-child3-build-job", "MNTLAB-aksionkin-child4-build-job"]')
                 }
             }
-            gitParam('BRANCH') {
+            gitParam('$SelectTheBranch') {
                 description('branch selection')
                 type('BRANCH')
-                //branch('')
+                branch('~ /*')
                 defaultValue('/aaksionkin') // empty by default
             }
         }
