@@ -55,10 +55,10 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
+		parameters {
+             	    currentBuild()
+		}
 	    }
-	}
-	parameters {
-             currentBuild()
 	}
     }
 }
