@@ -29,7 +29,7 @@ job("EPBYMINW2470/MNTLAB-${student}-main-build-job") {
       }
       steps {
         shell('chmod 777 ./script.sh; ./script.sh > output.log')
-        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz ./script.sh' )
+        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy' )
       }
       publishers {
        			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz, output.txt'
