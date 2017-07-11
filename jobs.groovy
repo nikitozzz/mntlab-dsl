@@ -39,7 +39,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     steps {
         downstreamParameterized {
             //trigger('$BUILD_TRIGGER') {
-	    trigger('EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job') {
+	    trigger('EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job') {
 		block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
