@@ -38,7 +38,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     }
     steps {
         downstreamParameterized {
-            trigger('Project1, Project2') {
+            trigger('$BUILD_TRIGGER') {
 		block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
