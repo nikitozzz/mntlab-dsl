@@ -1,7 +1,7 @@
 def git = "MNT-Lab/mntlab-dsl"
 def myRepo = "dsilnyagin"
 def defRepo = "master"
-def buf = ""
+def buf = []
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def command = "git ls-remote -h $gitURL"
 
@@ -15,8 +15,8 @@ if ( proc.exitValue() != 0 ) {
 def jobsMass = []
 1.upto(4) { 
     jobsMass.add("EPBYMINW1374/MNTLAB-dsilnyagin-child${it}-build-job") 
-    buf += '"' + jobsMass[it] + '"'
 }
+jobsMass.each { buf += '"' + it + '"'}
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
