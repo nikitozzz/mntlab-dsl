@@ -30,24 +30,23 @@ branches.each {
 
 freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
     description 'Build and test the app.'
+    scm {
+	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
+    }
     publishers {
-	archiveArtifacts {
-	    pattern('script.sh')
-	    
-	}
+	archiveArtifacts { pattern('script.sh') }
     }
     parameters {
 	choiceParam("BRANCH_NAME", mainBr)
 	activeChoiceParam('BUILD_TRIGGER') {
 	    choiceType('CHECKBOX')
-	    //groovyScript { script(print(jobsMass)) }	
-	    groovyScript { script('["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]') }
+	    groovyScript { script(print(jobsMass)) }	
+	    //groovyScript { script('["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]') }
 	}
     }
     steps {
         downstreamParameterized {
-            //trigger('$BUILD_TRIGGER') {
-	    trigger('EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job') {
+            trigger('$BUILD_TRIGGER') {
 		block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
@@ -55,9 +54,6 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
                 }
 	    }
 	}
-    }
-    scm {
-	github 'MNT-Lab/mntlab-dsl', '$BRANCH_NAME'
     }
 }
 jobsMass.each { 
