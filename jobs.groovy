@@ -40,7 +40,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	choiceParam("BRANCH_NAME", mainBr)
 	activeChoiceParam('BUILD_TRIGGER') {
 	    choiceType('CHECKBOX')
-	    groovyScript { script ("${jobsMass.each {println(it)} }")
+	    groovyScript { script ("${jobsMass.each {println(\"it\")} }")
 		//sandbox(true) }
 	    }	
 	    //groovyScript { script('["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]') }
