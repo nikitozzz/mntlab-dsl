@@ -73,7 +73,7 @@ steps {
             }
 	}
 //Run script, archivate output information and make artifacts
-	shell('chmod +x ./script.sh && ./script.sh > output.txt && tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh')
+	shell('chmod +x ./script.sh && ./script.sh > output.txt && tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz output.txt script.sh jobs.groovy')
 }
 publishers {
 	archiveArtifacts {
