@@ -57,6 +57,9 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
                 }
 	    }
 	}
+	parameters {
+             currentBuild()
+	}
     }
 }
 jobsMass.each { 
