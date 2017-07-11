@@ -14,7 +14,7 @@ if ( proc.exitValue() != 0 ) {
 }
 def jobsMass = []
 1.upto(4) { 
-    buf.collect{ '"' + it + '"' }
+    buf.collect{ '"' + it + '"' + "123" }
     jobsMass.add("EPBYMINW1374/MNTLAB-dsilnyagin-child${it}-build-job") 
 }
 def branches = proc.in.text.readLines().collect {
