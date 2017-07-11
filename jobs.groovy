@@ -14,8 +14,8 @@ if ( proc.exitValue() != 0 ) {
 }
 def jobsMass = []
 1.upto(4) { 
-    buf.collect{ '"' + it + '"' + "123" }
     jobsMass.add("EPBYMINW1374/MNTLAB-dsilnyagin-child${it}-build-job") 
+    buf += '"' + jobsMass[it] + '"'
 }
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
@@ -43,7 +43,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	choiceParam("BRANCH_NAME", mainBr)
 	activeChoiceParam('BUILD_TRIGGER') {
 	    choiceType('CHECKBOX')
-	    groovyScript { script ("${buf}")
+	    groovyScript { script ("${print(buf)}")
 	    }
 	}
     }
