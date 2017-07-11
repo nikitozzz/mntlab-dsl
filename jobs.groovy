@@ -43,7 +43,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	choiceParam("BRANCH_NAME", mainBr)
 	activeChoiceParam('BUILD_TRIGGER') {
 	    choiceType('CHECKBOX')
-	    groovyScript { script ("${println(buf)}")
+	    groovyScript { script ("${buf}")
 	    }
 	}
     }
