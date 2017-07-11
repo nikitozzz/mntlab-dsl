@@ -13,7 +13,10 @@ if ( proc.exitValue() != 0 ) {
     System.exit(-1)
 }
 def jobsMass = []
-1.upto(4) { jobsMass.add("EPBYMINW1374/MNTLAB-dsilnyagin-child${it}-build-job") }
+1.upto(4) { 
+    buf += '"' + it + '"'
+    jobsMass.add("EPBYMINW1374/MNTLAB-dsilnyagin-child${it}-build-job") 
+}
 def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
@@ -40,7 +43,7 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	choiceParam("BRANCH_NAME", mainBr)
 	activeChoiceParam('BUILD_TRIGGER') {
 	    choiceType('CHECKBOX')
-	    groovyScript { script ("${jobsMass.each { print('"'+'"'+it+'"'+'"') } }")
+	    groovyScript { script ("${jobsMass.each { print(buf) } }")
 		//sandbox(true) }
 	    }	
 	    //groovyScript { script('["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]') }
