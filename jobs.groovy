@@ -52,7 +52,8 @@ freeStyleJob('EPBYMINW1374/MNTLAB-dsilnyagin-main-build-job'){
 	activeChoiceParam('BUILD_TRIGGER') {
 	    description('choose your desteny')
 	    choiceType('CHECKBOX')
-	    groovyScript { script(print(jobsMass)) }	
+	    //groovyScript { script(print(jobsMass)) }	
+	    groovyScript { script('["EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child2-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child3-build-job","EPBYMINW1374/MNTLAB-dsilnyagin-child4-build-job"]') }
 	}
     }
     scm {
