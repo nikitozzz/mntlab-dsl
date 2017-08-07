@@ -9,7 +9,9 @@ job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job")
 		def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
 		selectedBranches.removeAll {!(["master",student_surname].contains(it)) 
 	}
-  
+	
+println "hello"
+	
 for(i=firstJobIndex; i<lastJobIndex+1; i++)
 	{ 
 		parameters 
