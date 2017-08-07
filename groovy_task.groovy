@@ -26,7 +26,7 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 	{ 
 		parameters 
 			{
-				choiceParam('BRANCH_NAME',  ['zubkov'],'')
+				choiceParam('BRANCH_NAME', selectedBranches,'')
 				booleanParam("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job", true,"")
 			}
 
