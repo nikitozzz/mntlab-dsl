@@ -16,17 +16,20 @@ matchedJobs.each { job ->
     job.delete()
 }
 
-job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") {
+job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") 
+	{
+		def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
+		selectedBranches.removeAll {!(["master",student_surname].contains(it)) 
+	}
   
-  def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
-  selectedBranches.removeAll {!(["master",student_surname].contains(it)) }
-  
-  for(i=firstJobIndex; i<lastJobIndex+1; i++){
-    
-    parameters {
-      choiceParam('BRANCH_NAME',  ['zubkov', 'selectedBranches'],'')
-      booleanParam("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job", true,"")
-    }
+//for(i=firstJobIndex; i<lastJobIndex+1; i++)
+jobsList.each
+	{ 
+		parameters 
+			{
+				choiceParam('BRANCH_NAME',  ['zubkov'],'')
+				booleanParam("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job", true,"")
+			}
 
     //create downstream job
     job("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") {
