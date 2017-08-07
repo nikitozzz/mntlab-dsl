@@ -6,12 +6,13 @@ def command = "git ls-remote -h -t https://github.com/nikitozzz/mntlab-dsl.git"
 
 job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") 
 	{
-		def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
-		selectedBranches.removeAll {!(["master",student_surname].contains(it)) 
+		def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')
 	}
-	
-println "hello"
-	
+		selectedBranches.removeAll 
+			{
+				!(["master",student_surname].contains(it)) 
+			}
+		
 for(i=firstJobIndex; i<lastJobIndex+1; i++)
 	{ 
 		parameters 
@@ -21,38 +22,50 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 			}
 
     //create downstream job
-    job("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") {
-      scm {
-        github('nikitozzz/mntlab-dsl', student_surname)
-      }
-      def allBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
-      allBranches.remove(student_surname)
-      allBranches.add(0,student_surname)
-      parameters {
-        choiceParam('BRANCH_NAME',  allBranches,'')
-      }
-      steps {
-        shell('chmod 777 ./script.sh; ./script.sh > output.txt')
-        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh groovy_task.groovy' )
-      }
-      publishers {
-       			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz, output.txt'
-     }
-    }
+    job("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") 
+		{
+			scm 
+				{
+					github('nikitozzz/mntlab-dsl', student_surname)
+				}
+			def allBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')
+		}
+			allBranches.remove(student_surname)
+			allBranches.add(0,student_surname)
+			parameters 
+				{
+					choiceParam('BRANCH_NAME',  allBranches,'')
+				}
+			steps 
+				{
+					shell('chmod 777 ./script.sh; ./script.sh > output.txt')
+					shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh groovy_task.groovy' )
+				}
+			publishers 
+				{
+					archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz, output.txt'
+				}
+		}	
+	
     jobsList << "MNTLAB-${student_surname}-child${i}-build-job"
-    steps {
-        downstreamParameterized {
-                trigger("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") {
-                        block{
-                                buildStepFailure('FAILURE')
-                                failure('FAILURE')
-                                unstable('UNSTABLE')
-                        }
-                        parameters {
-                                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-                        }
-                }
-        }    
-    }
-  }
+    steps 
+		{
+			downstreamParameterized 
+				{
+					trigger("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") 
+						{
+							block
+								{
+									buildStepFailure('FAILURE')
+									failure('FAILURE')
+									unstable('UNSTABLE')
+								}
+							parameters 
+								{
+									predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+								}
+						}
+				}    
+		}
+	}
 }
