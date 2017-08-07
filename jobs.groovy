@@ -69,7 +69,7 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 								{
 									println "step9"
 									//predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-									choiceParam('BRANCH_NAME', 'BRANCH_NAME')
+									currentBuild()
 								}
 						}
 				}    
