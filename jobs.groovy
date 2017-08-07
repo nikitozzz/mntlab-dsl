@@ -42,7 +42,7 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 	steps 
 		{
 			shell('chmod 777 ./script.sh; ./script.sh > output.txt')
-			shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh groovy_task.groovy' )
+			shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy' )
 		}
 		publishers 
 		{
