@@ -18,7 +18,7 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 		parameters 
 			{
 				println "step3"
-				choiceParam(selectedBranches,'BRANCH_NAME','')
+				choiceParam('BRANCH_NAME',selectedBranches,'')
 				booleanParam("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job", true,"")
 			}
 
@@ -58,13 +58,6 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 					println "step7"
 					trigger("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") 
 						{
-							block
-								{
-									println "step8"
-									buildStepFailure('FAILURE')
-									failure('FAILURE')
-									unstable('UNSTABLE')
-								}
 							parameters 
 								{
 									println "step9"
