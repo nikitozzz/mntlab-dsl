@@ -1,8 +1,8 @@
-def student = "zubkov"
+def student = "kamyshev"
 def jobList = []
 def firstJobIndex = 1
 def lastJobIndex = 4
-def command = "git ls-remote -h https://github.com/nikitozzz/mntlab-dsl.git"
+def command = "git ls-remote -h https://github.com/PavelKamyshev/mntlab-dsl.git"
 
 job("EPRURYAW0380-MNTLAB-${student}-main-build-job") {
   
@@ -19,7 +19,7 @@ job("EPRURYAW0380-MNTLAB-${student}-main-build-job") {
     //create downstream job
     job("EPRURYAW0380-MNTLAB-${student}-child${i}-build-job") {
       scm {
-        github('MNT-Lab/mntlab-dsl', student)
+        github('PavelKamyshev/mntlab-dsl', student)
       }
       def allBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
       allBranches.remove(student)
