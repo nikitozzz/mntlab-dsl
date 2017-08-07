@@ -2,7 +2,7 @@ def student_surname = "zubkov"
 def jobsList = []
 def firstJobIndex = 1
 def lastJobIndex = 4
-def command = "git ls-remote -h https://github.com/nikitozzz/mntlab-dsl.git"
+def command = "git ls-remote -h -t https://github.com/nikitozzz/mntlab-dsl.git"
 
 //delete previous child jobsList
 import jenkins.model.*
@@ -22,8 +22,7 @@ job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job")
 		selectedBranches.removeAll {!(["master",student_surname].contains(it)) 
 	}
   
-//for(i=firstJobIndex; i<lastJobIndex+1; i++)
-jobsList.each
+for(i=firstJobIndex; i<lastJobIndex+1; i++)
 	{ 
 		parameters 
 			{
