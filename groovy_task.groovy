@@ -2,7 +2,7 @@ def student_surname = "zubkov"
 def jobsList = []
 def firstJobIndex = 1
 def lastJobIndex = 4
-def command = "git ls-remote -h -t https://github.com/nikitozzz/mntlab-dsl"
+def command = "git ls-remote -h https://github.com/nikitozzz/mntlab-dsl"
 
 job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") {
   
