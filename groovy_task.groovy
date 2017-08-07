@@ -19,7 +19,7 @@ job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") {
     //create downstream job
     job("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") {
       scm {
-        github('nikitozzz/mntlab-dsl.git', student_surname)
+        github('nikitozzz/mntlab-dsl', student_surname)
       }
       def allBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
       allBranches.remove(student_surname)
