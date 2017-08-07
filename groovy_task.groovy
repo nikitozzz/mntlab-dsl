@@ -4,6 +4,18 @@ def firstJobIndex = 1
 def lastJobIndex = 4
 def command = "git ls-remote -h -t https://github.com/nikitozzz/mntlab-dsl.git"
 
+//delete previous child jobsList
+import jenkins.model.*
+
+def matchedJobs = Jenkins.instance.items.findAll { job ->
+    job.name =~ /EPRURYAW0380*/
+}
+    
+matchedJobs.each { job ->
+    println job.name
+    job.delete()
+}
+
 job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") 
 	{
 		def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
