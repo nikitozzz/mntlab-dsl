@@ -68,7 +68,8 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 							parameters 
 								{
 									println "step9"
-									predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+									//predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+									choiceParam('BRANCH_NAME', 'BRANCH_NAME')
 								}
 						}
 				}    
