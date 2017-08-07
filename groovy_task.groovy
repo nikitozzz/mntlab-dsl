@@ -2,11 +2,11 @@ def student_surname = "zubkov"
 def jobsList = []
 def firstJobIndex = 1
 def lastJobIndex = 4
-def command = "git ls-remote -h https://github.com/nikitozzz/mntlab-dsl"
+def command = "git ls-remote -h https://github.com/nikitozzz/mntlab-dsl.git"
 
 job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") {
   
-  def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('/refs/heads/', '')}
+  def selectedBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
   selectedBranches.removeAll {!(["master",student_surname].contains(it)) }
   
   for(i=firstJobIndex; i<lastJobIndex+1; i++){
@@ -21,7 +21,7 @@ job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") {
       scm {
         github('nikitozzz/mntlab-dsl.git', student_surname)
       }
-      def allBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('/refs/heads/', '')}
+      def allBranches = command.execute().text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')}
       allBranches.remove(student_surname)
       allBranches.add(0,student_surname)
       parameters {
