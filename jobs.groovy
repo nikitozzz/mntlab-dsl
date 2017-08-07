@@ -43,6 +43,7 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 		{
 			shell('chmod 777 ./script.sh; ./script.sh > output.txt')
 			shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy' )
+			shell('cat output.txt' )
 		}
 		publishers 
 		{
@@ -58,6 +59,13 @@ for(i=firstJobIndex; i<lastJobIndex+1; i++)
 					println "step7"
 					trigger("EPRURYAW0380-MNTLAB-${student_surname}-child${i}-build-job") 
 						{
+							block
+								{
+									println "step8"
+									buildStepFailure('FAILURE')
+									failure('FAILURE')
+									unstable('UNSTABLE')
+								}
 							parameters 
 								{
 									println "step9"
