@@ -29,7 +29,7 @@ job("EPRURYAW0380-MNTLAB-${student_surname}-main-build-job") {
       }
       steps {
         shell('chmod 777 ./script.sh; ./script.sh > output.txt')
-        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy' )
+        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh groovy_task.groovy' )
       }
       publishers {
        			archiveArtifacts '${BRANCH_NAME}_dsl_script.tar.gz, output.txt'
